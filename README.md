@@ -1,4 +1,4 @@
-# GeekHaven - Personal Blog
+# Cosplay Convention & Planning App
 This is my 5th and final project at Code Institute, implementing all skills learned so far and focusing on an output using React on the frontend and Django REST API on the backend.
 
 I am planning a convention locating and cosplay planning page for cosplayers, who can search for conventions or add ones that they know of. They can then attach a cosplay plan to that convention and on their profile page will create a checklist of things they need to complete on their cosplay before the deadline. Optional checkins week by week allows users to upload their progress.
@@ -48,14 +48,17 @@ All users can search and view conventions, and the connected cosplays to that co
 
 | Epic | User Story  |
 |--------------|---|
-| Unauthenticated User | As an Unauthenticated User, I wish to *** so I can ***  |  
-|              | As an Unauthenticated User, I wish to *** so I can ***   |
-|              | As an Unauthenticated User, I wish to *** so I can *** |
+| All Users | As a User, I wish to view the landing page so I can see the available content  |  
+|              | As a User, I wish to click on the nav bar links so I can navigate to the selected content   |
+|              | As a User, I wish to search conventions so I can see which events are happening |
+|              | As a User, I wish to *** so I can *** |
+|              | As a User, I wish to browse the current list of user-added conventions so I can see if my desired convention already exists |
+| Unauthenticated User | As an Unauthenticated User, I wish to register an account by clicking Register so I can join the community | 
+|              | As an Unauthenticated User, I wish to click login so I can access certain features  | 
 |              | As an Unauthenticated User, I wish to *** so I can *** | 
-|              | As an Unauthenticated User, I wish to *** so I can ***  | 
-|              | As an Unauthenticated User, I wish to *** so I can *** | 
-| Authenticated User             | As an Authenticated User I wish to *** so that *** | 
-|              | As an Authenticated User I wish to *** so that ***   |
+| Authenticated User | As an Authenticated User I wish to Sign out of the website so that my profile can remain safe when I want it to | 
+|              |    |
+|              | As an Authenticated User, I wish to add a convention so I can enable other users to find it and/or add my own cosplay plans to the convention |
 |              | As an Authenticated User I wish to *** so that ***  |  
 |   Site Admin           | As a Site Admin I wish to *** so I can ***  | 
 |              | As a Site Admin I wish to *** so I can ***   | 
@@ -81,6 +84,7 @@ All users can search and view conventions, and the connected cosplays to that co
 
 ## Features
 
+*(complete this thought later) when users choose to add a convention, add the same functionality for searching so if they type "comiccon" for example, it will show up any cons with that name. This way we can minmize duplicate conventions
 
 - - - 
 
