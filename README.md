@@ -52,16 +52,21 @@ All users can search and view conventions, and the connected cosplays to that co
 |              | As a User, I wish to click on the nav bar links so I can navigate to the selected content   |
 |              | As a User, I wish to search conventions so I can see which events are happening |
 |              | As a User, I wish to *** so I can *** |
+|              | As a User, I wish to *** so I can *** |
+|              | As a User, I wish to *** so I can *** |
+|              | As a User, I wish to *** so I can *** |
 |              | As a User, I wish to browse the current list of user-added conventions so I can see if my desired convention already exists |
 | Unauthenticated User | As an Unauthenticated User, I wish to register an account by clicking Register so I can join the community | 
 |              | As an Unauthenticated User, I wish to click login so I can access certain features  | 
 |              | As an Unauthenticated User, I wish to *** so I can *** | 
 | Authenticated User | As an Authenticated User I wish to Sign out of the website so that my profile can remain safe when I want it to | 
-|              |    |
+|              | As an Authenticated User, I wish to make a cosplay to-do list so I can plan and mark off steps to complete my cosplay   |
+|              |  As an Authenticated User, I wish to add notes to my cosplay plans so I can put down thoughts outside of the to-do checklist  |
 |              | As an Authenticated User, I wish to add a convention so I can enable other users to find it and/or add my own cosplay plans to the convention |
-|              | As an Authenticated User I wish to *** so that ***  |  
-|   Site Admin           | As a Site Admin I wish to *** so I can ***  | 
-|              | As a Site Admin I wish to *** so I can ***   | 
+|              | As an Authenticated User, I wish to save a convention to my profile so I can keep track of events I'm interested in  |  
+|              | As an Authenticated User, I wish to mark tasks on my to-do list as complete, so I can track my progress   |
+|              |    |
+|   Site Admin  | As a Site Admin I wish to *** so I can ***   | 
 |              | As a Site Admin I wish to *** so I can ***   |
 |              | As a Site Admin I wish to *** so I can ***  |
 |              | As a Site Admin I wish to *** so I can ***  |
