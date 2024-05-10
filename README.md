@@ -1,9 +1,6 @@
-# Cosplay Convention & Planning App
+# CosCalendar - Cosplay Planning App
+
 This is my 5th and final project at Code Institute, implementing all skills learned so far and focusing on an output using React on the frontend and Django REST API on the backend.
-
-I am planning a convention locating and cosplay planning page for cosplayers, who can search for conventions or add ones that they know of. They can then attach a cosplay plan to that convention and on their profile page will create a checklist of things they need to complete on their cosplay before the deadline. Optional checkins week by week allows users to upload their progress.
-
-All users can search and view conventions, and the connected cosplays to that convention.
 
 ----------
 
@@ -85,7 +82,21 @@ All users can search and view conventions, and the connected cosplays to that co
 
 ## Features
 
-*(complete this thought later) when users choose to add a convention, add the same functionality for searching so if they type "comiccon" for example, it will show up any cons with that name. This way we can minmize duplicate conventions
+I am planning a cosplay planning page for cosplayers to help them stay accountable when con crunching (a phrase often used in the community for panicking to make your cosplay in time).
+
+An unathenticated user will be encouraged to log in/sign up to access the content.
+
+An authenticated user will have a profile of their basic information. Uncertain if there will be further functionaliy here yet.
+
+The main page will be a calendar type app but with a larger list of events to the side of/underneath the calendar. This will be the cosplayers' plans to stay on top of and they won't have to click on a specific date to see the plans. This way the focus is more on the to-do list aspect of the planning than just looking like an imitation Google Calendar.
+
+It would be nice to have them coloured in order of date - any within a week of the convention are red, from there and up to a month before the convention are yellow, then green or so. This would help the cosplayer at a glance to see how many items are left on their planning app.
+
+On the overview cosplayers will be able to go delete the to-do action, as well as click on it for further information.
+
+In the task overview page there an editable text pre-filled with the user's to-do information. The user can save the updated information (such as changing the date or adding/removing text details).
+
+It will also be possible to click on a date to add a task which will bring the user to the same page as the edit task, but with no data pulled from the database.
 
 - - - 
 
@@ -122,6 +133,8 @@ Tailwind CSS and components
 [Coolors](https://coolors.co/) - To create colour palettes.
 
 [Tailwind CSS color generator](https://uicolors.app/) - To generate a CSS palette for Tailwind.
+
+[React](https://react.dev/) - For organising/structuring the code.
 
 - - -
   
@@ -254,7 +267,7 @@ For cloning the repo you will need:
 
 ## Testing
 
-
+Please refer to the TESTING.md file for manual testing and screenshots.
 
 ## Bug Fixes
 
@@ -262,17 +275,21 @@ For cloning the repo you will need:
 - - -
 
 ## Credits
-  
+
+
 
 ### Code Used
 
+Tailwind UI Components (Bootstrap replacement)
+
 ### Content
 
-I have used [OpenAI](https://chat.openai.com/) to create most of the blog text content for me so I can focus my time on practising with the code.
-  
+Currently no large detail of content needed.  
 
 ### Acknowledgments
 
 I would like to acknowledge the following people:
+
+As always, my partner for helping me
   
 
