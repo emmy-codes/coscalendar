@@ -72,10 +72,15 @@ This is my 5th and final project at Code Institute, implementing all skills lear
 
 ## Design
 
+The design is going to be simple to avoid too much time being spent on superficial things as I am still very keen on practicing my backend skills. The page will be clear and concise to keep the user's focus on the functionality, the planning part of the page.
+
+I wanted some calming blue tones but came across a colour palette that has a mixture of purple and blue with turquoise and green. Purple is said to symbolize, among others, creativity and peace, which I felt fit in with my plan:
+
+![coolors_palette](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/57ea61ee-75b7-456e-97d4-466aa5016012)
 
 ### Accessibility
 
-
+Any imagery will be addressed using alt tags, and the above colour palette has very minimal variation in Coolor's colour blindness comparison! Semantic HTML will be used wherever React components aren't being rendered, and those components will have clear names to specify their use (although I know they'll be converted into JS and HTML in the browser).
 
 ### Wireframes
   
@@ -140,6 +145,33 @@ Tailwind CSS and components
   
 
 ## Iteration over starting code
+
+The first iteration was done using 3 Tailwind UI React components which was quick to give the page a decent structure out of the box.
+
+The calendar is the meat and veg of this page and much of the premade component data is static so will be needing a lot of refactoring. There's so much functionality involved in a calendar app that I decided to use the date-fn library to help me piece it all together.
+
+Premade date-fn functions:
+
+[startOfDay](https://date-fns.org/v3.6.0/docs/startOfDay) - Returns the start of a day.
+
+[startOfWeek](https://date-fns.org/v3.6.0/docs/startOfWeek) - Returns the start of the week for the given date.
+
+[endOfMonth](https://date-fns.org/v3.6.0/docs/endOfMonth) - Returns the end of a month for the given date.
+
+[endOfWeek](https://date-fns.org/v3.6.0/docs/endOfWeek) - Returns the end of a week for the given date.
+
+[eachDayOfInterval](https://date-fns.org/v3.6.0/docs/eachDayOfInterval) - Returns the array of dates within a specified time interval.
+
+
+In my code these do the following:
+
+1. The function getCalendarMonth uses the variable todaysDate which returns todays date using startOfDay
+2. The firstCalendarDay variable calculates the start of the week from todaysDate
+3. The lastDayOfMonth variable calculates the last day of the month (which isn’t the last date, as it could be that the beginning of the next month is in the middle of the week)
+4. The lastCalendarDay variable calculates the final day in the calendar’s month overview by finding the endOfWeek of the lastDayOfMonth
+5. Then returns eachDayOfInterval that receives the start and the end as the first and last days of the weeks in the monthly calendar view
+
+That’s a lot of going backwards between the variables! But I was then able to replace the premade render with getCalendarMonth() which continued to map over the data as before.
 
 
 - - -
