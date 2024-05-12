@@ -303,6 +303,13 @@ Please refer to the TESTING.md file for manual testing and screenshots.
 
 ## Bug Fixes
 
+1. Once I added the functionality to correctly track the monthly calendar days/weeks, the render was a huge mess!
+
+![calendar_visual_bug1](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/14866dc4-0543-4fdb-aa84-11ca54cb411c)
+
+I first inspected the calendar grid in Chrome dev tools and could see that it was rendering the dates I had just coded, so I added a console.log using the "day" parameter. This gave me a full log of the dates that I expected for this month, so at least the functionality was working but the render wasn't.
+
+![calendar_visual_bug2](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/b6c10991-10f4-47d3-9029-fd7088fdc904)
 
 - - -
 
