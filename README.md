@@ -96,7 +96,7 @@ CosCalendar:
 
 ![calendar_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/ef2f850f-3cc3-4d85-8406-9bdc3e74433e)
 
-Add cosplan popup:
+Add cosplan popup: When the user edits one of their plans the same window will popup, so this serves both as add new and edit existing plans
 
 ![add_plan_popup_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/a0cd2ffc-bcb8-498a-9019-9d5a16f5aa16)
 
