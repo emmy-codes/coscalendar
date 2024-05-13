@@ -83,7 +83,22 @@ I wanted some calming blue tones but came across a colour palette that has a mix
 Any imagery will be addressed using alt tags, and the above colour palette has very minimal variation in Coolor's colour blindness comparison! Semantic HTML will be used wherever React components aren't being rendered, and those components will have clear names to specify their use (although I know they'll be converted into JS and HTML in the browser).
 
 ### Wireframes
-  
+
+Homepage/login: The homepage is going to go straight to offering to login/sign up
+
+![login_wireframes](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/85ef6063-e9f2-46df-9d29-47b9162fd551)
+
+Register: 
+
+![register_wireframes](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/030b2f00-27b4-4347-815d-6243e86a6f33)
+
+CosCalendar:
+
+![calendar_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/ef2f850f-3cc3-4d85-8406-9bdc3e74433e)
+
+Add cosplan popup:
+
+![add_plan_popup_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/a0cd2ffc-bcb8-498a-9019-9d5a16f5aa16)
 
 ## Features
 
