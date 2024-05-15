@@ -227,32 +227,19 @@ Once the app was made I went to my dashboard where I can see my apps.
 
 6. Clicked on the relevant app
 
-![heroku_deployment_step_6](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/e6648e64-446c-4832-929f-3f7477c236b6)
+![deploy-step-6](https://github.com/emmy-codes/coscalendar/assets/70635859/bc0b3b82-4ad1-4b28-af49-17cb8b075853)
 
+7. Under the Deploy tab, I connected my Github repo to the Deployment method
 
-7-8. From here, I went to settings, then to the Config Vars. I added the key of DISABLE_COLLECTSTATIC and gave it a value of 1.
+![deploy-step-7](https://github.com/emmy-codes/coscalendar/assets/70635859/479a87da-628b-44f9-80b9-8a192d007fdf)
 
-![deployment_step_7-8](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/5e1a7d4f-3a96-42b5-bda3-464fbf8cd907)
+8. Adding buildpacks: Click on the Add buildpack button, select nodejs from the supported buildpacks, and Add Buildpack. This will allow Heroku to deploy successfully.
 
+![deploy-step-8](https://github.com/emmy-codes/coscalendar/assets/70635859/a2277585-e160-41e4-906c-fb0fca3e25f1)
 
-9. I then had to prepare my code for deployment. Back in VSCode I installed the following gunicorn version and added it to my requirements.txt file:
+9. Scrolling down the page, I chose which branch to deploy, and then manually deployed my project, but it's possible to set up automatic deployments if preferred.
 
-![deployment step 9](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/55bf05d5-8451-4d27-95ef-f97b50d5b65b)
-
-10. After that, I created a Procfile in the root directory and added my blogpage file directory to the Gunicorn WSGI:
-
-![deployment_step_10](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/05cd3c9a-f252-4d98-a6c5-9400a6338c4b)
-
-11. To keep my files safe when deployed, in my settings I changed DEBUG to False to prevent excessive information from being shown when errors occurred which could potentially give people unwanted access. I then updated my ALLOWED_HOSTS list to include my Heroku deployment links.
-12. Back on Heroku I switched to the Deployment tab and connected Github as the Deployment method. I searched my repository name and connected it.
-
-![deployment_step_12](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/aba54a9b-9436-4ad9-9e1c-6985be01cdce)
-
-13. Scrolling down the page, I chose to manually deploy my project as needed, but it's possible to set up automatic deployments if preferred.
-  
-![heroku_deployment_step_13](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/fed29cb2-9af8-4d0d-a827-ef493390b716)
-
-  
+![deploy-step-8](https://github.com/emmy-codes/coscalendar/assets/70635859/97582426-0d13-4c14-9570-0617ecf5efcb)
 
 ### Local Development
 
