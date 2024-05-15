@@ -227,7 +227,7 @@ Once the app was made I went to my dashboard where I can see my apps.
 
 6. Clicked on the relevant app
 
-![deploy-step-6](https://github.com/emmy-codes/coscalendar/assets/70635859/bc0b3b82-4ad1-4b28-af49-17cb8b075853)
+![deployment-step-6](https://github.com/emmy-codes/coscalendar/assets/70635859/44d2a777-fc16-43ea-8b73-4a731a7378be)
 
 7. Under the Deploy tab, I connected my Github repo to the Deployment method
 
