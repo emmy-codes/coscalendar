@@ -61,7 +61,12 @@ This is my 5th and final project at Code Institute, implementing all skills lear
 |    (not MVP)   | As an Authenticated User, I wish to add a convention so I can enable other users to find it and/or add my own cosplay plans to the convention |
 |    (not MVP)  | As an Authenticated User, I wish to save a convention to my profile so I can keep track of events I'm interested in  |  
 |              | As an Authenticated User, I wish to mark tasks on my to-do list as complete, so I can track my progress   |
-|              |    |
+|              |  As an Authenticated User I wish to update my username and/or password in order to change my name if I wish and/or ensure my account is safe  |
+|              | As an Authenticated User I wish to add a profile picture in order to customize my profile   |
+|              | As an Authenticated User I wish to edit a profile picture in order to update my picture when I want to  |
+|              | As an Authenticated User I wish to delete a profile picture in order to remove my cosplay from the internet if I wish  |
+|              |  |
+|              |  |
 |   Site Admin  | As a Site Admin I wish to delete user's content if necessary so I can control the sort of content on the site  | 
 |              | As a Site Admin I wish to *** so I can ***   |
 |              | As a Site Admin I wish to *** so I can ***  |
