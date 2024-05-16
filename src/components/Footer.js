@@ -43,7 +43,7 @@ const navigation = [
 
 export default function Footer() {
     return (
-        <footer className="bg-white min-w-full">
+        <footer className="min-w-full bg-chetwode-blue-800 text-chetwode-blue-100">
             <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
                 <div className="flex justify-center space-x-6 md:order-2">
                     {navigation.map((item) => (
@@ -53,8 +53,8 @@ export default function Footer() {
                         </a>
                     ))}
                 </div>
-                <div className="mt-8 md:order-1 md:mt-0">
-                    <p className="text-center text-xs leading-5 text-gray-500">
+                <div className="mt-2 md:order-1 md:mt-0">
+                    <p className="text-center text-s leading-5  text-deepPurple">
                         &copy; Student project and not intended for use.
                     </p>
                 </div>

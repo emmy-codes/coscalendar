@@ -8,15 +8,18 @@ const navigation = [
   { name: 'About', href: '#' },
 ]
 
-export default function Header() {
+export default function Navbar() {
+  {/*
+    useState swaps between open and close on hamburger menu
+*/}
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white">
+    <header className="bg-chetwode-blue-800 text-chetwode-blue-100">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+            <span className="sr-only">CosCalendar</span>
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
           </a>
         </div>
