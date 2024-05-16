@@ -263,7 +263,7 @@ Firstly, go to https://github.com/emmy-codes/geekhaven-blog/
 
 3. Check the box here if you want to make a copy of the main branch or multiple branches (main is selected by default).
 
-4. Create the fork. The screenshot is from an old project as I cannot fork my Python project due to not having any organizations connected to my account, and presumably because this repo is already a fork of the CI template.
+4. Create the fork. The screenshot is from an old project as I cannot fork my project due to not having any organizations connected to my account, and presumably because this repo is already a fork of the CI template.
  
  ![rsz_fork__steps](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/aa4dae7c-807d-4108-bb5b-f24c7010514b)
 
@@ -317,6 +317,17 @@ Please refer to the TESTING.md file for manual testing and screenshots.
 I first inspected the calendar grid in Chrome dev tools and could see that it was rendering the dates I had just coded, so I added a console.log using the "day" parameter. This gave me a full log of the dates that I expected for this month, so at least the functionality was working but the render wasn't.
 
 ![calendar_visual_bug2](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/b6c10991-10f4-47d3-9029-fd7088fdc904)
+
+
+2. Tailwind CSS vs global CSS variables: I wanted to use global variables for readability, and ease of updating in the future. It worked well to have the variables under :root, and when I changed the background of a div it worked, but trying to use the Tailwind CSS component text-<colour>-<weight> with a variable didn't do anything.
+
+Doing research on the matter, I discovered that, due to the way Tailwind processes the classes, and with having multiple classes with seimilar names (ie text-lg is for the size and text-black is for the colour) it struggles to define which is which on a global variable. If I, for example, tried to have a hexcode under the variable name --textColor and then used the className on my HTML for trying to style the text: text-[var(--textColor)] it doesn't know if that's a CSS for text COLOUR or SIZE, and thus does nothing.
+
+There was [some documentation](https://tailwindcss.com/docs/adding-custom-styles#resolving-ambiguities) on workarounds but it would have been more work to maintain and less user friendly if someone else or future me should look at the code.
+
+Solution:  I dug my way through to the [TailwindCSS documentation](https://tailwindcss.com/docs/customizing-colors) which shows how to use themes which act a lot like global variables, which seemed like the least invasive and easiest solution. There is an issue with this in that using cusom colours completely overrides all of the Tailwind CSS colours, but at the beginning of my project this is a workable solution. Once my colour palette has been tested on the site I may stick to the out of the box colours from Tailwind.
+
+![bug2-tailwind-global-variables](https://github.com/emmy-codes/coscalendar/assets/70635859/9c2e01b3-e739-4e03-b14f-6610259eb0ee)
 
 - - -
 
