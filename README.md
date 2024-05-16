@@ -318,6 +318,11 @@ I first inspected the calendar grid in Chrome dev tools and could see that it wa
 
 ![calendar_visual_bug2](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/b6c10991-10f4-47d3-9029-fd7088fdc904)
 
+This looked like it was correct since the dates themselves were correctly rendering. It wasn't until 3 days later when I was discussing the problem with my partner and he asked to see the log, then pointed out that it's literally rendering from the date, the time, GMT timezone etc, all trying to squeeze into the tiny grid block for each date. All that text when I just wanted Day, Month, Date!
+
+So back to the documentation, I went looking to complete my logic for accessing the right content. I looked over my date-fn functions and noticed I had endOfMonth, but I should need startOfMonth to get the beginning of the calendar, right? Currently my calendar was rendering from today's date and onwards.
+
+...........
 
 2. Tailwind CSS vs global CSS variables: I wanted to use global variables for readability, and ease of updating in the future. It worked well to have the variables under :root, and when I changed the background of a div it worked, but trying to use the Tailwind CSS component text-<colour>-<weight> with a variable didn't do anything.
 
