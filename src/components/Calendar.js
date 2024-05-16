@@ -7,7 +7,7 @@ import {
     MapPinIcon,
 } from '@heroicons/react/20/solid'
 import { Menu, MenuItem, MenuItems, MenuButton, Transition } from '@headlessui/react'
-import { startOfToday, startOfWeek, endOfMonth, endOfWeek, eachDayOfInterval, format } from 'date-fns'
+import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format } from 'date-fns'
 
 const meetings = [
     {
@@ -22,8 +22,6 @@ const meetings = [
     },
 ]
 
-
-// 
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -40,9 +38,13 @@ export default function Calendar() {
      * and vice versa for the end of the month
      */
 
+    // tomorrow: need to adjust first calendar day to start from the first week of the month based off todays date, not starting on todays date
+
     const getCalendarMonth = () => {
+        // first day of the month
+        const firstDayOfMonth = startOfMonth(todaysDate)
         // first day of first week
-        const firstCalendarDay = startOfWeek(todaysDate)
+        const firstCalendarDay = startOfWeek(firstDayOfMonth)
         // last day of the month
         const lastDayOfMonth = endOfMonth(todaysDate)
         // last DATE of calendar month shown
@@ -85,8 +87,8 @@ export default function Calendar() {
                         <div>S</div>
                         <div>S</div>
                     </div>
-                    <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-1 ring-gray-200">
-                        {getCalendarMonth().map((day, dayIdx) => {
+                    <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-chetwode-blue-200 text-sm shadow ring-1 ring-gray-200">
+                        {getCalendarMonth().map((day) => {
                             return (
                                 <button
                                     key={day.date}
