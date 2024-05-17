@@ -322,7 +322,11 @@ This looked like it was correct since the dates themselves were correctly render
 
 So back to the documentation, I went looking to complete my logic for accessing the right content. I looked over my date-fn functions and noticed I had endOfMonth, but I should need startOfMonth to get the beginning of the calendar, right? Currently my calendar was rendering from today's date and onwards.
 
-...........
+After further research through the date-fn documentation I came across mention of Unicode Tokens and discovered that DD refers to the day of the year, whereas dd refers to the day of the month, which is why in the case of my calendar it's important to use lowercase letters. [source](https://github.com/date-fns/date-fns/blob/main/docs/unicodeTokens.md)
+
+Seeing as the component is pre-built I had to do some research into its contents. I'd never come across the <time> tag before so upon reading up on [MDN documents](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) I learned that the dateTime attribute allows us to set specific day/time values inside of the tag, to me that seems somewhat like how we add attributes to forms!
+
+I decided to pass my formatDates variable to both the dateTime attribute, and the render inside the time tag. Viola! I was no longer rendering a huge mess of data and my calendar was readable! The wrong month, but readable. I'm still not entirely certain why we provide the dateTime value inside if it's also being rendered within the tag itsself, but at least it was working. From what I've read, it is for the benefit of the machines and for search engines, but I'll leave it at that for now.
 
 2. Tailwind CSS vs global CSS variables: I wanted to use global variables for readability, and ease of updating in the future. It worked well to have the variables under :root, and when I changed the background of a div it worked, but trying to use the Tailwind CSS component text-<colour>-<weight> with a variable didn't do anything.
 
