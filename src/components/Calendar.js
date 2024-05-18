@@ -7,12 +7,12 @@ import {
     MapPinIcon,
 } from '@heroicons/react/20/solid'
 import { Menu, MenuItem, MenuItems, MenuButton, Transition } from '@headlessui/react'
-import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format } from 'date-fns'
+import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, getMonth, format } from 'date-fns'
 
 const meetings = [
     {
         id: 1,
-        date: 'January 10th, 2022',
+        date: 'May 10th, 2022',
         time: '5:00 PM',
         datetime: '2022-01-10T17:00',
         name: 'Leslie Alexander',
@@ -49,36 +49,38 @@ export default function Calendar() {
         const lastDayOfMonth = endOfMonth(todaysDate)
         // last DATE of calendar month shown
         const lastCalendarDay = endOfWeek(lastDayOfMonth)
-
+        
         return eachDayOfInterval({
             start: firstCalendarDay,
             end: lastCalendarDay
         })
     }
+    // formatting date data to provide the word of the current month being viewed
+    const formatMonth = format(getMonth(todaysDate), 'MMMM')
 
     return (
         <div className="p-20">
-            <h2 className="text-base font-semibold leading-6 text-gray-900">Upcoming meetings</h2>
+            <h2 className="text-base font-semibold leading-6 text-gray-900">Cosplay plans</h2>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
-                    <div className="flex items-center text-gray-900">
+                    <div className="flex items-center text-chetwode-blue-900">
                         <button
                             type="button"
-                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-gray-500"
                         >
                             <span className="sr-only">Previous month</span>
                             <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                         </button>
-                        <div className="flex-auto text-sm font-semibold">January</div>
+                        <div className="flex-auto text-sm font-semibold">{formatMonth}</div>
                         <button
                             type="button"
-                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-gray-500"
                         >
                             <span className="sr-only">Next month</span>
                             <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                         </button>
                     </div>
-                    <div className="mt-6 grid grid-cols-7 text-xs leading-6 text-gray-500">
+                    <div className="mt-6 grid grid-cols-7 text-xs leading-6 text-chetwode-blue-900">
                         <div>M</div>
                         <div>T</div>
                         <div>W</div>
@@ -89,6 +91,10 @@ export default function Calendar() {
                     </div>
                     <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-chetwode-blue-200 text-sm shadow ring-1 ring-gray-200">
                         {getCalendarMonth().map((day) => {
+                            {/*
+                        formatting the date data to provide the days in the month
+                        */}
+                            const formatDates = format(day, 'dd')
                             return (
                                 <button
                                     key={day.date}
@@ -110,14 +116,14 @@ export default function Calendar() {
                                 >
                                     
                                     <time
-                                        dateTime={day.toString()}
+                                        dateTime={formatDates}
                                         className={classNames(
                                             'mx-auto flex h-7 w-7 items-center justify-center rounded-full',
                                             day.isSelected && day.isToday && 'bg-indigo-600',
                                             day.isSelected && !day.isToday && 'bg-gray-900'
                                         )}
                                     >
-                                        {day.toString()}
+                                        {formatDates}
                                     </time>
                                 </button>
                             )
