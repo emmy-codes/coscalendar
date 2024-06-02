@@ -9,16 +9,16 @@ import {
 import { Menu, MenuItem, MenuItems, MenuButton, Transition } from '@headlessui/react'
 import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, getMonth, format } from 'date-fns'
 
-const meetings = [
+const cosplan = [
     {
         id: 1,
         date: 'May 10th, 2022',
         time: '5:00 PM',
         datetime: '2022-01-10T17:00',
-        name: 'Leslie Alexander',
+        cosplayName: 'Bo Katan',
         imageUrl:
             'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        location: 'Starbucks',
+        plan: 'Finish gluing helmet',
     },
 ]
 
@@ -60,13 +60,13 @@ export default function Calendar() {
 
     return (
         <div className="p-20">
-            <h2 className="text-base font-semibold leading-6 text-gray-900">Cosplay plans</h2>
+            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans</h2>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
                     <div className="flex items-center text-chetwode-blue-900">
                         <button
                             type="button"
-                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-gray-500"
+                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-chetwode-blue-500"
                         >
                             <span className="sr-only">Previous month</span>
                             <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
@@ -74,13 +74,13 @@ export default function Calendar() {
                         <div className="flex-auto text-sm font-semibold">{formatMonth}</div>
                         <button
                             type="button"
-                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-gray-500"
+                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-chetwode-blue-500"
                         >
                             <span className="sr-only">Next month</span>
                             <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                         </button>
                     </div>
-                    <div className="mt-6 grid grid-cols-7 text-xs leading-6 text-chetwode-blue-900">
+                    <div className="mt-6 grid grid-cols-7 text-xs leading-6 text-black font-bold">
                         <div>M</div>
                         <div>T</div>
                         <div>W</div>
@@ -89,7 +89,7 @@ export default function Calendar() {
                         <div>S</div>
                         <div>S</div>
                     </div>
-                    <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-chetwode-blue-200 text-sm shadow ring-1 ring-gray-200">
+                    <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-chetwode-blue-200 text-sm shadow ring-1 ring-black">
                         {getCalendarMonth().map((day) => {
                             {/*
                         formatting the date data to provide the days in the month
@@ -99,7 +99,7 @@ export default function Calendar() {
                                 <button
                                     key={day.date}
                                     type="button"
-                                    className='py-1.5 hover:bg-gray-100 focus:z-10'
+                                    className='py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full'
                                     // className={classNames(
                                     //     'py-1.5 hover:bg-gray-100 focus:z-10',
                                     //     day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
@@ -119,8 +119,8 @@ export default function Calendar() {
                                         dateTime={formatDates}
                                         className={classNames(
                                             'mx-auto flex h-7 w-7 items-center justify-center rounded-full',
-                                            day.isSelected && day.isToday && 'bg-indigo-600',
-                                            day.isSelected && !day.isToday && 'bg-gray-900'
+                                            day.isSelected && day.isToday && 'bg-chetwode-blue-600',
+                                            day.isSelected && !day.isToday && 'bg-chetwode-blue-900'
                                         )}
                                     >
                                         {formatDates}
@@ -131,22 +131,26 @@ export default function Calendar() {
                     </div>
                     <button
                         type="button"
-                        className="max-w-xs mt-8 w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="max-w-xs mt-8 w-full rounded-md bg-chetwode-blue-900 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-chetwode-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Add cosplan
                     </button>
                 </div>
-                <ol className="mt-4 divide-y divide-gray-100 text-sm leading-6 lg:col-span-7 xl:col-span-8 max-w-xl">
-                    {meetings.map((meeting) => (
+                <ol className="mt-4 divide-y divide-chetwode-blue-100 text-sm leading-6 lg:col-span-7 xl:col-span-8 max-w-xl">
+                    {cosplan.map((meeting) => (
                         <li key={meeting.id} className="relative flex space-x-6 py-6 xl:static">
                             <img src={meeting.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
                             <div className="flex-auto">
-                                <h3 className="pr-10 font-semibold text-gray-900 xl:pr-0">{meeting.name}</h3>
-                                <dl className="mt-2 flex flex-col text-gray-500 xl:flex-row">
+                                <h3 className="pr-10 font-semibold text-black xl:pr-0">{meeting.cosplayName}</h3>
+                                {/*
+                                    dlist covers the deadline, time and plan (to update when cosplay plan is set up)
+                                */}
+                                <dl className="mt-2 flex flex-col text-black xl:flex-row">
                                     <div className="flex items-start space-x-3">
                                         <dt className="mt-0.5">
-                                            <span className="sr-only">Date</span>
-                                            <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                            {/* sr-only is screen reader accessibility improvements */}
+                                            <span className="sr-only">Deadline</span>
+                                            <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
                                         </dt>
                                         <dd>
                                             <time dateTime={meeting.datetime}>
@@ -154,18 +158,18 @@ export default function Calendar() {
                                             </time>
                                         </dd>
                                     </div>
-                                    <div className="mt-2 flex items-start space-x-3 xl:ml-3.5 xl:mt-0 xl:border-l xl:border-gray-400 xl:border-opacity-50 xl:pl-3.5">
+                                    <div className="mt-2 flex items-start space-x-3 xl:ml-3.5 xl:mt-0 xl:border-l xl:border-black xl:border-opacity-50 xl:pl-3.5">
                                         <dt className="mt-0.5">
-                                            <span className="sr-only">Location</span>
-                                            <MapPinIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                            <span className="sr-only">Plan</span>
+                                            <MapPinIcon className="h-5 w-5 text-pink" aria-hidden="true" />
                                         </dt>
-                                        <dd>{meeting.location}</dd>
+                                        <dd>{meeting.plan}</dd>
                                     </div>
                                 </dl>
                             </div>
                             <Menu as="div" className="absolute right-0 top-6 xl:relative xl:right-auto xl:top-auto xl:self-center">
                                 <div>
-                                    <MenuButton className="-m-2 flex items-center rounded-full p-2 text-gray-500 hover:text-gray-600">
+                                    <MenuButton className="-m-2 flex items-center rounded-full p-2 text-chetwode-blue-500 hover:text-chetwode-blue-600">
                                         <span className="sr-only">Open options</span>
                                         <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
                                     </MenuButton>
@@ -187,7 +191,7 @@ export default function Calendar() {
                                                     <a
                                                         href="#"
                                                         className={classNames(
-                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                            active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
                                                             'block px-4 py-2 text-sm'
                                                         )}
                                                     >
@@ -195,16 +199,17 @@ export default function Calendar() {
                                                     </a>
                                                 )}
                                             </MenuItem>
+                                            {/* changing to delete and adding functionality */}
                                             <MenuItem>
                                                 {({ active }) => (
                                                     <a
                                                         href="#"
                                                         className={classNames(
-                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                            active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
                                                             'block px-4 py-2 text-sm'
                                                         )}
                                                     >
-                                                        Cancel
+                                                        Delete
                                                     </a>
                                                 )}
                                             </MenuItem>

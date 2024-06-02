@@ -44,17 +44,17 @@ const navigation = [
 export default function Footer() {
     return (
         <footer className="min-w-full bg-chetwode-blue-800 text-chetwode-blue-100">
-            <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+            <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
                 <div className="flex justify-center space-x-6 md:order-2">
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+                        <a key={item.name} href={item.href} className="text-chetwode-blue-400 hover:text-chetwode-blue-500">
                             <span className="sr-only">{item.name}</span>
                             <item.icon className="h-6 w-6" aria-hidden="true" />
                         </a>
                     ))}
                 </div>
                 <div className="mt-2 md:order-1 md:mt-0">
-                    <p className="text-center text-s leading-5  text-deepPurple">
+                    <p className="text-center text-s leading-5 text-white">
                         &copy; Student project and not intended for use.
                     </p>
                 </div>
