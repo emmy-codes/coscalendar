@@ -46,17 +46,18 @@ This is my 5th and final project at Code Institute, implementing all skills lear
 |--------------|---|
 | All Users | As a User, I wish to view the landing page so I can see the available content  |  
 |              | As a User, I wish to click on the nav bar links so I can navigate to the selected content   |
-|              | As a User, I wish to search conventions so I can see which events are happening |
-|              | As a User, I wish to *** so I can *** |
+|              | As a User, I wish to navigate the selected content quickly so I can view content without page refresh |
+|              | As a User, I wish to see my profile link in order to easily tell if I'm logged in or not |
 |              | As a User, I wish to *** so I can *** |
 |              | As a User, I wish to *** so I can *** |
 |              | As a User, I wish to *** so I can *** |
 |       (not MVP)    | As a User, I wish to browse the current list of user-added conventions so I can see if my desired convention already exists |
-| Unauthenticated User | As an Unauthenticated User, I wish to register an account by clicking Register so I can join the community | 
+| Unauthenticated User | As an Unauthenticated User, I wish to register an account by clicking Register so I can make use of the authenticated user content | 
 |              | As an Unauthenticated User, I wish to click login so I can access certain features  | 
 |              | As an Unauthenticated User, I wish to *** so I can *** | 
 | Authenticated User | As an Authenticated User I wish to Sign out of the website so that my profile can remain safe when I want it to | 
-|              | As an Authenticated User, I wish to make a cosplay to-do list so I can plan and mark off steps to complete my cosplay   |
+|              | As an Authenticated User, I wish to make a cosplay to-do item on the calendar so I can plan and mark off steps to complete my cosplay   |
+|              | As an Authenticated User, I wish to view my cosplay to-do item so I have an overview of the task  |
 |              |  As an Authenticated User, I wish to add notes to my cosplay plans so I can put down thoughts outside of the to-do checklist  |
 |    (not MVP)   | As an Authenticated User, I wish to add a convention so I can enable other users to find it and/or add my own cosplay plans to the convention |
 |    (not MVP)  | As an Authenticated User, I wish to save a convention to my profile so I can keep track of events I'm interested in  |  
@@ -250,11 +251,11 @@ Once the app was made I went to my dashboard where I can see my apps.
 Should you wish to fork this repo, here is a guide on how to do that:
 
 
-Firstly, go to https://github.com/emmy-codes/geekhaven-blog/
+Firstly, go to https://github.com/emmy-codes/coscalendar/
 
 
 1. On the main repo page, click the Fork button near the top right corner
-![fork_step_1](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/2ac24fa9-0403-49f5-92b1-f4e5160f5109)
+![fork1](https://github.com/emmy-codes/coscalendar/assets/70635859/8d04dda9-21d4-4623-9b59-4f16736f3329)
 
 
 2. On the create a fork page, check the Owner of the repo is set to the GitHub org you wish to use, and change the name of the repo if you wish.
@@ -263,7 +264,7 @@ Firstly, go to https://github.com/emmy-codes/geekhaven-blog/
 
 3. Check the box here if you want to make a copy of the main branch or multiple branches (main is selected by default).
 
-4. Create the fork. The screenshot is from an old project as I cannot fork my project due to not having any organizations connected to my account, and presumably because this repo is already a fork of the CI template.
+4. Create the fork. The screenshot is from an old project as I cannot fork my project due to not having any organizations connected to my account any longer.
  
  ![rsz_fork__steps](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/aa4dae7c-807d-4108-bb5b-f24c7010514b)
 
@@ -273,7 +274,7 @@ Firstly, go to https://github.com/emmy-codes/geekhaven-blog/
 
 For cloning the repo you will need:
 
-* The [repo](https://github.com/emmy-codes/geekhaven-blog) open
+* The [repo](https://github.com/emmy-codes/coscalendar) open
  
 
 * Your IDE of choice
@@ -284,7 +285,7 @@ For cloning the repo you will need:
 
 3. Click the copy button (shown as two squares on top of one another) 
 
-![ssh_code_copy_gh](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/ea6bcd4d-40d1-4250-b3ea-eb3e6b804efd)
+![fork2](https://github.com/emmy-codes/coscalendar/assets/70635859/a37aea8e-46f9-4b68-8bf3-af57c402af16)
 
 
 4. Open your IDE of choice and open the Terminal, or in my case, open the Terminal on your computer (I run Linux on Windows so may be slightly different for Mac/Windows users)
@@ -295,7 +296,7 @@ For cloning the repo you will need:
 
 7. Type (without quotation marks): "git clone" followed by your copied link from GitHub.
   
-  ![git_clone_on_ubuntu](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/bfa89623-5fc5-4c04-a526-f3dffabdd964)
+![fork3](https://github.com/emmy-codes/coscalendar/assets/70635859/f3547538-397b-4d64-a63e-b74364e4019d)
 
 8. You can now access the repo in your IDE if cloned directly there, or by typing (without quotation marks) "code ." in your Terminal.
 
@@ -306,7 +307,7 @@ For cloning the repo you will need:
 
 ## Testing
 
-Please refer to the TESTING.md file for manual testing and screenshots.
+Please refer to the [TESTING.md](x) file for manual testing and screenshots.
 
 ## Bug Fixes
 
