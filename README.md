@@ -46,17 +46,18 @@ This is my 5th and final project at Code Institute, implementing all skills lear
 |--------------|---|
 | All Users | As a User, I wish to view the landing page so I can see the available content  |  
 |              | As a User, I wish to click on the nav bar links so I can navigate to the selected content   |
-|              | As a User, I wish to search conventions so I can see which events are happening |
-|              | As a User, I wish to *** so I can *** |
+|              | As a User, I wish to navigate the selected content quickly so I can view content without page refresh |
+|              | As a User, I wish to see my profile link in order to easily tell if I'm logged in or not |
 |              | As a User, I wish to *** so I can *** |
 |              | As a User, I wish to *** so I can *** |
 |              | As a User, I wish to *** so I can *** |
 |       (not MVP)    | As a User, I wish to browse the current list of user-added conventions so I can see if my desired convention already exists |
-| Unauthenticated User | As an Unauthenticated User, I wish to register an account by clicking Register so I can join the community | 
+| Unauthenticated User | As an Unauthenticated User, I wish to register an account by clicking Register so I can make use of the authenticated user content | 
 |              | As an Unauthenticated User, I wish to click login so I can access certain features  | 
 |              | As an Unauthenticated User, I wish to *** so I can *** | 
 | Authenticated User | As an Authenticated User I wish to Sign out of the website so that my profile can remain safe when I want it to | 
-|              | As an Authenticated User, I wish to make a cosplay to-do list so I can plan and mark off steps to complete my cosplay   |
+|              | As an Authenticated User, I wish to make a cosplay to-do item on the calendar so I can plan and mark off steps to complete my cosplay   |
+|              | As an Authenticated User, I wish to view my cosplay to-do item so I have an overview of the task  |
 |              |  As an Authenticated User, I wish to add notes to my cosplay plans so I can put down thoughts outside of the to-do checklist  |
 |    (not MVP)   | As an Authenticated User, I wish to add a convention so I can enable other users to find it and/or add my own cosplay plans to the convention |
 |    (not MVP)  | As an Authenticated User, I wish to save a convention to my profile so I can keep track of events I'm interested in  |  
