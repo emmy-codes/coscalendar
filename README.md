@@ -251,11 +251,11 @@ Once the app was made I went to my dashboard where I can see my apps.
 Should you wish to fork this repo, here is a guide on how to do that:
 
 
-Firstly, go to https://github.com/emmy-codes/geekhaven-blog/
+Firstly, go to https://github.com/emmy-codes/coscalendar/
 
 
 1. On the main repo page, click the Fork button near the top right corner
-![fork_step_1](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/2ac24fa9-0403-49f5-92b1-f4e5160f5109)
+![fork1](https://github.com/emmy-codes/coscalendar/assets/70635859/8d04dda9-21d4-4623-9b59-4f16736f3329)
 
 
 2. On the create a fork page, check the Owner of the repo is set to the GitHub org you wish to use, and change the name of the repo if you wish.
@@ -264,7 +264,7 @@ Firstly, go to https://github.com/emmy-codes/geekhaven-blog/
 
 3. Check the box here if you want to make a copy of the main branch or multiple branches (main is selected by default).
 
-4. Create the fork. The screenshot is from an old project as I cannot fork my project due to not having any organizations connected to my account, and presumably because this repo is already a fork of the CI template.
+4. Create the fork. The screenshot is from an old project as I cannot fork my project due to not having any organizations connected to my account any longer.
  
  ![rsz_fork__steps](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/aa4dae7c-807d-4108-bb5b-f24c7010514b)
 
@@ -274,7 +274,7 @@ Firstly, go to https://github.com/emmy-codes/geekhaven-blog/
 
 For cloning the repo you will need:
 
-* The [repo](https://github.com/emmy-codes/geekhaven-blog) open
+* The [repo](https://github.com/emmy-codes/coscalendar) open
  
 
 * Your IDE of choice
@@ -285,7 +285,7 @@ For cloning the repo you will need:
 
 3. Click the copy button (shown as two squares on top of one another) 
 
-![ssh_code_copy_gh](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/ea6bcd4d-40d1-4250-b3ea-eb3e6b804efd)
+![fork2](https://github.com/emmy-codes/coscalendar/assets/70635859/a37aea8e-46f9-4b68-8bf3-af57c402af16)
 
 
 4. Open your IDE of choice and open the Terminal, or in my case, open the Terminal on your computer (I run Linux on Windows so may be slightly different for Mac/Windows users)
@@ -296,7 +296,7 @@ For cloning the repo you will need:
 
 7. Type (without quotation marks): "git clone" followed by your copied link from GitHub.
   
-  ![git_clone_on_ubuntu](https://github.com/emmy-codes/geekhaven-blog/assets/70635859/bfa89623-5fc5-4c04-a526-f3dffabdd964)
+![fork3](https://github.com/emmy-codes/coscalendar/assets/70635859/f3547538-397b-4d64-a63e-b74364e4019d)
 
 8. You can now access the repo in your IDE if cloned directly there, or by typing (without quotation marks) "code ." in your Terminal.
 
@@ -307,7 +307,7 @@ For cloning the repo you will need:
 
 ## Testing
 
-Please refer to the TESTING.md file for manual testing and screenshots.
+Please refer to the [TESTING.md](x) file for manual testing and screenshots.
 
 ## Bug Fixes
 
