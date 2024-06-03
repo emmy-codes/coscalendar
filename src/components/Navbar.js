@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from "react"
+import { Dialog, DialogPanel } from "@headlessui/react"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 
 const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'Cosplanning', href: '#' },
-  { name: 'About', href: '#' },
+  { name: "Home", href: "/home" },
+  { name: "Cosplanning", href: "/calendar" },
+  { name: "Expenses", href: "/expenses" },
+  { name: "Profile", href: "/user-profile" },
 ]
 
 export default function Navbar() {
@@ -15,9 +16,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-chetwode-blue-800 text-chetwode-blue-50">
+    <header className="container mx-auto bg-chetwode-blue-800 text-chetwode-blue-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
+          {/* logo to replace */}
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">CosCalendar</span>
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
@@ -31,11 +33,11 @@ export default function Navbar() {
           ))}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
-          <a href="#" className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-black">
+          <a href="/login" className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-black">
             Log in
           </a>
           <a
-            href="#"
+            href="/signup"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-chetwode-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
             Sign up

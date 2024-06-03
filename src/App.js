@@ -21,6 +21,9 @@ function App() {
             <Route path="/cosplanning" element={<CosPlan />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/expenses" element={<Expenses />} />
+            <Route path="/user-profile" element={<UserProfile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </main>
         <Footer />
