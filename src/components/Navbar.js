@@ -20,29 +20,30 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           {/* logo to replace */}
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">CosCalendar</span>
+          <a href="/home" className="-m-1.5 p-1.5">
+            <span className="sr-only">CosCalendar logo</span>
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
           </a>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-black">
+            <a key={item.name} href={item.href} className="links">
               {item.name}
             </a>
           ))}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
-          <a href="/login" className="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-black">
+          <a href="/login" className="links">
             Log in
           </a>
           <a
             href="/signup"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-chetwode-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            className="links"
           >
             Sign up
           </a>
         </div>
+        {/* opens mobile hamburger menu */}
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -59,7 +60,7 @@ export default function Navbar() {
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-chetwode-blue-50 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-black">
           <div className="flex items-center gap-x-6">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">CosCalendar</span>
+              <span className="sr-only">CosCalendar Logo</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
