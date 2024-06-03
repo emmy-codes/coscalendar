@@ -10,6 +10,7 @@ import Signup from './components/Signup';
 import UserProfile from './components/UserProfile';
 import Expenses from './components/Expenses';
 
+
 function App() {
   return (
     <div className="App flex flex-col min-h-screen bg-chetwode-blue-100">
@@ -18,7 +19,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
-            <Route path="/cosplanning" element={<CosPlan />} />
+            <Route path="/cosplan" element={<CosPlan />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/user-profile" element={<UserProfile />} />
