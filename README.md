@@ -339,6 +339,17 @@ Solution:  I dug my way through to the [TailwindCSS documentation](https://tailw
 
 ![bug2-tailwind-global-variables](https://github.com/emmy-codes/coscalendar/assets/70635859/9c2e01b3-e739-4e03-b14f-6610259eb0ee)
 
+3. I was working to create my first handleSubmit function (as I'm not using Bootstrap I could not follow the Moments walkthrough very well, so I was using resources such as [React Dev](https://react.dev/learn/updating-objects-in-state) and [MDN response OK docs](https://developer.mozilla.org/en-US/docs/Web/API/Response/ok) to help me write the state updates and the following redirects.
+
+I originally set my if statement to use (response.ok) thinking that this would cover the successful status codes. What it did was give me this adorable error (sadly no cats showed up in the terminal though) ![httpcats204error](https://github.com/emmy-codes/coscalendar/assets/70635859/e11ade3f-2ee4-4953-8503-ce91e360e00a) reading up on it, this meant that the registration itsself was successful but that my redirect wasn't happening.
+
+After some [more digging](https://stackoverflow.com/questions/64317691/is-there-a-less-hard-coded-alternative-to-using-if-response-status-201) I determined that since I am very specifically looking for the 201 - created http response I would add it explicitly in place of the response.ok, as well as the 204 response to prevent the function from not redirecting.
+
+![bug3_solve](https://github.com/emmy-codes/coscalendar/assets/70635859/6511404d-7efb-4c1f-8102-9c4d1916c160)
+
+That small change was all it took for the final piece in the functionality to work!
+
+
 - - -
 
 ## Credits
