@@ -2,8 +2,8 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer'
-import Calendar from './components/Calendar'
+import Footer from './components/Footer';
+import Calendar from './components/Calendar';
 import CosPlan from './components/CosPlan';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -25,6 +25,7 @@ function App() {
             <Route path="/user-profile" element={<UserProfile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<p>Page not found</p>} />
           </Routes>
         </main>
         <Footer />
