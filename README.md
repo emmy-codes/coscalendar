@@ -1,6 +1,6 @@
 # CosCalendar - Cosplay Planning App
 
-This is my 5th and final project at Code Institute, implementing all skills learned so far and focusing on an output using React on the frontend and Django REST API on the backend.
+This is my 5th and final project at Code Institute, implementing all skills learned so far and focusing on an output using React on the frontend and Django REST API on the backend. This project is designed with cosplayers in mind, to help them stay accountable for their cosplay plans by tracking their project plans in a calendar, as well as the costs accrued whilst crafting the cosplay. This gives the cosplayer a detailed overview of time management and expenses for their projects.
 
 The full plan for the website is listed below under "Features".
 
