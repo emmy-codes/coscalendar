@@ -1,6 +1,23 @@
 import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { useEffect, useState } from 'react';
 
-function Success() {
+function Success({ message }) {
+
+    // State to control visibility
+    const [isVisible, setIsVisible] = useState(true);
+
+    // causing success message to close after 5 seconds or on click
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(false);
+        }, 5000); // Hide the message after 5 seconds
+        return () => clearTimeout(timer);
+    }, []);
+
+    // closes success message if the user clicks the X
+    const handleDismiss = () => {
+        setIsVisible(false);
+    };
 
     return (
         isVisible && (
@@ -13,7 +30,8 @@ function Success() {
                         />
                     </div>
                     <div className="ml-3">
-                        <p className="text-sm font-medium text-orchid-800">Success!</p>
+                        {/* dynamically change message in respective components Success is used in */}
+                        <p className="text-sm font-medium text-orchid-800">{message}</p>
                     </div>
                     <div className="ml-auto pl-3">
                         <div className="-mx-1.5 -my-1.5">
