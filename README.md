@@ -2,6 +2,8 @@
 
 This is my 5th and final project at Code Institute, implementing all skills learned so far and focusing on an output using React on the frontend and Django REST API on the backend.
 
+The full plan for the website is listed below under "Features".
+
 ----------
 
 ## CONTENTS
@@ -123,6 +125,18 @@ On the overview cosplayers will be able to go delete the to-do action, as well a
 In the task overview page there an editable text pre-filled with the user's to-do information. The user can save the updated information (such as changing the date or adding/removing text details).
 
 It will also be possible to click on a date to add a task which will bring the user to the same page as the edit task, but with no data pulled from the database.
+
+There will also be a section that acts as an expenses tracker/shopping list, where cosplayers will create/select one of their cosplay characters, and from there they can add items that they need to purchase or items they have bought during the creation of their cosplay. 
+
+In each item the user can add/update/remove the following: 
+
+- Name of the item to purchase/already bought
+- Item cost (per item)
+- Maybe amount (ie 2x red paint)
+- Optional link to the item to buy/bought
+- Total cost of all items added
+
+This is to help the cosplayer track the expenses included in each cosplan they have.
 
 - - - 
 
