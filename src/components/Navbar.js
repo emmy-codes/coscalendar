@@ -12,9 +12,7 @@ const navigation = [
 ]
 
 export default function Navbar() {
-  {/*
-    useState swaps between open and close on hamburger menu
-*/}
+  {/* useState swaps between open and close on hamburger menu */}
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
