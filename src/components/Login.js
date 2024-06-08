@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Success from './alerts/Success';
+import axios from 'axios';
 
 function Login() {
 
+    // code for successful user creation and redirection
     const navigate = useNavigate();
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const location = useLocation();
@@ -19,6 +21,44 @@ function Login() {
     const handleDismissMessage = () => {
         setShowSuccessMessage(false);
     };
+
+    // code for logging user in 
+
+    const [loginInfo, setLoginInfo] = useState({
+        username: "",
+        password: ""
+    });
+
+    const { username, password } = loginInfo;
+
+    const handleLoginData = (event) => {
+        setLoginInfo({
+            ...loginInfo,
+            // "name" refers to the name attribute on the forms (ie password, username)
+            [event.target.name]: event.target.value
+        })
+    };
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(
+                "http://localhost:8000/dj-rest-auth/login",
+                loginInfo
+            );
+            if (response.status.ok) {
+                const username = response.data.username
+                navigate("/home", {
+                    state: {
+                        showSuccess: true, message: `Welcome, ${username}!`}})
+            } else {
+                console.error("Signup error:", response.status, response.data);
+            }
+        } catch (err) {
+            // Handle errors here, e.g., display an error message to the user
+            console.error("Signup error:", err.response?.data);
+        }
+    }
 
     return (
         <div>
@@ -44,7 +84,9 @@ function Login() {
                         </h2>
 
                         <div className="mt-10">
-                            <form action="{% url 'login' %}" method="POST" className="space-y-6">
+                            <form 
+                                method="POST" 
+                                className="space-y-6">
                                 <div>
                                     <label
                                         htmlFor="username"
@@ -55,6 +97,7 @@ function Login() {
                                             id="username"
                                             name="username"
                                             type="text"
+                                            onChange={handleLoginData}
                                             autoComplete="username"
                                             required
                                             className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -72,6 +115,7 @@ function Login() {
                                             id="password"
                                             name="password"
                                             type="password"
+                                            onChange={handleLoginData}
                                             autoComplete="current-password"
                                             required
                                             className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
