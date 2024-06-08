@@ -31,6 +31,8 @@ function Login() {
 
     const { username, password } = loginInfo;
 
+    const [errors, setErrors] = useState({});
+
     const handleLoginData = (event) => {
         setLoginInfo({
             ...loginInfo,
@@ -43,17 +45,10 @@ function Login() {
         event.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:8000/dj-rest-auth/login",
+                "http://localhost:8000/dj-rest-auth/login/",
                 loginInfo
             );
-            if (response.status.ok) {
-                const username = response.data.username
-                navigate("/home", {
-                    state: {
-                        showSuccess: true, message: `Welcome, ${username}!`}})
-            } else {
-                console.error("Signup error:", response.status, response.data);
-            }
+            navigate("/")
         } catch (err) {
             // Handle errors here, e.g., display an error message to the user
             console.error("Signup error:", err.response?.data);
@@ -86,6 +81,7 @@ function Login() {
                         <div className="mt-10">
                             <form 
                                 method="POST" 
+                                onSubmit={handleLogin}
                                 className="space-y-6">
                                 <div>
                                     <label
