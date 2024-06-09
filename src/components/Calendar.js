@@ -14,7 +14,7 @@ const cosplan = [
         id: 1,
         date: 'May 10th, 2022',
         time: '5:00 PM',
-        datetime: '2022-01-10T17:00',
+        dateTime: '2022-01-10T17:00',
         cosplayName: 'Bo Katan',
         imageUrl:
             'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -49,7 +49,7 @@ export default function Calendar() {
         const lastDayOfMonth = endOfMonth(todaysDate)
         // last DATE of calendar month shown
         const lastCalendarDay = endOfWeek(lastDayOfMonth)
-        
+
         return eachDayOfInterval({
             start: firstCalendarDay,
             end: lastCalendarDay
@@ -100,21 +100,21 @@ export default function Calendar() {
                                     key={day.date}
                                     type="button"
                                     className='py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full'
-                                    // className={classNames(
-                                    //     'py-1.5 hover:bg-gray-100 focus:z-10',
-                                    //     day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
-                                    //     (day.isSelected || day.isToday) && 'font-semibold',
-                                    //     day.isSelected && 'text-white',
-                                    //     !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
-                                    //     !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-gray-400',
-                                    //     day.isToday && !day.isSelected && 'text-indigo-600',
-                                    //     dayIdx === 0 && 'rounded-tl-lg',
-                                    //     dayIdx === 6 && 'rounded-tr-lg',
-                                    //     dayIdx === days.length - 7 && 'rounded-bl-lg',
-                                    //     dayIdx === days.length - 1 && 'rounded-br-lg'
-                                    // )}
+                                // className={classNames(
+                                //     'py-1.5 hover:bg-gray-100 focus:z-10',
+                                //     day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
+                                //     (day.isSelected || day.isToday) && 'font-semibold',
+                                //     day.isSelected && 'text-white',
+                                //     !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
+                                //     !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-gray-400',
+                                //     day.isToday && !day.isSelected && 'text-indigo-600',
+                                //     dayIdx === 0 && 'rounded-tl-lg',
+                                //     dayIdx === 6 && 'rounded-tr-lg',
+                                //     dayIdx === days.length - 7 && 'rounded-bl-lg',
+                                //     dayIdx === days.length - 1 && 'rounded-br-lg'
+                                // )}
                                 >
-                                    
+
                                     <time
                                         dateTime={formatDates}
                                         className={classNames(
@@ -153,7 +153,7 @@ export default function Calendar() {
                                             <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
                                         </dt>
                                         <dd>
-                                            <time dateTime={meeting.datetime}>
+                                            <time dateTime={meeting.dateTime}>
                                                 {meeting.date} at {meeting.time}
                                             </time>
                                         </dd>
