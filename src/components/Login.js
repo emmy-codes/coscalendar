@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Success from './alerts/Success';
 import axios from 'axios';
-import { SetCurrentUserContext } from '../App';
+import { useSetCurrentUser } from '../contexts/CurrentUserContext';
 
 function Login() {
     
-    const setCurrentUser = useContext(SetCurrentUserContext)
+    const setCurrentUser = useSetCurrentUser();
 
     // code for successful user creation and redirection
     const navigate = useNavigate();
@@ -41,7 +41,7 @@ function Login() {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const {data} = await axios.post(
+            const { data } = await axios.post(
                 "http://localhost:8000/dj-rest-auth/login/",
                 loginInfo
             ); 

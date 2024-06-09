@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Header from './Header'
-import { CurrentUserContext } from "../App";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const navigation = [
   { name: "Home", href: "/home" },
@@ -13,8 +13,10 @@ const navigation = [
 ]
 
 export default function Navbar() {
-  const currentUser = useContext(CurrentUserContext)
-  const loggedInLinks = <>{currentUser?.username}</>
+  const currentUser = useCurrentUser();
+
+  const loggedInLinks = <>{currentUser?.username}</>;
+
   const loggedOutLinks = (
     <div className="flex flex-1 items-center justify-end gap-x-6">
       <a href="/login" className="links">
@@ -27,7 +29,8 @@ export default function Navbar() {
         Sign up
       </a>
     </div>
-  )
+  );
+  
   {/* useState swaps between open and close on hamburger menu */}
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
