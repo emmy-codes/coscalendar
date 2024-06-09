@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Success from './alerts/Success';
 import axios from 'axios';
+import { SetCurrentUserContext } from '../App';
 
 function Login() {
+    
+    const setCurrentUser = useContext(SetCurrentUserContext)
 
     // code for successful user creation and redirection
     const navigate = useNavigate();
@@ -33,6 +36,24 @@ function Login() {
 
     const [errors, setErrors] = useState({});
 
+
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        try {
+            const {data} = await axios.post(
+                "http://localhost:8000/dj-rest-auth/login/",
+                loginInfo
+            ); 
+            setCurrentUser(data.user)
+            console.log(data)
+            navigate("/")
+        } catch (err) {
+            // Handle errors here, e.g., display an error message to the user
+            console.error("Signup error:", err.response?.data);
+        }
+    }
+
     const handleLoginData = (event) => {
         setLoginInfo({
             ...loginInfo,
@@ -40,20 +61,6 @@ function Login() {
             [event.target.name]: event.target.value
         })
     };
-
-    const handleLogin = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post(
-                "http://localhost:8000/dj-rest-auth/login/",
-                loginInfo
-            );
-            navigate("/")
-        } catch (err) {
-            // Handle errors here, e.g., display an error message to the user
-            console.error("Signup error:", err.response?.data);
-        }
-    }
 
     return (
         <div>

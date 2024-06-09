@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Header from './Header'
+import { CurrentUserContext } from "../App";
 
 const navigation = [
   { name: "Home", href: "/home" },
@@ -12,12 +13,28 @@ const navigation = [
 ]
 
 export default function Navbar() {
+  const currentUser = useContext(CurrentUserContext)
+  const loggedInLinks = <>{currentUser?.username}</>
+  const loggedOutLinks = (
+    <div className="flex flex-1 items-center justify-end gap-x-6">
+      <a href="/login" className="links">
+        Log in
+      </a>
+      <a
+        href="/signup"
+        className="links"
+      >
+        Sign up
+      </a>
+    </div>
+  )
   {/* useState swaps between open and close on hamburger menu */}
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <div className="container mx-auto bg-chetwode-blue-800 text-chetwode-blue-50">
-      <Header /> <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
+      <Header /> 
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
   
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
@@ -26,17 +43,7 @@ export default function Navbar() {
             </a>
           ))}
         </div>
-        <div className="flex flex-1 items-center justify-end gap-x-6">
-          <a href="/login" className="links">
-            Log in
-          </a>
-          <a
-            href="/signup"
-            className="links"
-          >
-            Sign up
-          </a>
-        </div>
+          {currentUser ? loggedInLinks : loggedOutLinks}
         {/* opens mobile hamburger menu */}
         <div className="flex lg:hidden">
           <button
