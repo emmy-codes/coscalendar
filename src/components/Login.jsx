@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useSetCurrentUser } from '../contexts/CurrentUserContext';
 
 function Login() {
-    
+
     const setCurrentUser = useSetCurrentUser();
 
     // code for successful user creation and redirection
@@ -41,16 +41,22 @@ function Login() {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const { data } = await axios.post(
+            const response = await axios.post(
                 "http://localhost:8000/dj-rest-auth/login/",
                 loginInfo
-            ); 
-            setCurrentUser(data.user)
-            console.log(data)
+            );
             navigate("/")
+            if (response.status === 200) {
+                setCurrentUser(response.data.user); // Update user context
+                navigate("/"); // Redirect to the home page
+            } else {
+                setErrors(response.data);
+                console.log("Login failed:", response.data);
+            }
         } catch (err) {
             // Handle errors here, e.g., display an error message to the user
-            console.error("Signup error:", err.response?.data);
+            console.error("Login error:", err.response?.data);
+            setErrors(err.response?.data);
         }
     }
 
@@ -86,8 +92,8 @@ function Login() {
                         </h2>
 
                         <div className="mt-10">
-                            <form 
-                                method="POST" 
+                            <form
+                                method="POST"
                                 onSubmit={handleLogin}
                                 className="space-y-6">
                                 <div>
