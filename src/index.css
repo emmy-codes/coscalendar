@@ -1,3 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App-link {
+  color: #61dafb;
+}
+
+/* custom CSS */
+
+.links {
+  @apply hover:bg-orchid-300 rounded hidden px-3 py-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-black;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

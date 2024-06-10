@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const features = [
     {
@@ -21,6 +23,17 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+    const navigate = useNavigate();
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        // checks if there's a success message in the locations state
+        if (location.state && location.state.showSuccess) {
+            setShowSuccessMessage(true);
+        }
+    }, [location, navigate]);
+
     return (
         <div className="bg-white">
             <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
