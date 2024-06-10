@@ -35,7 +35,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="container mx-auto bg-chetwode-blue-800 text-chetwode-blue-50">
+    <div className="w-full bg-chetwode-blue-800 text-chetwode-blue-50">
       <Header /> 
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8" aria-label="Global">
   

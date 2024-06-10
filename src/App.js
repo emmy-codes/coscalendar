@@ -11,14 +11,15 @@ import UserProfile from './components/UserProfile';
 import Expenses from './components/Expenses';
 import Page404 from './components/Page404';
 import Home from './components/Home';
-
+import { CurrentUserProvider } from './contexts/CurrentUserContext';
 
 function App() {
   return (
-        <div className="App flex flex-col min-h-screen bg-chetwode-blue-100">
-          <BrowserRouter>
+    <BrowserRouter>
+      <CurrentUserProvider>
+        <>
             <Navbar />
-            <main className="flex-grow">
+            <div className="py-10">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/cosplan" element={<CosPlan />} />
@@ -29,10 +30,11 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="*" element={<Page404 />} />
               </Routes>
-            </main>
+            </div>
             <Footer />
-          </BrowserRouter>
-        </div>
+        </>
+      </CurrentUserProvider>
+    </BrowserRouter>
   );
 }
 
