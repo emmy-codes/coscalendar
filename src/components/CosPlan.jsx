@@ -1,9 +1,9 @@
-import React from 'react'
-
 function CosPlan() {
     return (
-        <div>
-            <form className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+            <form
+                className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
+            >
                 <div className="px-4 py-6 sm:p-8">
                     <div
                         className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
@@ -11,7 +11,7 @@ function CosPlan() {
                         {/* Field wrapper */}
                         <div className="sm:col-span-4">
                             <label
-                                for="cosplan"
+                                htmlFor="cosplan"
                                 className="block text-sm font-medium leading-6 text-gray-900"
                             >Cosplan:</label>
                             <div className="mt-2">
@@ -31,7 +31,7 @@ function CosPlan() {
                         {/* Field wrapper */}
                         <div className="col-span-full">
                             <label
-                                for="details"
+                                htmlFor="details"
                                 className="block text-sm font-medium leading-6 text-gray-900"
                             >Cosplan details:</label>
                             <div className="mt-2">
@@ -66,9 +66,9 @@ function CosPlan() {
                                     >
                                         <path
                                             stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.667"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="1.667"
                                             d="m1 1.5 5 5 5-5"
                                         ></path>
                                     </svg>
@@ -95,7 +95,7 @@ function CosPlan() {
                                                 aria-hidden="true"
                                             >
                                                 <path
-                                                    fill-rule="evenodd"
+                                                    fillRule="evenodd"
                                                     d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
                                                     clipRule="evenodd"
                                                 ></path>
@@ -111,7 +111,7 @@ function CosPlan() {
                                                 aria-hidden="true"
                                             >
                                                 <path
-                                                    fill-rule="evenodd"
+                                                    fillRule="evenodd"
                                                     d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
                                                     clipRule="evenodd"
                                                 ></path>
@@ -439,7 +439,7 @@ function CosPlan() {
                     </button>
                     <button
                         type="submit"
-                        className="text-gray rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="text-chetwode-blue-700 rounded-md px-3 py-2 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Save
                     </button>
