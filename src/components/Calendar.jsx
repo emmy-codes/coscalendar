@@ -42,19 +42,22 @@ const cosplan = [
 
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
+    return classes.filter(Boolean).join(' ');
+};
 
 export default function Calendar() {
 
     // get todays date
-    const todaysDate = startOfToday()
+    const todaysDate = startOfToday();
 
     // First day of the month. And it changes when
     // the user clicks the next or previous month button
     const [currentMonth, setCurrentMonth] = useState(
         startOfMonth(todaysDate)
     )
+
+    // Selected date from the calendar set to today's date by default
+    const [selectedDate, setSelectedDate] = useState(todaysDate)
 
     /**
      * Use todaysDate to get the first week of the month and the last week of the month to calc date range of the month
@@ -68,8 +71,8 @@ export default function Calendar() {
         // first day of first week
         const firstCalendarDay = startOfWeek(currentMonth)
         // last DATE of calendar month shown
-        const lastCalendarDay = endOfWeek(endOfMonth(currentMonth));
-
+        const lastCalendarDay = endOfWeek(endOfMonth(currentMonth))
+        // gets all days in the calendar month
         return eachDayOfInterval({
             start: firstCalendarDay,
             end: lastCalendarDay
@@ -86,8 +89,9 @@ export default function Calendar() {
         setCurrentMonth((nextMonth) => addMonths(nextMonth, 1))
     }
 
-    // formatting date data to provide the word of the current month being viewed
+    // formatting date data to provide the word of the current day/month being viewed
     const formatMonth = format(currentMonth, 'MMMM')
+    const formatToday = format(todaysDate, 'dd-MM-yyyy')
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -127,36 +131,43 @@ export default function Calendar() {
                             {/*
                         formatting the date data to provide the days in the month
                         */}
-                            const formatDates = format(day, 'dd')
+                            // format the current iteration day to be displayed correctly
+                            const formatDay = format(day, 'dd')
+                            // format the current iteration day to be compared to the selected date
+                            const formatDate = format(day, 'dd-MM-yyyy')
+
+                            // format the selected date to be compared to the current iteration day
+                            const formatSelected = format(selectedDate, 'dd-MM-yyyy')
+
+                            // check if the current iteration day is selected
+                            const isSelected = formatSelected === formatDate
+
+                            // check if the current iteration day is today
+                            const isToday = formatToday === formatDate
                             return (
                                 <button
                                     key={day.date}
+                                    onClick={() => setSelectedDate(day)}
                                     type="button"
-                                    className='py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full'
-                                // className={classNames(
-                                //     'py-1.5 hover:bg-gray-100 focus:z-10',
-                                //     day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
-                                //     (day.isSelected || day.isToday) && 'font-semibold',
-                                //     day.isSelected && 'text-white',
-                                //     !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
-                                //     !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-gray-400',
-                                //     day.isToday && !day.isSelected && 'text-indigo-600',
-                                //     dayIdx === 0 && 'rounded-tl-lg',
-                                //     dayIdx === 6 && 'rounded-tr-lg',
-                                //     dayIdx === days.length - 7 && 'rounded-bl-lg',
-                                //     dayIdx === days.length - 1 && 'rounded-br-lg'
-                                // )}
+                                    // className='py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full'
+                                    className={classNames(
+                                        'py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full',
+                                        (isSelected || isToday) && 'font-semibold',
+                                        isSelected && 'text-white',
+                                        !isSelected && 'text-gray-900',
+                                        isToday && !isSelected && 'text-indigo-600',
+                                    )}
                                 >
 
                                     <time
-                                        dateTime={formatDates}
+                                        dateTime={formatDay}
                                         className={classNames(
                                             'mx-auto flex h-7 w-7 items-center justify-center rounded-full',
-                                            day.isSelected && day.isToday && 'bg-chetwode-blue-600',
-                                            day.isSelected && !day.isToday && 'bg-chetwode-blue-900'
+                                            isSelected && isToday && 'bg-chetwode-blue-600',
+                                            isSelected && !isToday && 'bg-chetwode-blue-900'
                                         )}
                                     >
-                                        {formatDates}
+                                        {formatDay}
                                     </time>
                                 </button>
                             )
