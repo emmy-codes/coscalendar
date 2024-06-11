@@ -14,7 +14,8 @@ const cosplan = [
     {
         id: 1,
         date: 'June 10th, 2024',
-        datetime: '2022-01-10T17:00',
+        time: "5:00 PM",
+        datetime: '2024-10-10T17:00',
         cosplayName: 'Bo Katan',
         imageUrl:
             'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -23,7 +24,8 @@ const cosplan = [
     {
         id: 2,
         date: 'June 15th, 2024',
-        datetime: '2024-05-10T17:00',
+        time: "5:00 PM",
+        datetime: '2024-05-15T17:00',
         cosplayName: 'Bo Katan',
         imageUrl:
             'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -31,8 +33,9 @@ const cosplan = [
     },
     {
         id: 3,
-        date: 'June 20th, 2024',
-        datetime: '2024-06-10T17:00',
+        date: 'July 2nd, 2024',
+        time: "5:00 PM",
+        datetime: '2024-07-02T17:00',
         cosplayName: 'Pink Mercy',
         imageUrl:
             'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -48,7 +51,30 @@ function classNames(...classes) {
 export default function Calendar() {
 
     // get todays date
-    const todaysDate = startOfToday();
+    const todaysDate = startOfToday()
+    // Format today's date for easier comparisson
+    const formatToday = format(todaysDate, 'dd-MM-yyyy')
+
+    // Create a map to store the number of events for each day
+    // This map will facilitate the check for events on any given day
+    // instead of iterating over the cosplan list every time.
+    // example of the map:
+    // {
+    //     '10-06-2024': 1,
+    //     '15-06-2024': 1
+    // }
+    const eventDayMap = {}
+
+    // iterate over the cosplan list and count the number of events for each day
+    for (let plan of cosplan) {
+        // Format the event date for easier comparisson
+        const formattedEventDate = format(plan.datetime, 'dd-MM-yyyy')
+        // Check if the event date is already in the map otherwise start the count at 0
+        const eventCount = eventDayMap[formattedEventDate] || 0
+
+        // Add 1 to the event count for the current day
+        eventDayMap[formattedEventDate] = eventCount + 1
+    }
 
     // First day of the month. And it changes when
     // the user clicks the next or previous month button
@@ -56,7 +82,7 @@ export default function Calendar() {
         startOfMonth(todaysDate)
     )
 
-    // Selected date from the calendar set to today's date by default
+    // Selected date from the calendar. It is today's date by default
     const [selectedDate, setSelectedDate] = useState(todaysDate)
 
     /**
@@ -71,8 +97,9 @@ export default function Calendar() {
         // first day of first week
         const firstCalendarDay = startOfWeek(currentMonth)
         // last DATE of calendar month shown
-        const lastCalendarDay = endOfWeek(endOfMonth(currentMonth))
-        // gets all days in the calendar month
+        const lastCalendarDay = endOfWeek(endOfMonth(currentMonth));
+
+        // get all days in the calendar month
         return eachDayOfInterval({
             start: firstCalendarDay,
             end: lastCalendarDay
@@ -89,13 +116,12 @@ export default function Calendar() {
         setCurrentMonth((nextMonth) => addMonths(nextMonth, 1))
     }
 
-    // formatting date data to provide the word of the current day/month being viewed
+    // formatting date data to provide the word of the current month being viewed
     const formatMonth = format(currentMonth, 'MMMM')
-    const formatToday = format(todaysDate, 'dd-MM-yyyy')
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans</h2>
+            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, 'dd MMMM')}</h2>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
                     <div className="flex items-center text-chetwode-blue-900">
@@ -128,6 +154,7 @@ export default function Calendar() {
                     </div>
                     <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-chetwode-blue-200 text-sm shadow ring-1 ring-black">
                         {getCalendarMonth().map((day) => {
+
                             {/*
                         formatting the date data to provide the days in the month
                         */}
@@ -144,31 +171,37 @@ export default function Calendar() {
 
                             // check if the current iteration day is today
                             const isToday = formatToday === formatDate
+
                             return (
                                 <button
-                                    key={day.date}
                                     onClick={() => setSelectedDate(day)}
+                                    key={day.date}
                                     type="button"
                                     // className='py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full'
                                     className={classNames(
-                                        'py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full',
+                                        'relative py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full',
                                         (isSelected || isToday) && 'font-semibold',
                                         isSelected && 'text-white',
-                                        !isSelected && 'text-gray-900',
+                                        !isSelected && 'text-gray-900 hover:bg-white',
                                         isToday && !isSelected && 'text-indigo-600',
+                                        isSelected && isToday && 'bg-chetwode-blue-600 hover:text-chetwode-blue-600',
+                                        isSelected && !isToday && 'bg-chetwode-blue-900 hover:text-chetwode-blue-900'
                                     )}
                                 >
 
                                     <time
                                         dateTime={formatDay}
-                                        className={classNames(
-                                            'mx-auto flex h-7 w-7 items-center justify-center rounded-full',
-                                            isSelected && isToday && 'bg-chetwode-blue-600',
-                                            isSelected && !isToday && 'bg-chetwode-blue-900'
-                                        )}
+                                        className="mx-auto flex h-7 w-7 items-center justify-center rounded-full"
                                     >
                                         {formatDay}
                                     </time>
+                                    {
+                                        // check if there are events on the current iteration day to show a dot under
+                                        // the day number
+                                        eventDayMap[formatDate] > 0 && (
+                                            <span className="text-5xl absolute w-7 left-3 bottom-0">.</span>
+                                        )
+                                    }
                                 </button>
                             )
                         })}
@@ -181,88 +214,95 @@ export default function Calendar() {
                     </button>
                 </div>
                 <ol className="mt-4 divide-y divide-chetwode-blue-100 text-sm leading-6 lg:col-span-7 xl:col-span-8 max-w-xl">
-                    {cosplan.map((meeting) => (
-                        <li key={meeting.id} className="relative flex space-x-6 py-6 xl:static">
-                            <img src={meeting.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
-                            <div className="flex-auto">
-                                <h3 className="pr-10 font-semibold text-black xl:pr-0">{meeting.cosplayName}</h3>
-                                {/*
+                    {
+                        // filter the cosplan list to show only the events for the selected date
+                        cosplan.filter((plan) => {
+                            const planDate = new Date(plan.datetime)
+                            const formattedPlanDate = format(planDate, 'dd-MM-yyyy')
+
+                            return formattedPlanDate === format(selectedDate, 'dd-MM-yyyy')
+                        }).map((meeting) => (
+                            <li key={meeting.id} className="relative flex space-x-6 py-6 xl:static">
+                                <img src={meeting.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
+                                <div className="flex-auto">
+                                    <h3 className="pr-10 font-semibold text-black xl:pr-0">{meeting.cosplayName}</h3>
+                                    {/*
                                     dlist covers the deadline, time and plan (to update when cosplay plan is set up)
                                 */}
-                                <dl className="mt-2 flex flex-col text-black xl:flex-row">
-                                    <div className="flex items-start space-x-3">
-                                        <dt className="mt-0.5">
-                                            {/* sr-only is screen reader accessibility improvements */}
-                                            <span className="sr-only">Deadline</span>
-                                            <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
-                                        </dt>
-                                        <dd>
-                                            <time dateTime={meeting.datetime}>
-                                                {meeting.date}
-                                            </time>
-                                        </dd>
-                                    </div>
-                                    <div className="mt-2 flex items-start space-x-3 xl:ml-3.5 xl:mt-0 xl:border-l xl:border-black xl:border-opacity-50 xl:pl-3.5">
-                                        <dt className="mt-0.5">
-                                            <span className="sr-only">Plan</span>
-                                            <MapPinIcon className="h-5 w-5 text-pink" aria-hidden="true" />
-                                        </dt>
-                                        <dd>{meeting.plan}</dd>
-                                    </div>
-                                </dl>
-                            </div>
-                            <Menu as="div" className="absolute right-0 top-6 xl:relative xl:right-auto xl:top-auto xl:self-center">
-                                <div>
-                                    <MenuButton className="-m-2 flex items-center rounded-full p-2 text-chetwode-blue-500 hover:text-chetwode-blue-600">
-                                        <span className="sr-only">Open options</span>
-                                        <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
-                                    </MenuButton>
-                                </div>
-
-                                <Transition
-                                    as={Fragment}
-                                    enter="transition ease-out duration-100"
-                                    enterFrom="transform opacity-0 scale-95"
-                                    enterTo="transform opacity-100 scale-100"
-                                    leave="transition ease-in duration-75"
-                                    leaveFrom="transform opacity-100 scale-100"
-                                    leaveTo="transform opacity-0 scale-95"
-                                >
-                                    <MenuItems className="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        <div className="py-1">
-                                            <MenuItem>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
-                                                            'block px-4 py-2 text-sm'
-                                                        )}
-                                                    >
-                                                        Edit
-                                                    </a>
-                                                )}
-                                            </MenuItem>
-                                            {/* changing to delete and adding functionality */}
-                                            <MenuItem>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(
-                                                            active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
-                                                            'block px-4 py-2 text-sm'
-                                                        )}
-                                                    >
-                                                        Delete
-                                                    </a>
-                                                )}
-                                            </MenuItem>
+                                    <dl className="mt-2 flex flex-col text-black xl:flex-row">
+                                        <div className="flex items-start space-x-3">
+                                            <dt className="mt-0.5">
+                                                {/* sr-only is screen reader accessibility improvements */}
+                                                <span className="sr-only">Deadline</span>
+                                                <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
+                                            </dt>
+                                            <dd>
+                                                <time dateTime={meeting.datetime}>
+                                                    {meeting.date}
+                                                </time>
+                                            </dd>
                                         </div>
-                                    </MenuItems>
-                                </Transition>
-                            </Menu>
-                        </li>
-                    ))}
+                                        <div className="mt-2 flex items-start space-x-3 xl:ml-3.5 xl:mt-0 xl:border-l xl:border-black xl:border-opacity-50 xl:pl-3.5">
+                                            <dt className="mt-0.5">
+                                                <span className="sr-only">Plan</span>
+                                                <MapPinIcon className="h-5 w-5 text-pink" aria-hidden="true" />
+                                            </dt>
+                                            <dd>{meeting.plan}</dd>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <Menu as="div" className="absolute right-0 top-6 xl:relative xl:right-auto xl:top-auto xl:self-center">
+                                    <div>
+                                        <MenuButton className="-m-2 flex items-center rounded-full p-2 text-chetwode-blue-500 hover:text-chetwode-blue-600">
+                                            <span className="sr-only">Open options</span>
+                                            <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
+                                        </MenuButton>
+                                    </div>
+
+                                    <Transition
+                                        as={Fragment}
+                                        enter="transition ease-out duration-100"
+                                        enterFrom="transform opacity-0 scale-95"
+                                        enterTo="transform opacity-100 scale-100"
+                                        leave="transition ease-in duration-75"
+                                        leaveFrom="transform opacity-100 scale-100"
+                                        leaveTo="transform opacity-0 scale-95"
+                                    >
+                                        <MenuItems className="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <div className="py-1">
+                                                <MenuItem>
+                                                    {({ active }) => (
+                                                        <a
+                                                            href="#"
+                                                            className={classNames(
+                                                                active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
+                                                                'block px-4 py-2 text-sm'
+                                                            )}
+                                                        >
+                                                            Edit
+                                                        </a>
+                                                    )}
+                                                </MenuItem>
+                                                {/* changing to delete and adding functionality */}
+                                                <MenuItem>
+                                                    {({ active }) => (
+                                                        <a
+                                                            href="#"
+                                                            className={classNames(
+                                                                active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
+                                                                'block px-4 py-2 text-sm'
+                                                            )}
+                                                        >
+                                                            Delete
+                                                        </a>
+                                                    )}
+                                                </MenuItem>
+                                            </div>
+                                        </MenuItems>
+                                    </Transition>
+                                </Menu>
+                            </li>
+                        ))}
                 </ol>
             </div>
         </div>
