@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import {
     CalendarIcon,
     ChevronLeftIcon,
@@ -7,14 +7,14 @@ import {
     MapPinIcon,
 } from '@heroicons/react/20/solid'
 import { Menu, MenuItem, MenuItems, MenuButton, Transition } from '@headlessui/react'
-import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, getMonth, format } from 'date-fns'
+import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format, subMonths, addMonths } from 'date-fns'
 
 const cosplan = [
     {
         id: 1,
         date: 'May 10th, 2022',
         time: '5:00 PM',
-        dateTime: '2022-01-10T17:00',
+        datetime: '2022-01-10T17:00',
         cosplayName: 'Bo Katan',
         imageUrl:
             'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -32,6 +32,12 @@ export default function Calendar() {
     // get todays date
     const todaysDate = startOfToday()
 
+    // First day of the month. And it changes when
+    // the user clicks the next or previous month button
+    const [currentMonth, setCurrentMonth] = useState(
+        startOfMonth(todaysDate)
+    )
+
     /**
      * Use todaysDate to get the first week of the month and the last week of the month to calc date range of the month
      * to render the calendar. This is because the first week of a month often has dates from the previous month included,
@@ -41,22 +47,29 @@ export default function Calendar() {
     // tomorrow: need to adjust first calendar day to start from the first week of the month based off todays date, not starting on todays date
 
     const getCalendarMonth = () => {
-        // first day of the month
-        const firstDayOfMonth = startOfMonth(todaysDate)
         // first day of first week
-        const firstCalendarDay = startOfWeek(firstDayOfMonth)
-        // last day of the month
-        const lastDayOfMonth = endOfMonth(todaysDate)
+        const firstCalendarDay = startOfWeek(currentMonth)
         // last DATE of calendar month shown
-        const lastCalendarDay = endOfWeek(lastDayOfMonth)
+        const lastCalendarDay = endOfWeek(endOfMonth(currentMonth));
 
         return eachDayOfInterval({
             start: firstCalendarDay,
             end: lastCalendarDay
         })
     }
+
+    // Subtracts a month from the current month using the date-fns/subMonths function
+    const handlePreviousMonth = () => {
+        setCurrentMonth((prevMonth) => subMonths(prevMonth, 1))
+    }
+
+    // Adds a month to the current month using the date-fns/addMonths function
+    const handleNextMonth = () => {
+        setCurrentMonth((nextMonth) => addMonths(nextMonth, 1))
+    }
+
     // formatting date data to provide the word of the current month being viewed
-    const formatMonth = format(getMonth(todaysDate), 'MMMM')
+    const formatMonth = format(currentMonth, 'MMMM')
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -65,6 +78,7 @@ export default function Calendar() {
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
                     <div className="flex items-center text-chetwode-blue-900">
                         <button
+                            onClick={handlePreviousMonth}
                             type="button"
                             className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-chetwode-blue-500"
                         >
@@ -73,6 +87,7 @@ export default function Calendar() {
                         </button>
                         <div className="flex-auto text-sm font-semibold">{formatMonth}</div>
                         <button
+                            onClick={handleNextMonth}
                             type="button"
                             className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-chetwode-blue-500"
                         >
@@ -81,12 +96,12 @@ export default function Calendar() {
                         </button>
                     </div>
                     <div className="mt-6 grid grid-cols-7 text-xs leading-6 text-black font-bold">
+                        <div>S</div>
                         <div>M</div>
                         <div>T</div>
                         <div>W</div>
                         <div>T</div>
                         <div>F</div>
-                        <div>S</div>
                         <div>S</div>
                     </div>
                     <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-chetwode-blue-200 text-sm shadow ring-1 ring-black">
@@ -153,7 +168,7 @@ export default function Calendar() {
                                             <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
                                         </dt>
                                         <dd>
-                                            <time dateTime={meeting.dateTime}>
+                                            <time dateTime={meeting.datetime}>
                                                 {meeting.date} at {meeting.time}
                                             </time>
                                         </dd>
