@@ -1,62 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Success from './alerts/Success';
-import axios from 'axios';
-import { useSetCurrentUser } from '../contexts/CurrentUserContext';
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import Success from './alerts/Success'
+import axios from 'axios'
+import { useSetCurrentUser } from '../contexts/CurrentUserContext'
 
 function Login() {
 
-    const setCurrentUser = useSetCurrentUser();
+    const setCurrentUser = useSetCurrentUser()
 
     // code for successful user creation and redirection
-    const navigate = useNavigate();
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const location = useLocation();
+    const navigate = useNavigate()
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    const location = useLocation()
 
     // will run whenever the location or navigate dependencies array is updated
     useEffect(() => {
         // checks if there's a success message in the locations state
         if (location.state && location.state.showSuccess) {
-            setShowSuccessMessage(true);
+            setShowSuccessMessage(true)
         }
-    }, [location, navigate]);
+    }, [location, navigate])
 
     const handleDismissMessage = () => {
         setShowSuccessMessage(false);
-    };
+    }
 
     // code for logging user in 
 
     const [loginInfo, setLoginInfo] = useState({
         username: "",
         password: ""
-    });
+    })
 
-    const { username, password } = loginInfo;
+    const { username, password } = loginInfo
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({})
 
 
 
     const handleLogin = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
         try {
             const response = await axios.post(
-                "/dj-rest-auth/login/",
+                "http://localhost:8000/dj-rest-auth/login/",
                 loginInfo
-            );
-            navigate("/")
+            )
             if (response.status === 200) {
                 setCurrentUser(response.data.user); // Update user context
-                navigate("/"); // Redirect to the home page
+                navigate("/", {
+                    state: {
+                        showSuccess: true, message: `Welcome, ${response.data.user.username}!` } })
             } else {
                 setErrors(response.data);
-                console.log("Login failed:", response.data);
+                console.log("Login failed:", response.data)
             }
         } catch (err) {
             // Handle errors here, e.g., display an error message to the user
-            console.error("Login error:", err.response?.data);
-            setErrors(err.response?.data);
+            console.error("Login error:", err.response?.data)
+            setErrors(err.response?.data)
         }
     }
 
@@ -66,7 +67,7 @@ function Login() {
             // "name" refers to the name attribute on the forms (ie password, username)
             [event.target.name]: event.target.value
         })
-    };
+    }
 
     return (
         <div>

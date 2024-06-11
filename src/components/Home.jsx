@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import Success from './alerts/Success'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const features = [
     {
@@ -22,20 +23,30 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
+
+
 export default function Home() {
-    const navigate = useNavigate();
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const location = useLocation();
+    const navigate = useNavigate()
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    const location = useLocation()
 
     useEffect(() => {
         // checks if there's a success message in the locations state
         if (location.state && location.state.showSuccess) {
-            setShowSuccessMessage(true);
+            setShowSuccessMessage(true)
         }
-    }, [location, navigate]);
+    }, [location, navigate])
+
+    const handleDismissMessage = () => {
+        setShowSuccessMessage(false)
+    }
 
     return (
         <div className="bg-chetwode-blue-100">
+            {/* login success message and welcome */}
+            {location.state?.showSuccess ? (
+                <Success message={location.state.message || "Success!"} onDismiss={handleDismissMessage} />
+            ) : null}
             <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
                 <div className="mx-auto max-w-3xl text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Welcome to CosCalendar planning and expenses tracker!</h2>
