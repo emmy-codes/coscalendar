@@ -9,16 +9,34 @@ import {
 import { Menu, MenuItem, MenuItems, MenuButton, Transition } from '@headlessui/react'
 import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format, subMonths, addMonths } from 'date-fns'
 
+// static data to be replaced later on
 const cosplan = [
     {
         id: 1,
-        date: 'May 10th, 2022',
-        time: '5:00 PM',
+        date: 'June 10th, 2024',
         datetime: '2022-01-10T17:00',
         cosplayName: 'Bo Katan',
         imageUrl:
             'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         plan: 'Finish gluing helmet',
+    },
+    {
+        id: 2,
+        date: 'June 15th, 2024',
+        datetime: '2024-05-10T17:00',
+        cosplayName: 'Bo Katan',
+        imageUrl:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        plan: 'Prime helmet for painting',
+    },
+    {
+        id: 3,
+        date: 'June 20th, 2024',
+        datetime: '2024-06-10T17:00',
+        cosplayName: 'Pink Mercy',
+        imageUrl:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        plan: 'Sand off old paint',
     },
 ]
 
@@ -169,7 +187,7 @@ export default function Calendar() {
                                         </dt>
                                         <dd>
                                             <time dateTime={meeting.datetime}>
-                                                {meeting.date} at {meeting.time}
+                                                {meeting.date}
                                             </time>
                                         </dd>
                                     </div>
