@@ -42,7 +42,7 @@ function Login() {
         event.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:8000/dj-rest-auth/login/",
+                "/dj-rest-auth/login/",
                 loginInfo
             );
             navigate("/")
