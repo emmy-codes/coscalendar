@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Calendar from './components/Calendar';
 import CosPlan from './components/CosPlan';
 import Login from './components/Login';
@@ -29,7 +28,6 @@ function App() {
                 <Route path="*" element={<Page404 />} />
               </Routes>
             </div>
-            <Footer />
         </>
       </CurrentUserProvider>
     </BrowserRouter>
