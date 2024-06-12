@@ -47,7 +47,7 @@ function Login() {
             )
             if (response.status === 200) {
                 setCurrentUser(response.data.user); // Update user context
-                navigate("/", {
+                navigate("/home", {
                     state: {
                         showSuccess: true, message: `Welcome, ${response.data.user.username}!` } })
             } else {
