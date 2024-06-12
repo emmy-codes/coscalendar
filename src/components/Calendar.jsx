@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/20/solid'
 import { Menu, MenuItem, MenuItems, MenuButton, Transition } from '@headlessui/react'
 import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format, subMonths, addMonths } from 'date-fns'
+import { Link } from 'react-router-dom'
 
 // static data to be replaced later on
 const cosplan = [
@@ -90,8 +91,6 @@ export default function Calendar() {
      * to render the calendar. This is because the first week of a month often has dates from the previous month included,
      * and vice versa for the end of the month
      */
-
-    // tomorrow: need to adjust first calendar day to start from the first week of the month based off todays date, not starting on todays date
 
     const getCalendarMonth = () => {
         // first day of first week
@@ -206,12 +205,13 @@ export default function Calendar() {
                             )
                         })}
                     </div>
-                    <button
-                        type="button"
+                    <Link
+                        to="/cosplan/new"
+                        state={{ selectedDate }}
                         className="max-w-xs mt-8 w-full rounded-md bg-chetwode-blue-900 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-chetwode-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Add cosplan
-                    </button>
+                    </Link>
                 </div>
                 <ol className="mt-4 divide-y divide-chetwode-blue-100 text-sm leading-6 lg:col-span-7 xl:col-span-8 max-w-xl">
                     {
@@ -221,11 +221,11 @@ export default function Calendar() {
                             const formattedPlanDate = format(planDate, 'dd-MM-yyyy')
 
                             return formattedPlanDate === format(selectedDate, 'dd-MM-yyyy')
-                        }).map((meeting) => (
-                            <li key={meeting.id} className="relative flex space-x-6 py-6 xl:static">
-                                <img src={meeting.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
+                        }).map((event) => (
+                            <li key={event.id} className="relative flex space-x-6 py-6 xl:static">
+                                <img src={event.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
                                 <div className="flex-auto">
-                                    <h3 className="pr-10 font-semibold text-black xl:pr-0">{meeting.cosplayName}</h3>
+                                    <h3 className="pr-10 font-semibold text-black xl:pr-0">{event.cosplayName}</h3>
                                     {/*
                                     dlist covers the deadline, time and plan (to update when cosplay plan is set up)
                                 */}
@@ -237,8 +237,8 @@ export default function Calendar() {
                                                 <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
                                             </dt>
                                             <dd>
-                                                <time dateTime={meeting.datetime}>
-                                                    {meeting.date}
+                                                <time dateTime={event.datetime}>
+                                                    {event.date} at {event.time}
                                                 </time>
                                             </dd>
                                         </div>
@@ -247,7 +247,7 @@ export default function Calendar() {
                                                 <span className="sr-only">Plan</span>
                                                 <MapPinIcon className="h-5 w-5 text-pink" aria-hidden="true" />
                                             </dt>
-                                            <dd>{meeting.plan}</dd>
+                                            <dd>{event.plan}</dd>
                                         </div>
                                     </dl>
                                 </div>
@@ -272,15 +272,30 @@ export default function Calendar() {
                                             <div className="py-1">
                                                 <MenuItem>
                                                     {({ active }) => (
-                                                        <a
-                                                            href="#"
+                                                        <Link
+                                                            to={`/cosplan/edit/${event.id}`}
+                                                            state={{ cosplan: event }}
                                                             className={classNames(
                                                                 active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
                                                                 'block px-4 py-2 text-sm'
                                                             )}
                                                         >
                                                             Edit
-                                                        </a>
+                                                        </Link>
+                                                    )}
+                                                </MenuItem>
+                                                <MenuItem>
+                                                    {({ active }) => (
+                                                        <Link
+                                                            to={`/cosplan/${event.id}/expenses/`}
+                                                            state={{ cosplan: event }}
+                                                            className={classNames(
+                                                                active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
+                                                                'block px-4 py-2 text-sm'
+                                                            )}
+                                                        >
+                                                            Expenses
+                                                        </Link>
                                                     )}
                                                 </MenuItem>
                                                 {/* changing to delete and adding functionality */}
