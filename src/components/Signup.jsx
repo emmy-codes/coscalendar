@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'
 
 export default function Signup() {
     // variable signupInfo, function setSignupInfo
@@ -24,7 +24,7 @@ export default function Signup() {
             // key/value pair. key = input fields name, value = the content entered
             [event.target.name]: event.target.value
         })
-    };
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -70,12 +70,7 @@ export default function Signup() {
                         onSubmit={handleSubmit}
                         className="space-y-6">
                         <div>
-                            <label 
-                                htmlFor="email" 
-                                className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                                Email:
-                            </label>
+                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email:</label>
                             <div className="mt-2">
                                 <input
                                     id="email"
@@ -88,11 +83,7 @@ export default function Signup() {
                             </div>
                         </div>
                         <div>
-                            <label 
-                                htmlFor="username" 
-                                className="block text-sm font-medium leading-6 text-gray-900"
-                            >Username:
-                            </label>
+                            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Username:</label>
                             <div className="mt-2">
                                 <input
                                     id="username"
@@ -101,8 +92,7 @@ export default function Signup() {
                                     value={username}
                                     type="text"
                                     required
-                                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                />
+                                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
