@@ -363,6 +363,22 @@ After some [more digging](https://stackoverflow.com/questions/64317691/is-there-
 
 That small change was all it took for the final piece in the functionality to work!
 
+# Plans vs execution
+## Plans vs execution - and the things I've learned along the way - (Retro)
+
+Let's face it, projects rarely go 100% to plan. It's easy to over-stretch, underestimate, and otherwise be unable to complete the idea you had in your mind when choosing a project plan.
+
+That was definitely the case for me in this project, where I lost a lot of time simply by running locally on VSCode, and having the latest versions of everything (except for Django 5). It left me unable to follow along with the walkthrough as a guide to start my project off the ground, and led to me losing so much time that I was forced to submit my project late. But I took this option in order to give myself up to 10 valuable days to really ensure a completed pass project, to allow myself some breathing room, and most importantly, to grasp the process I'm following to create this project. Struggling to put things together in a hurry just leads to more errors and issues and more stress, and ultimately makes things take longer!
+
+Wireframing - I had a solid foundation on the wireframing, having learned from 4 previous projects and with the added knowledge of Tailwind CSS Components I had a good idea on what things would look like, and I could then tailor them using the components.
+
+Design - I never really had a specific colour theme in mind with this project, and I just hoped that it would become clear as the project developed. The initial blue colour theme was designed with [colour psychology](https://londonimageinstitute.com/how-to-empower-yourself-with-color-psychology/) in mind. I felt the palette to be lacking though so it needed sprucing up from my original plan.
+
+Accessibility - The accessibility standard was planned here, with the use of alt text, being mindful of colour palettes so that text remains easy to read, and so forth. I received the added bonus of learning about a clever class via the Tailwind CSS components titled "sr-only" which allows for elements to be hidden on a page, but keep them accessible for screen readers. This helped to improve the accessibility of my page in ways I hadn't previously considered when we hide things that may be meaningful for visually impaired users.
+
+Features - (to fill in more but throwing in this one as it's relevant right this minute) 
+
+1. I had originally set up my backend to contain a CosPlan table that would allow for users to select a cosplay from a dropdown menu, meaning that even though the website wasn't interactive with other users, any time a user made a reference to a specific cosplay character it'd be saved and other users could select it from a dropdown list. It never quite sat right with me but I had to roll with the idea through the project until I came to actually implementing the idea and when putting together my post requests for creating a CosPlan, I realised all I wanted on my frontend was a box for the plan and a box for the description (along with the due date but that was being handled on the Calendar page). This idea is going to be downsized to match my frontend requirements, but I will be restructuring the Expenses page as well beacuse this was originally going to be connected to a CosPlan via the cosplay reference from my models. We will see
 
 - - -
 
