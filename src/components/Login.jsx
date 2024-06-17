@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import Success from './alerts/Success'
-import axios from 'axios'
-import { useSetCurrentUser } from '../contexts/CurrentUserContext'
+import React, { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import Success from "./alerts/Success"
+import axios from "axios"
+import { useSetCurrentUser } from "../contexts/CurrentUserContext"
 
 function Login() {
 
@@ -22,7 +22,7 @@ function Login() {
     }, [location, navigate])
 
     const handleDismissMessage = () => {
-        setShowSuccessMessage(false);
+        setShowSuccessMessage(false)
     }
 
     // code for logging user in 
@@ -46,12 +46,12 @@ function Login() {
                 loginInfo
             )
             if (response.status === 200) {
-                setCurrentUser(response.data.user); // Update user context
+                setCurrentUser(response.data.user) // Update user context
                 navigate("/home", {
                     state: {
                         showSuccess: true, message: `Welcome, ${response.data.user.username}!` } })
             } else {
-                setErrors(response.data);
+                setErrors(response.data)
                 console.log("Login failed:", response.data)
             }
         } catch (err) {
@@ -73,7 +73,9 @@ function Login() {
         <div>
             {/* registration success message */}
             {location.state?.showSuccess ? (
-                <Success message={location.state.message || "Success!"} onDismiss={handleDismissMessage} />
+                <Success 
+                message={location.state.message || "Success!"} 
+                onDismiss={handleDismissMessage} />
             ) : null}
             <div
                 className="mx-auto my-8 grid grid-cols-3 gap-6 lg:pr-3 md:pr-3 grow-0 w-8/12 rounded-lg border-4 border-solid border-orchid-500 bg-orchid-50 shadow"
