@@ -1,75 +1,75 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState } from "react"
 import {
     CalendarIcon,
     ChevronLeftIcon,
     ChevronRightIcon,
     EllipsisHorizontalIcon,
     MapPinIcon,
-} from '@heroicons/react/20/solid'
-import { Menu, MenuItem, MenuItems, MenuButton, Transition } from '@headlessui/react'
-import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format, subMonths, addMonths } from 'date-fns'
-import { Link } from 'react-router-dom'
+} from "@heroicons/react/20/solid"
+import { Menu, MenuItem, MenuItems, MenuButton, Transition } from "@headlessui/react"
+import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format, subMonths, addMonths } from "date-fns"
+import { Link } from "react-router-dom"
 
 // static data to be replaced later on
 const cosplan = [
     {
         id: 1,
-        date: 'June 10th, 2024',
+        date: "June 10th, 2024",
         time: "5:00 PM",
-        datetime: '2024-10-10T17:00',
-        cosplayName: 'Bo Katan',
+        datetime: "2024-10-10T17:00",
+        cosplayName: "Bo Katan",
         imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        plan: 'Finish gluing helmet',
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        plan: "Finish gluing helmet",
     },
     {
         id: 2,
-        date: 'June 15th, 2024',
+        date: "June 15th, 2024",
         time: "5:00 PM",
-        datetime: '2024-05-15T17:00',
-        cosplayName: 'Bo Katan',
+        datetime: "2024-05-15T17:00",
+        cosplayName: "Bo Katan",
         imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        plan: 'Prime helmet for painting',
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        plan: "Prime helmet for painting",
     },
     {
         id: 3,
-        date: 'July 2nd, 2024',
+        date: "July 2nd, 2024",
         time: "5:00 PM",
-        datetime: '2024-07-02T17:00',
-        cosplayName: 'Pink Mercy',
+        datetime: "2024-07-02T17:00",
+        cosplayName: "Pink Mercy",
         imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        plan: 'Sand off old paint',
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        plan: "Sand off old paint",
     },
 ]
 
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ');
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 export default function Calendar() {
 
     // get todays date
     const todaysDate = startOfToday()
-    // Format today's date for easier comparisson
-    const formatToday = format(todaysDate, 'dd-MM-yyyy')
+    // Format today"s date for easier comparisson
+    const formatToday = format(todaysDate, "dd-MM-yyyy")
 
     // Create a map to store the number of events for each day
     // This map will facilitate the check for events on any given day
     // instead of iterating over the cosplan list every time.
     // example of the map:
     // {
-    //     '10-06-2024': 1,
-    //     '15-06-2024': 1
+    //     "10-06-2024": 1,
+    //     "15-06-2024": 1
     // }
     const eventDayMap = {}
 
     // iterate over the cosplan list and count the number of events for each day
     for (let plan of cosplan) {
         // Format the event date for easier comparisson
-        const formattedEventDate = format(plan.datetime, 'dd-MM-yyyy')
+        const formattedEventDate = format(plan.datetime, "dd-MM-yyyy")
         // Check if the event date is already in the map otherwise start the count at 0
         const eventCount = eventDayMap[formattedEventDate] || 0
 
@@ -96,7 +96,7 @@ export default function Calendar() {
         // first day of first week
         const firstCalendarDay = startOfWeek(currentMonth)
         // last DATE of calendar month shown
-        const lastCalendarDay = endOfWeek(endOfMonth(currentMonth));
+        const lastCalendarDay = endOfWeek(endOfMonth(currentMonth))
 
         // get all days in the calendar month
         return eachDayOfInterval({
@@ -116,11 +116,11 @@ export default function Calendar() {
     }
 
     // formatting date data to provide the word of the current month being viewed
-    const formatMonth = format(currentMonth, 'MMMM')
+    const formatMonth = format(currentMonth, "MMMM")
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, 'dd MMMM')}</h2>
+            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, "dd MMMM")}</h2>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
                     <div className="flex items-center text-chetwode-blue-900">
@@ -158,12 +158,12 @@ export default function Calendar() {
                         formatting the date data to provide the days in the month
                         */}
                             // format the current iteration day to be displayed correctly
-                            const formatDay = format(day, 'dd')
+                            const formatDay = format(day, "dd")
                             // format the current iteration day to be compared to the selected date
-                            const formatDate = format(day, 'dd-MM-yyyy')
+                            const formatDate = format(day, "dd-MM-yyyy")
 
                             // format the selected date to be compared to the current iteration day
-                            const formatSelected = format(selectedDate, 'dd-MM-yyyy')
+                            const formatSelected = format(selectedDate, "dd-MM-yyyy")
 
                             // check if the current iteration day is selected
                             const isSelected = formatSelected === formatDate
@@ -176,15 +176,15 @@ export default function Calendar() {
                                     onClick={() => setSelectedDate(day)}
                                     key={day.date}
                                     type="button"
-                                    // className='py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full'
+                                    // className="py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full"
                                     className={classNames(
-                                        'relative py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full',
-                                        (isSelected || isToday) && 'font-semibold',
-                                        isSelected && 'text-white',
-                                        !isSelected && 'text-gray-900 hover:bg-white',
-                                        isToday && !isSelected && 'text-indigo-600',
-                                        isSelected && isToday && 'bg-chetwode-blue-600 hover:text-chetwode-blue-600',
-                                        isSelected && !isToday && 'bg-chetwode-blue-900 hover:text-chetwode-blue-900'
+                                        "relative py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full",
+                                        (isSelected || isToday) && "font-semibold",
+                                        isSelected && "text-white",
+                                        !isSelected && "text-gray-900 hover:bg-white",
+                                        isToday && !isSelected && "text-indigo-600",
+                                        isSelected && isToday && "bg-chetwode-blue-600 hover:text-chetwode-blue-600",
+                                        isSelected && !isToday && "bg-chetwode-blue-900 hover:text-chetwode-blue-900"
                                     )}
                                 >
 
@@ -207,7 +207,7 @@ export default function Calendar() {
                     </div>
                     <Link
                         to="/cosplan/new"
-                        state={{ selectedDate }}
+                        state={{ selectedDate }} // not using selectedDate: selectedDate but the shorthand form of it
                         className="max-w-xs mt-8 w-full rounded-md bg-chetwode-blue-900 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-chetwode-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Add cosplan
@@ -218,9 +218,9 @@ export default function Calendar() {
                         // filter the cosplan list to show only the events for the selected date
                         cosplan.filter((plan) => {
                             const planDate = new Date(plan.datetime)
-                            const formattedPlanDate = format(planDate, 'dd-MM-yyyy')
+                            const formattedPlanDate = format(planDate, "dd-MM-yyyy")
 
-                            return formattedPlanDate === format(selectedDate, 'dd-MM-yyyy')
+                            return formattedPlanDate === format(selectedDate, "dd-MM-yyyy")
                         }).map((event) => (
                             <li key={event.id} className="relative flex space-x-6 py-6 xl:static">
                                 <img src={event.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
@@ -276,8 +276,8 @@ export default function Calendar() {
                                                             to={`/cosplan/edit/${event.id}`}
                                                             state={{ cosplan: event }}
                                                             className={classNames(
-                                                                active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
-                                                                'block px-4 py-2 text-sm'
+                                                                active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
+                                                                "block px-4 py-2 text-sm"
                                                             )}
                                                         >
                                                             Edit
@@ -290,8 +290,8 @@ export default function Calendar() {
                                                             to={`/cosplan/${event.id}/expenses/`}
                                                             state={{ cosplan: event }}
                                                             className={classNames(
-                                                                active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
-                                                                'block px-4 py-2 text-sm'
+                                                                active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
+                                                                "block px-4 py-2 text-sm"
                                                             )}
                                                         >
                                                             Expenses
@@ -304,8 +304,8 @@ export default function Calendar() {
                                                         <a
                                                             href="#"
                                                             className={classNames(
-                                                                active ? 'bg-chetwode-blue-100 text-chetwode-blue-900' : 'text-chetwode-blue-700',
-                                                                'block px-4 py-2 text-sm'
+                                                                active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
+                                                                "block px-4 py-2 text-sm"
                                                             )}
                                                         >
                                                             Delete
