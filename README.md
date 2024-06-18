@@ -35,6 +35,8 @@ Link to live site on Heroku: https://coscalendar-495a347f9b5a.herokuapp.com/
 * [Testing](#testing)
 
 * [Bug Fixes](#bug-fixes)
+  
+* [Plans vs Execution](#plans-vs-execution)
 
 * [Credits](#credits)
 
@@ -425,7 +427,10 @@ Accessibility - The accessibility standard was planned here, with the use of alt
 
 Features - (to fill in more but throwing in this one as it's relevant right this minute) 
 
-1. I had originally set up my backend to contain a CosPlan table that would allow for users to select a cosplay from a dropdown menu, meaning that even though the website wasn't interactive with other users, any time a user made a reference to a specific cosplay character it'd be saved and other users could select it from a dropdown list. It never quite sat right with me but I had to roll with the idea through the project until I came to actually implementing the idea and when putting together my post requests for creating a CosPlan, I realised all I wanted on my frontend was a box for the plan and a box for the description (along with the due date but that was being handled on the Calendar page). This idea is going to be downsized to match my frontend requirements, but I will be restructuring the Expenses page as well beacuse this was originally going to be connected to a CosPlan via the cosplay reference from my models. We will see
+1. I had originally set up my backend to contain a CosPlan table that would allow for users to select a cosplay from a dropdown menu, meaning that even though the website wasn't interactive with other users, any time a user made a reference to a specific cosplay character it'd be saved and other users could select it from a dropdown list. It never quite sat right with me but I had to roll with the idea through the project until I came to actually implementing the idea and when putting together my post requests for creating a CosPlan, I realised all I wanted on my frontend was a box for the plan and a box for the description (along with the due date but that was being handled on the Calendar page). This idea is going to be downsized to match my frontend requirements, but I will be restructuring the Expenses page as well beacuse this was originally going to be connected to a CosPlan via the cosplay reference from my models. We will see.
+
+
+Calendar/CosPlanForm - I decided to remove the date picker from the CosPlanForm.jsx file. It would have been a nice UX to have continuation from the Calendar page so that the user could still select a date once they were starting their CosPlan, but I just found myself getting stressed out about deadlines and repeating the huge amount of code that went into the Calendar, that I swapped that for a static display of the date they selected from the Calendar page. If a user wanted to change dates, they could cancel and go back to the Calendar. It wasn’t what I wanted for the users, but I decided this timesave was worth the impact on overall UX.
 
 - - -
 
