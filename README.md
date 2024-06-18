@@ -4,6 +4,10 @@ This is my 5th and final project at Code Institute, implementing all skills lear
 
 The full plan for the website is listed below under "Features".
 
+Link to live API on Heroku: https://coscalendar-api-3bdc9b15f518.herokuapp.com/
+
+Link to live site on Heroku: https://coscalendar-495a347f9b5a.herokuapp.com/
+
 ----------
 
 ## CONTENTS
@@ -316,7 +320,7 @@ For cloning the repo you will need:
 
 ## Testing
 
-Please refer to the [TESTING.md](x) file for manual testing and screenshots.
+Please refer to the [TESTING.md](https://github.com/emmy-codes/coscalendar/blob/main/TESTING.md) file for manual testing and screenshots.
 
 ## Bug Fixes
 
