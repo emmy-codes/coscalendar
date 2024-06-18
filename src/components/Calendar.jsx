@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import {
     CalendarIcon,
     ChevronLeftIcon,
@@ -7,8 +7,20 @@ import {
     MapPinIcon,
 } from "@heroicons/react/20/solid"
 import { Menu, MenuItem, MenuItems, MenuButton, Transition } from "@headlessui/react"
-import { startOfToday, startOfWeek, startOfMonth, endOfMonth, endOfWeek, eachDayOfInterval, format, subMonths, addMonths } from "date-fns"
+import {
+    startOfToday,
+    startOfWeek,
+    startOfMonth,
+    endOfMonth,
+    endOfWeek,
+    eachDayOfInterval,
+    format,
+    subMonths,
+    addMonths
+} from "date-fns"
 import { Link } from "react-router-dom"
+import { axiosReq } from "../api/axiosDefaults"
+import { useCurrentUser } from "../contexts/CurrentUserContext"
 
 // static data to be replaced later on
 const cosplan = [
@@ -44,12 +56,19 @@ const cosplan = [
     },
 ]
 
+// for saving cosplan data
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ")
 }
 
 export default function Calendar() {
+    // state to store fetched cosplan data
+    const [cosplanRender, setCosplanRender] = useState([])
+
+    // fetch cosplan data for a specific user imported from CurrentUserContext
+    const currentUser = useCurrentUser()
 
     // get todays date
     const todaysDate = startOfToday()
@@ -66,16 +85,38 @@ export default function Calendar() {
     // }
     const eventDayMap = {}
 
-    // iterate over the cosplan list and count the number of events for each day
-    for (let plan of cosplan) {
-        // Format the event date for easier comparisson
-        const formattedEventDate = format(plan.datetime, "dd-MM-yyyy")
-        // Check if the event date is already in the map otherwise start the count at 0
-        const eventCount = eventDayMap[formattedEventDate] || 0
 
-        // Add 1 to the event count for the current day
-        eventDayMap[formattedEventDate] = eventCount + 1
+    const fetchCosplanData = async () => {
+        try {
+            const response = await axiosReq.get("/cosplans/", {
+                params: {
+                    cosplayer: currentUser?.user_profile?.id
+                }
+            })
+            setCosplanRender(response.data.results)
+            console.log(response)
+        } catch (err) {
+            console.error("Error fetching CosPlan data:", err)
+        }
+        
     }
+
+    useEffect(() => {
+    if (currentUser) {
+        fetchCosplanData()
+    }
+    }, [currentUser])
+
+    // iterate over the cosplan list and count the number of events for each day
+    // for (let plan of cosplan) {
+    //     // Format the event date for easier comparisson
+    //     const formattedEventDate = format(plan.datetime, "dd-MM-yyyy")
+    //     // Check if the event date is already in the map otherwise start the count at 0
+    //     const eventCount = eventDayMap[formattedEventDate] || 0
+
+    //     // Add 1 to the event count for the current day
+    //     eventDayMap[formattedEventDate] = eventCount + 1
+    // }
 
     // First day of the month. And it changes when
     // the user clicks the next or previous month button
@@ -176,7 +217,6 @@ export default function Calendar() {
                                     onClick={() => setSelectedDate(day)}
                                     key={day.date}
                                     type="button"
-                                    // className="py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full"
                                     className={classNames(
                                         "relative py-1.5 hover:bg-white focus:z-10 hover:ring-2 ring-blue rounded-full",
                                         (isSelected || isToday) && "font-semibold",
@@ -216,7 +256,7 @@ export default function Calendar() {
                 <ol className="mt-4 divide-y divide-chetwode-blue-100 text-sm leading-6 lg:col-span-7 xl:col-span-8 max-w-xl">
                     {
                         // filter the cosplan list to show only the events for the selected date
-                        cosplan.filter((plan) => {
+                        cosplanRender.filter((plan) => {
                             const planDate = new Date(plan.datetime)
                             const formattedPlanDate = format(planDate, "dd-MM-yyyy")
 
