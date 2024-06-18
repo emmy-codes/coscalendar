@@ -363,6 +363,52 @@ After some [more digging](https://stackoverflow.com/questions/64317691/is-there-
 
 That small change was all it took for the final piece in the functionality to work!
 
+4. I thought I had correctly formatted my date details on the frontend by selecting date-fn’s formatting of my preference which was dd-MM-yyy. I did [some research](https://stackoverflow.com/questions/30798906/the-specified-value-does-not-conform-to-the-required-format-yyyy-mm-dd) and discovered that this was because Django is set to receive the yyyy-MM-dd format.
+
+I then had a look on how to change the [default Django format](https://stackoverflow.com/questions/7737146/how-can-i-change-the-default-django-date-template-format) but after going to the [Django Docs](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#date) but this solution wasn’t going to work for my React frontend as it is only valid for Django templates.
+
+[Further down the rabbit hole](https://stackoverflow.com/questions/7737146/how-can-i-change-the-default-django-date-template-format) I found someone with a solution to set DATE_FORMAT in my settings.py and also to use something called USE_L10N = False. Use Lion, I thought? Let’s google that. [Oh, it’s deprecated](https://stackoverflow.com/questions/77654801/use-l10n-deprecated-but-it-disables-datetime-input-formats-when-removed) .... Oh but only if you’re using Django 5 does that matter! Finally a good result from not having the most updated version of something (insert happy dance here) so I went back to update my settings with the suggested info:
+
+![bug_date_format_django_settings](https://github.com/emmy-codes/coscalendar/assets/70635859/ab6e2e69-3e49-493f-8ebb-2f7f8e8f7ae7)
+
+But on my frontend it was showing the format rather than the date from the Calendar select! 
+
+![bug date format frontend borked](https://github.com/emmy-codes/coscalendar/assets/70635859/8aea94c0-e320-4dbe-a34f-042b432edf1b)
+
+I went back to the [date-fns documentation](https://date-fns.org/v3.6.0/docs/format) and had a look at their formatting guides. I then decided I needed to try adding something similar to theirs, but I didn’t need to manually specify a date the way their examples did since I was fetching the date in my initialDueDate variable.
+
+The frontend was now nicely showing the date that was selected on the Calendar, hurrah! And yet, upon submit...
+
+![bug_date_format_frontend_fine_but_persistent_error](https://github.com/emmy-codes/coscalendar/assets/70635859/a3debda9-ff60-4c68-9874-ed24036972a1)
+
+[more researching](https://docs.djangoproject.com/en/5.0/ref/settings/) uncovered that DATE_FORMAT is how Django will display the dates, but DATE_INPUT_FORMATS is what you set Django up to RECEIVE! Key there, I think.
+
+In my settings.py I already had referenced the DATETIME_FORMAT which was different to the dd-mm-yyyy which I had intended from my frontend. I changed that, and added both DATE_FORMAT and DATE_INPUT_FORMATS to the settings to try to accept different formats, and ensure the dates are displayed as I wanted.
+
+WRONG.
+
+All hail our console.log overlords! It was time to see what was actually being sent or received by my POST request. I used extra console logs in the beginning to see what was being sent to the backend, and to see what response came back. (logs 1 & 2 on the screenshot). The console.error logs were there from the beginning and I had previously received a console.error in the catch part of the code, but had been focusing too hard on the date format error to look into it.
+
+![bug_date_format_console_logging_across_the_universe](https://github.com/emmy-codes/coscalendar/assets/70635859/2d3a5683-ca53-4416-95a2-59db61e5178c)
+
+Interesting, the “form submitted” log number 1 was showing the due_date with a totally different format than even my frontend or backend was intending to send/receive:
+
+![bug_date_format_console_log_shows_interesting_due_date_data](https://github.com/emmy-codes/coscalendar/assets/70635859/8c1b895a-6720-4c9e-ad1b-34fdf419fadf)
+
+This was confusing when on my Calendar.jsx I had already used the date-fn format method to ensure everything was set to dd-MM-yyyy and this was being passed to my CosPlanForm.jsx through the state object in my Link tag. I thought this would be enough to ensure that the date being used in the CosPlanForm was in the same format as my Calendar setup.
+Feeling like I was low on options, despite not wanting to repeat code, I tried explicitly formatting the date within the CosPlanForm component. I also explicitly referred to the formattedDate by instead of passing the destructured cosplay variable to my post request, sending an object with all of the fields with the due_date referring to the formattedDueDate.
+
+![bug_date_format_explicit_post_request](https://github.com/emmy-codes/coscalendar/assets/70635859/a3170f47-e01a-493d-b315-fcb19bfd6f85)
+
+![bug date format formatting attempt on cosplanform](https://github.com/emmy-codes/coscalendar/assets/70635859/f9490cf1-30d0-46af-ae3d-e55265a5294e)
+
+A miracle happened… I double checked my backend to ensure these were being created, and they were!!!
+
+![bug_date_format_miracle](https://github.com/emmy-codes/coscalendar/assets/70635859/72dd05c6-647f-4660-a9ed-ca05230d8f93)
+
+Biggest learning from this very extensive issue? Date formatting does not perpetuate between components, even when being passed as state.
+
+
 # Plans vs execution
 ## Plans vs execution - and the things I've learned along the way - (Retro)
 
