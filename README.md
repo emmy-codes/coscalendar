@@ -50,13 +50,10 @@ The full plan for the website is listed below under "Features".
 |              | As a User, I wish to click on the nav bar links so I can navigate to the selected content   |
 |              | As a User, I wish to navigate the selected content quickly so I can view content without page refresh |
 |              | As a User, I wish to see my profile link in order to easily tell if I'm logged in or not |
-|              | As a User, I wish to *** so I can *** |
-|              | As a User, I wish to *** so I can *** |
-|              | As a User, I wish to *** so I can *** |
 |       (not MVP)    | As a User, I wish to browse the current list of user-added conventions so I can see if my desired convention already exists |
 | Unauthenticated User | As an Unauthenticated User, I wish to register an account by clicking Register so I can make use of the authenticated user content | 
 |              | As an Unauthenticated User, I wish to click login so I can access certain features  | 
-|              | As an Unauthenticated User, I wish to *** so I can *** | 
+|              | As an Unauthenticated User, I wish to receive descriptive error messages so I can tell if my registration or login has failed | 
 | Authenticated User | As an Authenticated User I wish to Sign out of the website so that my profile can remain safe when I want it to | 
 |              | As an Authenticated User, I wish to make a cosplay to-do item on the calendar so I can plan and mark off steps to complete my cosplay   |
 |              | As an Authenticated User, I wish to view my cosplay to-do item so I have an overview of the task  |
@@ -68,12 +65,10 @@ The full plan for the website is listed below under "Features".
 |              | As an Authenticated User I wish to add a profile picture in order to customize my profile   |
 |              | As an Authenticated User I wish to edit a profile picture in order to update my picture when I want to  |
 |              | As an Authenticated User I wish to delete a profile picture in order to remove my cosplay from the internet if I wish  |
-|              |  |
-|              |  |
+|              | As an Authenticated User I wish to add expenses for a selected cosplay so I can track costs for the project |
+|              | As an Authenticated User, I wish to be able to edit or delete expenses so I can control the costs I am tracking |
 |   Site Admin  | As a Site Admin I wish to delete user's content if necessary so I can control the sort of content on the site  | 
-|              | As a Site Admin I wish to *** so I can ***   |
-|              | As a Site Admin I wish to *** so I can ***  |
-|              | As a Site Admin I wish to *** so I can ***  |
+|              | As a Site Admin I wish to view the admin dashboard so I can review the site metrics (to see how many users are using cosplans, expenses etc)   |
   
 
 - - -
