@@ -363,7 +363,9 @@ After some [more digging](https://stackoverflow.com/questions/64317691/is-there-
 
 That small change was all it took for the final piece in the functionality to work!
 
-4. I thought I had correctly formatted my date details on the frontend by selecting date-fn’s formatting of my preference which was dd-MM-yyy. I did [some research](https://stackoverflow.com/questions/30798906/the-specified-value-does-not-conform-to-the-required-format-yyyy-mm-dd) and discovered that this was because Django is set to receive the yyyy-MM-dd format.
+4. ![bug date format](https://github.com/emmy-codes/coscalendar/assets/70635859/459dc1f0-789e-4465-a24f-630c160b5c74) whilst trying to set up my POST request on my CosPlanForm component, I encountered the above error.
+
+I thought I had correctly formatted my date details on the frontend by selecting date-fn’s formatting of my preference which was dd-MM-yyy. I did [some research](https://stackoverflow.com/questions/30798906/the-specified-value-does-not-conform-to-the-required-format-yyyy-mm-dd) and discovered that this was because Django is set to receive the yyyy-MM-dd format.
 
 I then had a look on how to change the [default Django format](https://stackoverflow.com/questions/7737146/how-can-i-change-the-default-django-date-template-format) but after going to the [Django Docs](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#date) but this solution wasn’t going to work for my React frontend as it is only valid for Django templates.
 
