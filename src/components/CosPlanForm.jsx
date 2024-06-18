@@ -58,6 +58,10 @@ function CosPlanForm() {
         })
     }
 
+    const handleCancel = () => {
+        navigate("/calendar")
+    }
+
     const handleCosplanSubmit = async (event) => {
         event.preventDefault()
         console.log("Form submitted", cosplan)
@@ -186,6 +190,7 @@ function CosPlanForm() {
                     >
                         <button
                             type="button"
+                            onClick={handleCancel}
                             className="text-sm font-semibold leading-6 text-gray-900"
                         >
                             Cancel
