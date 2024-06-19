@@ -64,13 +64,13 @@ export default function Calendar() {
         } catch (err) {
             console.error("Error fetching CosPlan data:", err)
         }
-        
+
     }
 
     useEffect(() => {
-    if (currentUser) {
-        fetchCosplanData()
-    }
+        if (currentUser) {
+            fetchCosplanData()
+        }
     }, [currentUser])
 
     // iterate over the cosplan list and count the number of plans for each day
@@ -89,7 +89,24 @@ export default function Calendar() {
         }
     }, [cosplanRender])
 
+    // delete functionality
+    const handleDeleteCosplan = async (cosplanId) => {
+        try {
+            const response = await axiosReq.delete(`/cosplans/${cosplanId}/`)
+            if (response.status === 204) {
+                setCosplanRender((prevCosplays) => prevCosplays.filter(p => p.id !== cosplanId))
+            } else {
+                console.log("Error deleting cosplan with status:", response.status)
+            }
+            console.log("Cosplan successfully deleted!")
+        }
 
+        catch (error) {
+            console.error("Error deleting cosplan:", error)
+        }
+    }
+
+    // calendar handling functionality
     // First day of the month. And it changes when
     // the user clicks the next or previous month button
     const [currentMonth, setCurrentMonth] = useState(
@@ -133,7 +150,7 @@ export default function Calendar() {
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, "dd MMMM")}</h2>
+            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, "do MMMM")}</h2>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
                     <div className="flex items-center text-chetwode-blue-900">
@@ -228,107 +245,111 @@ export default function Calendar() {
                 <ol className="mt-4 divide-y divide-chetwode-blue-100 text-sm leading-6 lg:col-span-7 xl:col-span-8 max-w-xl">
                     {
                         // filter the cosplan list to show only the plans for the selected date
-                        cosplanRender.filter(plan => {
-                            const planDueDate = new Date(plan.due_date)
+                        cosplanRender
+                            .filter(plan => {
+                                const planDueDate = new Date(plan.due_date)
+                                return planDueDate.toDateString() === selectedDate.toDateString()
+                            }).map(plan => (
+                                <li key={plan.id} className="relative group flex space-x-6 p-6 hover:bg-orchid-50">
 
-                            return planDueDate.toDateString() ===  selectedDate.toDateString()
-                        }).map(plan => (
-                            <li key={plan.id} className="relative flex space-x-6 py-6 xl:static">
-                                <img src={plan.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
-                                <div className="flex-auto">
-                                    <h3 className="pr-10 font-semibold text-black xl:pr-0">{plan.cosplay_name}</h3>
-                                    {/*
+                                    <div className="flex-auto">
+                                        <h3 className="pr-10 font-semibold text-lg xl:pr-0 underline">{plan.cosplay}</h3>
+                                        {/*
                                     dlist covers the deadline and plan
                                 */}
-                                    <dl className="mt-2 flex flex-col text-black xl:flex-row">
-                                        <div className="flex items-start space-x-3">
-                                            <dt className="mt-0.5">
-                                                {/* sr-only is screen reader accessibility improvements */}
-                                                <span className="sr-only">Due date</span>
-                                                <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
-                                            </dt>
-                                            <dd>
+                                        <dl className="mt-2 flex flex-col text-black xl:flex-row">
+                                            <div className="flex items-start space-x-3">
+                                                <dt className="mt-0.5">
+                                                    {/* sr-only is screen reader accessibility improvements */}
+                                                    <span className="sr-only">Due date</span>
+                                                    <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
+                                                </dt>
                                                 <time dateTime={plan.due_date}>
-                                                    {format(new Date(plan.due_date), 'MMMM do, yyyy')}
+                                                    {format(new Date(plan.due_date), "MMMM do, yyyy")}
                                                 </time>
-                                            </dd>
-                                        </div>
-                                        <div className="mt-2 flex items-start space-x-3 xl:ml-3.5 xl:mt-0 xl:border-l xl:border-black xl:border-opacity-50 xl:pl-3.5">
-                                            <dt className="mt-0.5">
-                                                <span className="sr-only">Plan</span>
-                                                <MapPinIcon className="h-5 w-5 text-pink" aria-hidden="true" />
-                                            </dt>
-                                            <dd>{plan.cosplan_task}</dd>
-                                        </div>
-                                    </dl>
-                                </div>
-                                <Menu as="div" className="absolute right-0 top-6 xl:relative xl:right-auto xl:top-auto xl:self-center">
-                                    <div>
-                                        <MenuButton className="-m-2 flex items-center rounded-full p-2 text-chetwode-blue-500 hover:text-chetwode-blue-600">
-                                            <span className="sr-only">Open options</span>
-                                            <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
-                                        </MenuButton>
-                                    </div>
-
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-100"
-                                        enterFrom="transform opacity-0 scale-95"
-                                        enterTo="transform opacity-100 scale-100"
-                                        leave="transition ease-in duration-75"
-                                        leaveFrom="transform opacity-100 scale-100"
-                                        leaveTo="transform opacity-0 scale-95"
-                                    >
-                                        <MenuItems className="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <div className="py-1">
-                                                <MenuItem>
-                                                    {({ active }) => (
-                                                        <Link
-                                                            to={`/cosplan/edit/${plan.id}`}
-                                                            state={{ cosplan: plan }}
-                                                            className={classNames(
-                                                                active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
-                                                                "block px-4 py-2 text-sm"
-                                                            )}
-                                                        >
-                                                            Edit
-                                                        </Link>
-                                                    )}
-                                                </MenuItem>
-                                                <MenuItem>
-                                                    {({ active }) => (
-                                                        <Link
-                                                            to={`/cosplan/${plan.id}/expenses/`}
-                                                            state={{ cosplan: plan }}
-                                                            className={classNames(
-                                                                active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
-                                                                "block px-4 py-2 text-sm"
-                                                            )}
-                                                        >
-                                                            Expenses
-                                                        </Link>
-                                                    )}
-                                                </MenuItem>
-                                                {/* changing to delete and adding functionality */}
-                                                <MenuItem>
-                                                    {({ active }) => (
-                                                        <a
-                                                            href="#"
-                                                            className={classNames(
-                                                                active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
-                                                                "block px-4 py-2 text-sm"
-                                                            )}
-                                                        >
-                                                            Delete
-                                                        </a>
-                                                    )}
-                                                </MenuItem>
                                             </div>
-                                        </MenuItems>
-                                    </Transition>
-                                </Menu>
-                            </li>
-                        ))}
+                                            <div className="mt-2 flex items-start space-x-3 xl:ml-3.5 xl:mt-0 xl:border-l xl:border-black xl:border-opacity-50 xl:pl-3.5">
+                                                <dt className="mt-0.5">
+                                                    <span className="sr-only">Plan</span>
+                                                    <MapPinIcon className="h-5 w-5 text-pink" aria-hidden="true" />
+                                                </dt>
+                                                <dd>{plan.cosplan_task}</dd>
+                                            </div>
+                                        </dl>
+                                        <p className="mt-2 text-gray-700">{plan.cosplan_details}</p>
+
+                                    </div>
+                                    <Menu as="div" className="absolute right-0 top-6 xl:relative xl:right-auto xl:top-auto xl:self-center">
+                                        <div>
+                                            <MenuButton className="-m-2 flex items-center rounded-full p-2 text-chetwode-blue-500 hover:text-chetwode-blue-600">
+                                                <span className="sr-only">Open options</span>
+                                                <EllipsisHorizontalIcon className="h-5 w-5" aria-hidden="true" />
+                                            </MenuButton>
+                                        </div>
+
+                                        <Transition
+                                            as={Fragment}
+                                            enter="transition ease-out duration-100"
+                                            enterFrom="transform opacity-0 scale-95"
+                                            enterTo="transform opacity-100 scale-100"
+                                            leave="transition ease-in duration-75"
+                                            leaveFrom="transform opacity-100 scale-100"
+                                            leaveTo="transform opacity-0 scale-95"
+                                        >
+                                            <MenuItems className="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                <div className="py-1">
+                                                    <MenuItem>
+                                                        {({ active }) => (
+                                                            <Link
+                                                                to={`/cosplan/edit/${plan.id}`}
+                                                                state={{ cosplan: plan }}
+                                                                className={classNames(
+                                                                    active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
+                                                                    "block px-4 py-2 text-sm"
+                                                                )}
+                                                            >
+                                                                Edit
+                                                            </Link>
+                                                        )}
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                        {({ active }) => (
+                                                            <Link
+                                                                to={`/cosplan/${plan.id}/expenses/`}
+                                                                state={{ cosplan: plan }}
+                                                                className={classNames(
+                                                                    active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
+                                                                    "block px-4 py-2 text-sm"
+                                                                )}
+                                                            >
+                                                                Expenses
+                                                            </Link>
+                                                        )}
+                                                    </MenuItem>
+                                                    {/* changing to delete and adding functionality */}
+                                                    <MenuItem>
+                                                        {({ active }) => (
+                                                            <a
+                                                                href="#"
+                                                                onClick={(event) => {
+                                                                    event.preventDefault()
+                                                                    handleDeleteCosplan(plan.id)
+                                                                }}
+                                                                className={classNames(
+                                                                    active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
+                                                                    "block px-4 py-2 text-sm"
+                                                                )}
+                                                            >
+                                                                Delete
+                                                            </a>
+                                                        )}
+                                                    </MenuItem>
+                                                </div>
+                                            </MenuItems>
+                                        </Transition>
+                                    </Menu>
+                                </li>
+                            ))}
                 </ol>
             </div>
         </div>
