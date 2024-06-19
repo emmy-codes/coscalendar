@@ -22,42 +22,8 @@ import { Link } from "react-router-dom"
 import { axiosReq } from "../api/axiosDefaults"
 import { useCurrentUser } from "../contexts/CurrentUserContext"
 
-// static data to be replaced later on
-const cosplan = [
-    {
-        id: 1,
-        date: "June 10th, 2024",
-        time: "5:00 PM",
-        datetime: "2024-10-10T17:00",
-        cosplayName: "Bo Katan",
-        imageUrl:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        plan: "Finish gluing helmet",
-    },
-    {
-        id: 2,
-        date: "June 15th, 2024",
-        time: "5:00 PM",
-        datetime: "2024-05-15T17:00",
-        cosplayName: "Bo Katan",
-        imageUrl:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        plan: "Prime helmet for painting",
-    },
-    {
-        id: 3,
-        date: "July 2nd, 2024",
-        time: "5:00 PM",
-        datetime: "2024-07-02T17:00",
-        cosplayName: "Pink Mercy",
-        imageUrl:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        plan: "Sand off old paint",
-    },
-]
 
 // for saving cosplan data
-
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ")
@@ -75,15 +41,15 @@ export default function Calendar() {
     // Format today"s date for easier comparisson
     const formatToday = format(todaysDate, "dd-MM-yyyy")
 
-    // Create a map to store the number of events for each day
-    // This map will facilitate the check for events on any given day
+    // Create a map to store the number of plans for each day
+    // This map will facilitate the check for plans on any given day
     // instead of iterating over the cosplan list every time.
     // example of the map:
     // {
     //     "10-06-2024": 1,
     //     "15-06-2024": 1
     // }
-    const eventDayMap = {}
+    const [eventDayMap, setEventDayMap] = useState({})
 
 
     const fetchCosplanData = async () => {
@@ -107,16 +73,22 @@ export default function Calendar() {
     }
     }, [currentUser])
 
-    // iterate over the cosplan list and count the number of events for each day
-    // for (let plan of cosplan) {
-    //     // Format the event date for easier comparisson
-    //     const formattedEventDate = format(plan.datetime, "dd-MM-yyyy")
-    //     // Check if the event date is already in the map otherwise start the count at 0
-    //     const eventCount = eventDayMap[formattedEventDate] || 0
+    // iterate over the cosplan list and count the number of plans for each day
 
-    //     // Add 1 to the event count for the current day
-    //     eventDayMap[formattedEventDate] = eventCount + 1
-    // }
+    useEffect(() => {
+        for (let plan of cosplanRender) {
+            // Format the event date for easier comparisson
+            const formattedEventDate = format(plan.due_date, "dd-MM-yyyy")
+            // Check if the event date is already in the map otherwise start the count at 0
+            const eventCount = eventDayMap[formattedEventDate] || 0
+
+            // Add 1 to the event count for the current day
+            eventDayMap[formattedEventDate] = eventCount + 1
+
+            setEventDayMap(eventDayMap)
+        }
+    }, [cosplanRender])
+
 
     // First day of the month. And it changes when
     // the user clicks the next or previous month button
@@ -255,30 +227,29 @@ export default function Calendar() {
                 </div>
                 <ol className="mt-4 divide-y divide-chetwode-blue-100 text-sm leading-6 lg:col-span-7 xl:col-span-8 max-w-xl">
                     {
-                        // filter the cosplan list to show only the events for the selected date
-                        cosplanRender.filter((plan) => {
-                            const planDate = new Date(plan.datetime)
-                            const formattedPlanDate = format(planDate, "dd-MM-yyyy")
+                        // filter the cosplan list to show only the plans for the selected date
+                        cosplanRender.filter(plan => {
+                            const planDueDate = new Date(plan.due_date)
 
-                            return formattedPlanDate === format(selectedDate, "dd-MM-yyyy")
-                        }).map((event) => (
-                            <li key={event.id} className="relative flex space-x-6 py-6 xl:static">
-                                <img src={event.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
+                            return planDueDate.toDateString() ===  selectedDate.toDateString()
+                        }).map(plan => (
+                            <li key={plan.id} className="relative flex space-x-6 py-6 xl:static">
+                                <img src={plan.imageUrl} alt="" className="h-14 w-14 flex-none rounded-full" />
                                 <div className="flex-auto">
-                                    <h3 className="pr-10 font-semibold text-black xl:pr-0">{event.cosplayName}</h3>
+                                    <h3 className="pr-10 font-semibold text-black xl:pr-0">{plan.cosplay_name}</h3>
                                     {/*
-                                    dlist covers the deadline, time and plan (to update when cosplay plan is set up)
+                                    dlist covers the deadline and plan
                                 */}
                                     <dl className="mt-2 flex flex-col text-black xl:flex-row">
                                         <div className="flex items-start space-x-3">
                                             <dt className="mt-0.5">
                                                 {/* sr-only is screen reader accessibility improvements */}
-                                                <span className="sr-only">Deadline</span>
+                                                <span className="sr-only">Due date</span>
                                                 <CalendarIcon className="h-5 w-5 text-black" aria-hidden="true" />
                                             </dt>
                                             <dd>
-                                                <time dateTime={event.datetime}>
-                                                    {event.date} at {event.time}
+                                                <time dateTime={plan.due_date}>
+                                                    {format(new Date(plan.due_date), 'MMMM do, yyyy')}
                                                 </time>
                                             </dd>
                                         </div>
@@ -287,7 +258,7 @@ export default function Calendar() {
                                                 <span className="sr-only">Plan</span>
                                                 <MapPinIcon className="h-5 w-5 text-pink" aria-hidden="true" />
                                             </dt>
-                                            <dd>{event.plan}</dd>
+                                            <dd>{plan.cosplan_task}</dd>
                                         </div>
                                     </dl>
                                 </div>
@@ -313,8 +284,8 @@ export default function Calendar() {
                                                 <MenuItem>
                                                     {({ active }) => (
                                                         <Link
-                                                            to={`/cosplan/edit/${event.id}`}
-                                                            state={{ cosplan: event }}
+                                                            to={`/cosplan/edit/${plan.id}`}
+                                                            state={{ cosplan: plan }}
                                                             className={classNames(
                                                                 active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
                                                                 "block px-4 py-2 text-sm"
@@ -327,8 +298,8 @@ export default function Calendar() {
                                                 <MenuItem>
                                                     {({ active }) => (
                                                         <Link
-                                                            to={`/cosplan/${event.id}/expenses/`}
-                                                            state={{ cosplan: event }}
+                                                            to={`/cosplan/${plan.id}/expenses/`}
+                                                            state={{ cosplan: plan }}
                                                             className={classNames(
                                                                 active ? "bg-chetwode-blue-100 text-chetwode-blue-900" : "text-chetwode-blue-700",
                                                                 "block px-4 py-2 text-sm"
