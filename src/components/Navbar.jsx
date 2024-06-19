@@ -8,7 +8,6 @@ import axios from "axios";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "CosCalendar", href: "/calendar" },
-  { name: "CosPlan", href: "/cosplan" },
   { name: "Expenses", href: "/expenses" },
 ]
 
