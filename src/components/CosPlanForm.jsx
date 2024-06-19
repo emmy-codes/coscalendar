@@ -19,26 +19,20 @@ function CosPlanForm() {
     // collect selectedDate which is passed down from Calendar
     const initialDueDate = location.state?.selectedDate
 
-    // fetch cosplan data on mount
-    const [cosplanData, setCosplanData] = useState([])
-    useEffect(() => {
-        const fetchCosplanData = async () => {
-            try {
-                const response = await axiosReq.get("/cosplans/")
-                setCosplanData(response.data.results)
-            } catch (err) {
-                console.error("Cosplay data fetch error:", err)
-            }
-        }
-        fetchCosplanData()
-    }, [])
 
-    const [cosplan, setCosplan] = useState({
-        cosplay: "",
-        cosplan_task: "",
-        cosplan_details: "",
-        due_date: initialDueDate // initialising with selectedDate from Calendar
-    })
+    // fetch cosplan data on mount
+    const [cosplanData, setCosplanData] = useState(location.state?.cosplan || {})
+    // useEffect(() => {
+    //     const fetchCosplanData = async () => {
+    //         try {
+    //             const response = await axiosReq.get("/cosplans/")
+    //             setCosplanData(response.data.results)
+    //         } catch (err) {
+    //             console.error("Cosplay data fetch error:", err)
+    //         }
+    //     }
+    //     fetchCosplanData()
+    // }, [])
 
     // useEffect(() => {
     //     // checks if there's a success message in the locations state
@@ -48,12 +42,12 @@ function CosPlanForm() {
     // }, [location, navigate])
 
     // destructure form data
-    const { cosplay, cosplan_task, cosplan_details, due_date } = cosplan
+    const { cosplay, cosplan_task, cosplan_details, due_date } = cosplanData
     const [errors, setErrors] = useState({})
 
     const handleSubmitData = (event) => {
-        setCosplan({
-            ...cosplan,
+        setCosplanData({
+            ...cosplanData,
             [event.target.name]: event.target.value
         })
     }
@@ -64,7 +58,7 @@ function CosPlanForm() {
 
     const handleCosplanSubmit = async (event) => {
         event.preventDefault()
-        console.log("Form submitted", cosplan)
+        console.log("Form submitted", cosplanData)
 
         try {
             const formattedDueDate = format(new Date(due_date), "yyyy-MM-dd")
@@ -81,7 +75,7 @@ function CosPlanForm() {
 
             if (response.status === 201) {
                 // resetting the fields to empty after submission
-                setCosplan({
+                setCosplanData({
                     cosplay: "",
                     cosplan_task: "",
                     cosplan_details: "",

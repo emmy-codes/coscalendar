@@ -84,8 +84,8 @@ export default function Calendar() {
 
             // Add 1 to the event count for the current day
             eventDayMap[formattedEventDate] = eventCount + 1
-
-            setEventDayMap(eventDayMap)
+            // object literal: forcing React to acknowledge there was a change by re-rendering the object
+            setEventDayMap({...eventDayMap})
         }
     }, [cosplanRender])
 
