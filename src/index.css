@@ -8,6 +8,10 @@
 
 /* custom CSS */
 
+#root {
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+}
+
 .links {
   @apply hover:bg-orchid-300 rounded hidden px-3 py-2 lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-black;
 }
@@ -25,3 +29,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
