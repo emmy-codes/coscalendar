@@ -6,7 +6,7 @@ import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContex
 import axios from "axios";
 
 const navigation = [
-  { name: "Home", href: "/" },
+  { name: "Home", href: "/home" },
   { name: "CosCalendar", href: "/calendar" },
   { name: "Expenses", href: "/expenses" },
 ]
@@ -96,7 +96,7 @@ export default function Navbar() {
 
   const loggedOutLinks = <>
     <div className="flex flex-1 items-center justify-end gap-x-6">
-      <a href="/" className="links">Home</a>
+      <a href="/home" className="links">Home</a>
       <a href="/login" className="links">
         Log in
       </a>
