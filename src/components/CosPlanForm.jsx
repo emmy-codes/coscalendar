@@ -12,12 +12,13 @@ function CosPlanForm() {
     const navigate = useNavigate()
     const location = useLocation()
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const handleDismissMessage = () => {
         setShowSuccessMessage(false)
         navigate("/calendar")
     }
     // collect selectedDate which is passed down from Calendar
-    const initialDueDate = location.state?.selectedDate
+    const initialDueDate = location.state?.cosplan?.due_date || location.state?.selectedDate
 
 
     // fetch cosplan data on mount
@@ -34,14 +35,9 @@ function CosPlanForm() {
     //     fetchCosplanData()
     // }, [])
 
-    // useEffect(() => {
-    //     // checks if there's a success message in the locations state
-    //     if (location.state && location.state.showSuccess) {
-    //         setShowSuccessMessage(true)
-    //     }
-    // }, [location, navigate])
 
     // destructure form data
+    console.log(cosplanData)
     const { cosplay, cosplan_task, cosplan_details, due_date } = cosplanData
     const [errors, setErrors] = useState({})
 
@@ -58,29 +54,40 @@ function CosPlanForm() {
 
     const handleCosplanSubmit = async (event) => {
         event.preventDefault()
-        console.log("Form submitted", cosplanData)
+        console.log("Form submitted", cosplanData, cosplanData.id)
+        setIsSubmitting(true)
 
         try {
-            const formattedDueDate = format(new Date(due_date), "yyyy-MM-dd")
-            const response = await axiosReq.post(
-                "/cosplans/",
-                {
-                    cosplay: cosplay,
-                    cosplan_task: cosplan_task,
-                    cosplan_details: cosplan_details,
-                    due_date: formattedDueDate
-                }
-            )
+            const formattedDueDate = format(new Date(due_date || initialDueDate), "yyyy-MM-dd")
+            let response = undefined
+
+            if (cosplanData.id !== undefined) {
+                response = await axiosReq.put(
+                    `/cosplans/${cosplanData.id}/`,
+                    {
+                        ...cosplanData,
+                        cosplay: cosplay,
+                        cosplan_task: cosplan_task,
+                        cosplan_details: cosplan_details,
+                        due_date: formattedDueDate
+                    }
+                )
+            } else {
+                console.log("I am here", cosplanData)
+                response = await axiosReq.post(
+                    "/cosplans/",
+                    {
+                        cosplay: cosplay,
+                        cosplan_task: cosplan_task,
+                        cosplan_details: cosplan_details,
+                        due_date: formattedDueDate
+                    }
+                )
+            }
+
             console.log("Response:", response)
 
-            if (response.status === 201) {
-                // resetting the fields to empty after submission
-                setCosplanData({
-                    cosplay: "",
-                    cosplan_task: "",
-                    cosplan_details: "",
-                    due_date: initialDueDate
-                })
+            if (response.status === 201 || response.status === 200) {
                 setShowSuccessMessage(true)
                 // navigate to the calendar after successful creation and updating state
                 setTimeout(() => {
@@ -95,6 +102,7 @@ function CosPlanForm() {
             console.error("Cosplan creation error:", err.response?.data)
             setErrors(err.response?.data)
         }
+        setIsSubmitting(false)
     }
 
 
@@ -103,7 +111,7 @@ function CosPlanForm() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {showSuccessMessage ? (
                     <Success
-                        message={"CosPlan successfully created!"}
+                        message={cosplanData.id ? "Cosplan successfully updated!" : "CosPlan successfully created!"}
                         onDismiss={handleDismissMessage}
                     />
                 ) : null}
@@ -111,6 +119,7 @@ function CosPlanForm() {
                     method="POST"
                     onSubmit={handleCosplanSubmit}
                     className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+                    <input type="hidden" name="id" value={cosplanData.id} />
                     <div className="px-4 py-6 sm:p-8">
                         <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             {/* Field wrapper */}
@@ -126,6 +135,7 @@ function CosPlanForm() {
                                             name="cosplay"
                                             type="text"
                                             value={cosplay}
+                                            disabled={showSuccessMessage || isSubmitting}
                                             onChange={handleSubmitData}
                                             required
                                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -144,6 +154,7 @@ function CosPlanForm() {
                                             name="cosplan_task"
                                             type="text"
                                             value={cosplan_task}
+                                            disabled={showSuccessMessage || isSubmitting}
                                             onChange={handleSubmitData}
                                             required
                                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -163,6 +174,7 @@ function CosPlanForm() {
                                         id="cosplan_details"
                                         name="cosplan_details"
                                         value={cosplan_details}
+                                        disabled={showSuccessMessage || isSubmitting}
                                         type="text"
                                         onChange={handleSubmitData}
                                         rows="3"
@@ -191,6 +203,7 @@ function CosPlanForm() {
                         </button>
                         <button
                             type="submit"
+                            disabled={showSuccessMessage || isSubmitting}
                             className="text-gray rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                             Save
