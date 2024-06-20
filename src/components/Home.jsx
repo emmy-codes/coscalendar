@@ -7,14 +7,14 @@ const features = [
         name: "CosCalendar",
         description:
             "Our cosplay calendar is designed with your success in mind - Simply select a date to add a to-do plan for your cosplay, and easily stay on top of your progress!",
-        imageSrc: "https://tailwindui.com/img/ecommerce-images/product-feature-07-detail-01.jpg",
+        imageSrc: "https://i0.wp.com/picjumbo.com/wp-content/uploads/calendar-app-business-time-management-workspace.jpg?w=2210&quality=70g",
         imageAlt: "White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.",
     },
     {
         name: "CosExpenses",
         description:
             "The expenses tracker is great for planning items you need to buy for your cosplay, as well as tracking the total amount you've spent on certain items for each cosplay.",
-        imageSrc: "https://tailwindui.com/img/ecommerce-images/product-feature-07-detail-02.jpg",
+        imageSrc: "https://i0.wp.com/picjumbo.com/wp-content/uploads/christmas-budget-money-expenses-shopping-free-photo.jpg?w=2210&quality=70",
         imageAlt: "Detail of zipper pull with tan leather and silver rivet.",
     },
 ]
@@ -77,7 +77,7 @@ export default function Home() {
                                 )}
                             >
                                 <div className="overflow-hidden rounded-lg bg-gray-100">
-                                    <img src={feature.imageSrc} alt={feature.imageAlt} className="object-cover object-center" />
+                                    <img src={feature.imageSrc} alt={feature.imageAlt} className="object-cover object-center max-h-96" />
                                 </div>
                             </div>
                         </div>
