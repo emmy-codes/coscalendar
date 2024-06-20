@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Success from "./alerts/Success"
 import { useCurrentUser } from "../contexts/CurrentUserContext"
@@ -23,18 +23,6 @@ function CosPlanForm() {
 
     // fetch cosplan data on mount
     const [cosplanData, setCosplanData] = useState(location.state?.cosplan || {})
-    // useEffect(() => {
-    //     const fetchCosplanData = async () => {
-    //         try {
-    //             const response = await axiosReq.get("/cosplans/")
-    //             setCosplanData(response.data.results)
-    //         } catch (err) {
-    //             console.error("Cosplay data fetch error:", err)
-    //         }
-    //     }
-    //     fetchCosplanData()
-    // }, [])
-
 
     // destructure form data
     console.log(cosplanData)
@@ -125,14 +113,14 @@ function CosPlanForm() {
                             {/* Field wrapper */}
                             <div className="sm:col-span-4">
                                 <label
-                                    htmlFor="cosplay"
+                                    htmlFor="cosplay_name"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >Cosplay Character:</label>
                                 <div className="mt-2">
                                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input
-                                            id="cosplay"
-                                            name="cosplay"
+                                            id="cosplay_name"
+                                            name="cosplay_name"
                                             type="text"
                                             value={cosplay}
                                             disabled={showSuccessMessage || isSubmitting}
