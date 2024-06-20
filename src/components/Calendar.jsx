@@ -41,6 +41,14 @@ export default function Calendar() {
     // Format today"s date for easier comparisson
     const formatToday = format(todaysDate, "dd-MM-yyyy")
 
+    // calendar handling functionality
+    // First day of the month. And it changes when
+    // the user clicks the next or previous month button
+    const [currentMonth, setCurrentMonth] = useState(
+        startOfMonth(todaysDate)
+    )
+
+
     // Create a map to store the number of plans for each day
     // This map will facilitate the check for plans on any given day
     // instead of iterating over the cosplan list every time.
@@ -53,8 +61,13 @@ export default function Calendar() {
 
 
     const fetchCosplanData = async () => {
+        // first day of first week
+        const firstCalendarDay = format(startOfWeek(currentMonth), "yyyy-MM-dd")
+        // last DATE of calendar month shown
+        const lastCalendarDay = format(endOfWeek(endOfMonth(currentMonth)), "yyyy-MM-dd")
+
         try {
-            const response = await axiosReq.get("/cosplans/", {
+            const response = await axiosReq.get(`/cosplansbyDateRange/?startDate=${firstCalendarDay}&endDate=${lastCalendarDay}`, {
                 params: {
                     cosplayer: currentUser?.user_profile?.id
                 }
@@ -71,7 +84,7 @@ export default function Calendar() {
         if (currentUser) {
             fetchCosplanData()
         }
-    }, [currentUser])
+    }, [currentUser, currentMonth])
 
     // iterate over the cosplan list and count the number of plans for each day
 
@@ -105,13 +118,6 @@ export default function Calendar() {
             console.error("Error deleting cosplan:", error)
         }
     }
-
-    // calendar handling functionality
-    // First day of the month. And it changes when
-    // the user clicks the next or previous month button
-    const [currentMonth, setCurrentMonth] = useState(
-        startOfMonth(todaysDate)
-    )
 
     // Selected date from the calendar. It is today's date by default
     const [selectedDate, setSelectedDate] = useState(todaysDate)
