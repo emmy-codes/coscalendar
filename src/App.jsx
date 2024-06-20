@@ -27,7 +27,7 @@ function App() {
         <Route path="/cosplan/edit/:id" element={<CosPlanForm />} />
         <Route path="/calendar" element={<Calendar />} />
         {/* <Route path="/expenses" element={<Expenses />} /> */}
-        <Route path="/expenses" element={<ExpensesList/>} />
+        <Route path="/cosplan/:id/expenses" element={<ExpensesList/>} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
