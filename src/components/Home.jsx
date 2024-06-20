@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Success from './alerts/Success'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react"
+import Success from "./alerts/Success"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const features = [
     {
@@ -8,19 +8,19 @@ const features = [
         description:
             "Our cosplay calendar is designed with your success in mind - Simply select a date to add a to-do plan for your cosplay, and easily stay on top of your progress!",
         imageSrc: "https://i0.wp.com/picjumbo.com/wp-content/uploads/calendar-app-business-time-management-workspace.jpg?w=2210&quality=70g",
-        imageAlt: "White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.",
+        imageAlt: "A desk setup with keyboard, phone, tablet and notepad. The tablet shows a calendar app",
     },
     {
         name: "CosExpenses",
         description:
             "The expenses tracker is great for planning items you need to buy for your cosplay, as well as tracking the total amount you've spent on certain items for each cosplay.",
         imageSrc: "https://i0.wp.com/picjumbo.com/wp-content/uploads/christmas-budget-money-expenses-shopping-free-photo.jpg?w=2210&quality=70",
-        imageAlt: "Detail of zipper pull with tan leather and silver rivet.",
+        imageAlt: "Jar of coins on a table in focus, with a blurred background with fairy lights.",
     },
 ]
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(" ")
 }
 
 
@@ -63,8 +63,8 @@ export default function Home() {
                         >
                             <div
                                 className={classNames(
-                                    featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
-                                    'mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
+                                    featureIdx % 2 === 0 ? "lg:col-start-1" : "lg:col-start-8 xl:col-start-9",
+                                    "mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4"
                                 )}
                             >
                                 <h3 className="text-lg font-medium text-gray-900">{feature.name}</h3>
@@ -72,8 +72,8 @@ export default function Home() {
                             </div>
                             <div
                                 className={classNames(
-                                    featureIdx % 2 === 0 ? 'lg:col-start-6 xl:col-start-5' : 'lg:col-start-1',
-                                    'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
+                                    featureIdx % 2 === 0 ? "lg:col-start-6 xl:col-start-5" : "lg:col-start-1",
+                                    "flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8"
                                 )}
                             >
                                 <div className="overflow-hidden rounded-lg bg-gray-100">
