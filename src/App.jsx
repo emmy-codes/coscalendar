@@ -14,6 +14,7 @@ import Page404 from "./components/Page404"
 import Home from "./components/Home"
 import LandingPage from "./components/LandingPage"
 import CosPlanForm from "./components/CosPlanForm"
+import Footer from "./components/Footer"
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
         <Route path="/cosplan/edit/:id" element={<CosPlanForm />} />
         <Route path="/calendar" element={<Calendar />} />
         {/* <Route path="/expenses" element={<Expenses />} /> */}
-        <Route path="/cosplan/:id/expenses" element={<ExpensesList/>} />
+        <Route path="/cosplan/:id/expenses" element={<ExpensesList />} />
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -37,7 +38,8 @@ function App() {
   )
   return (
     <>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
+      <Footer />
     </>
   )
 }
