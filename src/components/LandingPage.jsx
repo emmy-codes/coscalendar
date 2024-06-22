@@ -17,7 +17,7 @@ export default function LandingPage() {
     return (
         <CurrentUserProvider>
             <Navbar />
-            <div className="py-10">
+            <div className="py-10 flex-1">
                 <Outlet />
             </div>
         </CurrentUserProvider>
