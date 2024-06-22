@@ -22,7 +22,7 @@ function ExpensesList() {
         quantity: "",
         product_link: "",
         cosplan_id: currentCosplan.id,
-        cosplayer_id: currentUser.pk
+        cosplayer_id: currentUser?.pk
     })
 
     const { item_name, unit_price, quantity, product_link } = newExpenseData
@@ -34,13 +34,17 @@ function ExpensesList() {
         event.preventDefault()
         setNewExpenseData({
             ...newExpenseData,
+            cosplan_id: currentCosplan.id,
+            cosplayer_id: currentUser?.pk,
             [event.target.name]: event.target.value
         })
     }
 
-    // if (currentUser && cosplay_name) {
-    //     fetchExpensesData();
-    // }
+    useEffect(() => {
+        axiosReq.get(`/expenses/?cosplan_id=${id}`).then((response) => {
+            setExpenses(response.data.results)
+        })
+    }, [id])
 
     const handleNewExpenseSubmit = async (event) => {
         event.preventDefault()
@@ -50,7 +54,6 @@ function ExpensesList() {
                 `/cosplans/${currentCosplan.id}/expenses/`,
                 newExpenseData
             )
-            console.log("successesz")
             // updating existing expenses state
             setExpenses([response.data, ...expenses])
             setNewExpenseData({
@@ -123,22 +126,22 @@ function ExpensesList() {
                         <ul role="list" className="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
 
                             {/* Expense item... */}
-                            <li className="flex space-x-6 py-6">
+                            {expenses.map((expense) => (<li key={expense.id} className="flex space-x-6 py-6">
                                 <img src="https://tailwindui.com/img/ecommerce-images/confirmation-page-06-product-01.jpg" alt="Model wearing men&#039;s charcoal basic tee in large." className="h-24 w-24 flex-none rounded-md bg-gray-100 object-cover object-center" />
                                 <div className="flex-auto space-y-1">
                                     <h3 className="text-gray-900">
-                                        <a href="#">Basic Tee</a>
+                                        <a href="#">{expense.item_name}</a>
                                     </h3>
-                                    <p>Charcoal</p>
+                                    {expense.product_link !== "" ? <a href={expense.product_link} target="_blank">Click here to buy</a> : null}
                                 </div>
-                                <p className="flex-none font-medium text-gray-900">€36.00</p>
-                            </li>
+                                <p className="flex-none font-medium text-gray-900">({expense.quantity}) x €{expense.unit_price}</p>
+                            </li>))}
                         </ul>
 
                         <dl className="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-500">
                             <div className="flex items-center justify-between pt-6 text-gray-900">
                                 <dt className="text-base">Total</dt>
-                                <dd className="text-base">€86.40</dd>
+                                <dd className="text-base">€{expenses.reduce((acc, expense) => (acc + (expense.unit_price * expense.quantity)),0)}</dd>
                             </div>
                         </dl>
 
