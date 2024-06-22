@@ -73,7 +73,6 @@ export default function Calendar() {
                 }
             })
             setCosplanRender(response.data.results)
-            console.log(response)
         } catch (err) {
             console.error("Error fetching CosPlan data:", err)
         }
@@ -163,7 +162,7 @@ export default function Calendar() {
                         <button
                             onClick={handlePreviousMonth}
                             type="button"
-                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-chetwode-blue-500"
+                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-orchid-900 hover:text-chetwode-blue-500"
                         >
                             <span className="sr-only">Previous month</span>
                             <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
@@ -172,7 +171,7 @@ export default function Calendar() {
                         <button
                             onClick={handleNextMonth}
                             type="button"
-                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-chetwode-blue-400 hover:text-chetwode-blue-500"
+                            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-orchid-900 hover:text-chetwode-blue-500"
                         >
                             <span className="sr-only">Next month</span>
                             <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
