@@ -1,23 +1,23 @@
-import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/20/solid';
-import { useEffect, useState } from 'react';
+import { CheckCircleIcon, XMarkIcon } from "@heroicons/react/20/solid"
+import { useEffect, useState } from "react"
 
 function Success({ message }) {
 
     // State to control visibility
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(true)
 
     // causing success message to close after 5 seconds or on click
     useEffect(() => {
         const timer = setTimeout(() => {
-            setIsVisible(false);
-        }, 5000); // Hide the message after 5 seconds
-        return () => clearTimeout(timer);
-    }, []);
+            setIsVisible(false)
+        }, 5000) // Hide the message after 5 seconds
+        return () => clearTimeout(timer)
+    }, [])
 
     // closes success message if the user clicks the X
     const handleDismiss = () => {
-        setIsVisible(false);
-    };
+        setIsVisible(false)
+    }
 
     return (
         isVisible && (
@@ -47,7 +47,7 @@ function Success({ message }) {
                     </div>
                 </div>
             </div>)
-    );
+    )
 }
 
-export default Success;
+export default Success

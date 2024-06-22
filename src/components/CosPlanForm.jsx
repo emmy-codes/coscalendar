@@ -42,7 +42,6 @@ function CosPlanForm() {
 
     const handleCosplanSubmit = async (event) => {
         event.preventDefault()
-        console.log("Form submitted", cosplanData, cosplanData.id)
         setIsSubmitting(true)
 
         try {
@@ -61,7 +60,6 @@ function CosPlanForm() {
                     }
                 )
             } else {
-                console.log("I am here", cosplanData)
                 response = await axiosReq.post(
                     "/cosplans/",
                     {
@@ -72,8 +70,6 @@ function CosPlanForm() {
                     }
                 )
             }
-
-            console.log("Response:", response)
 
             if (response.status === 201 || response.status === 200) {
                 setShowSuccessMessage(true)

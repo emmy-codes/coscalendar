@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Header from './Header'
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
-import axios from "axios";
+import { useState } from "react"
+import { Dialog, DialogPanel } from "@headlessui/react"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import Header from "./Header"
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext"
+import axios from "axios"
 
 const navigation = [
   { name: "Home", href: "/home" },
@@ -12,18 +12,18 @@ const navigation = [
 ]
 
 export default function Navbar() {
-  const currentUser = useCurrentUser();
-  const setCurrentUser = useSetCurrentUser();
+  const currentUser = useCurrentUser()
+  const setCurrentUser = useSetCurrentUser()
 
   {/* useState swaps between open and close on hamburger menu */ }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleLogout = async () => {
     try {
-      await axios.post("dj-rest-auth/logout/");
+      await axios.post("dj-rest-auth/logout/")
       useSetCurrentUser(null)
     } catch (error) {
-      console.error("An unexpected error happened:", error);
+      console.error("An unexpected error happened:", error)
     }
   }
 
@@ -42,7 +42,7 @@ export default function Navbar() {
       <a href="/" className="links" onClick={handleLogout}>
         Log out
       </a>
-    </div></>;
+    </div></>
 
   const mobileLoggedInLinks = <>
     <div className="space-y-2 py-6">

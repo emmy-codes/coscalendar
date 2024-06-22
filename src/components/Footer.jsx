@@ -1,6 +1,7 @@
 import React from "react"
 
 export default function Footer() {
+  
     return (
     <footer className="bg-chetwode-blue-800 text-chetwode-blue-100">
     <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
