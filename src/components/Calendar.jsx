@@ -103,6 +103,10 @@ export default function Calendar() {
 
     // delete functionality
     const handleDeleteCosplan = async (cosplanId) => {
+        const proceed = confirm("Are you sure you wish to delete this plan?")
+        if (!proceed) {
+            return
+        }
         try {
             const response = await axiosReq.delete(`/cosplans/${cosplanId}/`)
             if (response.status === 204) {
