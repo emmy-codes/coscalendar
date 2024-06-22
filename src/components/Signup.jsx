@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export default function Signup() {
     // variable signupInfo, function setSignupInfo
@@ -9,11 +9,11 @@ export default function Signup() {
         username: "",
         password1: "",
         password2: ""
-    });
+    })
 
-    const navigate = useNavigate();
-    const { email, username, password1, password2 } = signupInfo;
-    const [errors, setErrors] = useState({});
+    const navigate = useNavigate()
+    const { email, username, password1, password2 } = signupInfo
+    const [errors, setErrors] = useState({})
 
     // event handler for changes made to the form
 
@@ -27,26 +27,26 @@ export default function Signup() {
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
         try {
             const response = await axios.post(
                 // development server running for backend locally
                 "http://localhost:8000/dj-rest-auth/registration/",
                 signupInfo
-            );
+            )
             if (response.status === 201 || response.status === 204) {
-                navigate("/login", { state: { showSuccess: true, message: "User account successfully created!" } });
+                navigate("/login", { state: { showSuccess: true, message: "User account successfully created!" } })
             } else if (response.status === 400) { // django will throw a 400 error if there is an issue
-                setErrors(response.data);
-                console.log("Registration failed:", response.data);
+                setErrors(response.data)
+                console.log("Registration failed:", response.data)
             } else {
-                console.error("Signup error:", response.status, response.data);
+                console.error("Signup error:", response.status, response.data)
             }
         } catch (err) {
             // Handle errors here, e.g., display an error message to the user
-            console.error("Signup error:", err.response?.data);
+            console.error("Signup error:", err.response?.data)
         }
-    };
+    }
 
     return (
         <div
