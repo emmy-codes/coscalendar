@@ -19,15 +19,13 @@ function CosPlanForm() {
     }
     // collect selectedDate which is passed down from Calendar
     const initialDueDate = location.state?.cosplan?.due_date || location.state?.selectedDate
-
+    const [errors, setErrors] = useState(null)
 
     // fetch cosplan data on mount
     const [cosplanData, setCosplanData] = useState(location.state?.cosplan || {})
 
     // destructure form data
-    console.log(cosplanData)
     const { cosplay, cosplan_task, cosplan_details, due_date } = cosplanData
-    const [errors, setErrors] = useState({})
 
     const handleSubmitData = (event) => {
         setCosplanData({
@@ -79,7 +77,6 @@ function CosPlanForm() {
                     setShowSuccessMessage(false)
                 }, 5000)
             } else {
-                console.error("Error creating CosPlan:", response.status, response.data)
                 setErrors(response.data)
             }
         } catch (err) {
@@ -93,6 +90,7 @@ function CosPlanForm() {
     return (
         <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                {errors && <ErrorAlert errors={errors} onDismiss={handleDismissMessage} />}
                 {showSuccessMessage ? (
                     <Success
                         message={cosplanData.id ? "Cosplan successfully updated!" : "CosPlan successfully created!"}

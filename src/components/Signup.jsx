@@ -46,8 +46,6 @@ export default function Signup() {
             
             setErrors(response.data)
         } catch (err) {
-            // Handle errors here, e.g., display an error message to the user
-            console.error("Signup error:", err.response?.data)
             setErrors(err.response?.data)
         }
     }

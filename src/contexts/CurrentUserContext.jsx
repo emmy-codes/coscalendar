@@ -50,7 +50,6 @@ export const CurrentUserProvider = ({ children }) => {
                 // Check if the refresh request itself failed
                 if (error.response?.status === 401 && originalRequest?.url === "/dj-rest-auth/token/refresh/") {
                     // Refresh token has also expired, log user out
-                    console.log("Refresh token error:", error)
                     setCurrentUser(null)
                     navigate("/login") // Navigate to login on failure
                     return Promise.reject(error)

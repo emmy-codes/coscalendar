@@ -21,6 +21,7 @@ import {
 import { Link } from "react-router-dom"
 import { axiosReq } from "../api/axiosDefaults"
 import { useCurrentUser } from "../contexts/CurrentUserContext"
+import ErrorAlert from "./alerts/ErrorAlert"
 
 
 // for saving cosplan data
@@ -47,7 +48,10 @@ export default function Calendar() {
     const [currentMonth, setCurrentMonth] = useState(
         startOfMonth(todaysDate)
     )
-
+    const [errors, setErrors] = useState(null)
+    const handleDismissMessage = () => {
+        setErrors(null)
+    }
 
     // Create a map to store the number of plans for each day
     // This map will facilitate the check for plans on any given day
@@ -74,7 +78,7 @@ export default function Calendar() {
             })
             setCosplanRender(response.data.results)
         } catch (err) {
-            console.error("Error fetching CosPlan data:", err)
+            setErrors(err.response?.data)
         }
 
     }
@@ -112,7 +116,7 @@ export default function Calendar() {
             if (response.status === 204) {
                 setCosplanRender((prevCosplays) => prevCosplays.filter(p => p.id !== cosplanId))
             } else {
-                console.log("Error deleting cosplan with status:", response.status)
+                setErrors(response.status)
             }
             console.log("Cosplan successfully deleted!")
         }
@@ -159,6 +163,7 @@ export default function Calendar() {
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {errors && <ErrorAlert errors={errors} onDismiss={handleDismissMessage} />}
             <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, "do MMMM")}</h2>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import Success from "./alerts/Success"
 import axios from "axios"
 import { useSetCurrentUser } from "../contexts/CurrentUserContext"
+import ErrorAlert from "./alerts/ErrorAlert"
 
 function Login() {
 
@@ -23,6 +24,7 @@ function Login() {
 
     const handleDismissMessage = () => {
         setShowSuccessMessage(false)
+        setErrors(null)
     }
 
     // code for logging user in 
@@ -34,7 +36,7 @@ function Login() {
 
     const { username, password } = loginInfo
 
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState(null)
 
 
 
@@ -71,6 +73,7 @@ function Login() {
 
     return (
         <div>
+            {errors && <ErrorAlert errors={errors} onDismiss={handleDismissMessage} />}
             {/* registration success message */}
             {location.state?.showSuccess ? (
                 <Success 
