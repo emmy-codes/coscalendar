@@ -8,7 +8,6 @@ import axios from "axios"
 const navigation = [
   { name: "Home", href: "/home" },
   { name: "CosCalendar", href: "/calendar" },
-  { name: "Expenses", href: "/cosplan/1/expenses" },
 ]
 
 export default function Navbar() {
