@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import ErrorAlert from "./alerts/ErrorAlert"
 
 export default function Signup() {
     // variable signupInfo, function setSignupInfo
@@ -13,7 +14,11 @@ export default function Signup() {
 
     const navigate = useNavigate()
     const { email, username, password1, password2 } = signupInfo
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState(null)
+
+    const handleDismissMessage = () => {
+        setErrors(null)
+    }
 
     // event handler for changes made to the form
 
@@ -36,19 +41,20 @@ export default function Signup() {
             )
             if (response.status === 201 || response.status === 204) {
                 navigate("/login", { state: { showSuccess: true, message: "User account successfully created!" } })
-            } else if (response.status === 400) { // django will throw a 400 error if there is an issue
-                setErrors(response.data)
-                console.log("Registration failed:", response.data)
-            } else {
-                console.error("Signup error:", response.status, response.data)
+                return
             }
+            
+            setErrors(response.data)
         } catch (err) {
             // Handle errors here, e.g., display an error message to the user
             console.error("Signup error:", err.response?.data)
+            setErrors(err.response?.data)
         }
     }
 
     return (
+        <>
+            {errors && <ErrorAlert errors={errors} onDismiss={handleDismissMessage} />}
         <div
             className="mx-auto my-8 grid grid-cols-3 gap-6 lg:pr-3 md:pr-3 grow-0 w-8/12 rounded-lg border-4 border-solid border-orchid-500 bg-orchid-50 shadow">
             <div className="relative h-full flex-1 hidden lg:block md:block md:col-span-1 lg:col-span-2">
@@ -158,5 +164,6 @@ export default function Signup() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
