@@ -5,7 +5,7 @@ import { useCurrentUser } from "../contexts/CurrentUserContext"
 import { axiosReq } from "../api/axiosDefaults"
 import { useLocation } from "react-router-dom/dist"
 import { format } from "date-fns"
-import { ErrorAlert } from "./alerts/ErrorAlert"
+import ErrorAlert from "./alerts/ErrorAlert"
 
 function CosPlanForm() {
 
