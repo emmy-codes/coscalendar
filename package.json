@@ -39,7 +39,7 @@
     "build": "vite build",
     "lint": "npx eslint '**/*.jsx'",
     "preview": "vite preview",
-    "start": "vite"
+    "start": "serve -s dist"
   },
   "browserslist": {
     "production": [

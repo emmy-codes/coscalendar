@@ -82,7 +82,7 @@ export default function UserProfile() {
                 <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label htmlFor="fave_cosplay" className="block text-sm font-medium text-gray-700 mb-2">
-                            Favorite Cosplay:
+                            Favourite Cosplay:
                         </label>
                         <input
                             type="text"
