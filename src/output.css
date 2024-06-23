@@ -1163,6 +1163,21 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-orchid-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 92 227 / var(--tw-bg-opacity));
+}
+
+.bg-orchid-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 171 246 / var(--tw-bg-opacity));
+}
+
+.bg-orchid-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 122 238 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   object-fit: cover;
 }

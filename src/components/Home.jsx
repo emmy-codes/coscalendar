@@ -68,7 +68,7 @@ export default function Home() {
                         Here is the home for staying on top of your cosplays - both keeping track of time with our cosplay calendar, and with expenses
                         tracking designed to provide an overview of the costs involved in each cosplay.<br /><a
                             href="/login"
-                            className="underline rounded text-base font-semibold leading-7 hover:bg-orchid-200"
+                            className="bg-orchid-300 border p-1 underline rounded text-base font-semibold leading-7 hover:bg-orchid-200"
                         >
                             Log in
                         </a> to access all the features!
