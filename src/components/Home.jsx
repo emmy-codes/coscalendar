@@ -63,7 +63,7 @@ export default function Home() {
             ) : null}
             <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
                 <div className="mx-auto max-w-3xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Welcome to CosCalendar planning and expenses tracker!</h2>
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Welcome to CosCalendar planning and expenses tracker!</h1>
                     <p className="mt-4 text-gray-500">
                         Here is the home for staying on top of your cosplays - both keeping track of time with our cosplay calendar, and with expenses
                         tracking designed to provide an overview of the costs involved in each cosplay.<br /><a

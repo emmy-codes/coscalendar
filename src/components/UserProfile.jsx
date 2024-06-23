@@ -32,7 +32,7 @@ export default function UserProfile() {
     }
 
     const handleCancel = () => {
-        navigate("/home")
+        navigate(`/user_profiles/${currentUser.pk}/`)
     }
 
     useEffect(() => {
@@ -85,6 +85,7 @@ export default function UserProfile() {
                             Favourite Cosplay:
                         </label>
                         <input
+                            id="fave_cosplay"
                             type="text"
                             name="fave_cosplay"
                             value={userProfile.fave_cosplay}
@@ -97,18 +98,21 @@ export default function UserProfile() {
                                     Next Convention:
                                 </label>
                                 <input
+                                    id="next_convention"
                                     type="text"
                                     name="next_convention"
                                     value={userProfile.next_convention}
                                     onChange={handleSubmitData}
-                            className="w-full p-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500"
+                                    className="w-full p-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500"
                                 />
                     </div>
                     <div className="md:col-span-2">
-                        <label htmlFor="user_bio" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="user_bio" 
+                                className="block text-sm font-medium text-gray-700 mb-2">
                             Bio:
                         </label>
                         <textarea
+                            id="user_bio"
                             name="user_bio"
                             value={userProfile.user_bio}
                             onChange={handleSubmitData}

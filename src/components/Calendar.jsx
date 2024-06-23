@@ -187,7 +187,7 @@ export default function Calendar() {
                             <span className="sr-only">Previous month</span>
                             <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                         </button>
-                        <div className="flex-auto text-2xl font-semibold text-orchid-900 underline">{formatMonth}</div>
+                        <div className="flex-auto text-2xl font-semibold text-orchid-900">{formatMonth}</div>
                         <button
                             onClick={handleNextMonth}
                             type="button"
