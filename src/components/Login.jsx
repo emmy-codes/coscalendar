@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Success from "./alerts/Success"
-import axios from "axios"
 import { useSetCurrentUser } from "../contexts/CurrentUserContext"
 import ErrorAlert from "./alerts/ErrorAlert"
+import { axiosReq } from "../api/axiosDefaults"
 
 function Login() {
 
@@ -43,15 +43,17 @@ function Login() {
     const handleLogin = async (event) => {
         event.preventDefault()
         try {
-            const response = await axios.post(
-                "http://localhost:8000/dj-rest-auth/login/",
+            const response = await axiosReq.post(
+                "/dj-rest-auth/login/",
                 loginInfo
             )
             if (response.status === 200) {
                 setCurrentUser(response.data.user) // Update user context
                 navigate("/home", {
                     state: {
-                        showSuccess: true, message: `Welcome, ${response.data.user.username}!` } })
+                        showSuccess: true, message: `Welcome, ${response.data.user.username}!`
+                    }
+                })
             } else {
                 setErrors(response.data)
                 console.log("Login failed:", response.data)
@@ -76,9 +78,9 @@ function Login() {
             {errors && <ErrorAlert errors={errors} onDismiss={handleDismissMessage} />}
             {/* registration success message */}
             {location.state?.showSuccess ? (
-                <Success 
-                message={location.state.message || "Success!"} 
-                onDismiss={handleDismissMessage} />
+                <Success
+                    message={location.state.message || "Success!"}
+                    onDismiss={handleDismissMessage} />
             ) : null}
             <div
                 className="mx-auto my-8 grid grid-cols-3 gap-6 lg:pr-3 md:pr-3 grow-0 w-8/12 rounded-lg border-4 border-solid border-orchid-500 bg-orchid-50 shadow"
