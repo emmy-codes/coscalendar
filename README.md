@@ -177,6 +177,8 @@ Tailwind CSS and components
 
 [React](https://react.dev/) - For organising/structuring the code.
 
+[Pexels](https://www.pexels.com/) - For free images for the site.
+
 - - -
   
 
