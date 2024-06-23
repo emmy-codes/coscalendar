@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react"
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import { axiosReq } from "../api/axiosDefaults"
 import { useCurrentUser } from "../contexts/CurrentUserContext"
+import Success from "./alerts/Success"
 
 function ExpensesList() {
 
-    const navigate = useNavigate()
     const location = useLocation()
-
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    const handleDismissMessage = () => {
+        setShowSuccessMessage(false)
+    }
 
     const { id } = useParams()
 
@@ -16,6 +19,7 @@ function ExpensesList() {
     const currentUser = useCurrentUser()
 
     const currentCosplan = location.state?.cosplan
+
     const [newExpenseData, setNewExpenseData] = useState({
         item_name: "",
         unit_price: "",
@@ -49,7 +53,6 @@ function ExpensesList() {
     const handleNewExpenseSubmit = async (event) => {
         event.preventDefault()
         try {
-            console.log(newExpenseData)
             const response = await axiosReq.post(
                 `/cosplans/${currentCosplan.id}/expenses/`,
                 newExpenseData
@@ -70,10 +73,39 @@ function ExpensesList() {
         }
     }
 
+    const handleDeleteExpense = async (id) => {
+        const proceed = confirm("Are you sure you wish to delete this expense?")
+        if (!proceed) {
+            return
+        }
+        try {
+            await axiosReq.delete(
+                `/cosplans/expenses/${id}/`
+            )
+            // updating existing expenses state by removing local entry after the delete is completed
+            setExpenses(expenses.filter((expense) => expense.id !== id))
+            setShowSuccessMessage(true)
+            setTimeout(() => {
+                setShowSuccessMessage(false)
+            }, 5000)
+            // clears errors if the expense was successfully deleted
+            setErrors({})
+        } catch (error) {
+            console.error("Error deleting expense:", error.response?.data)
+            setErrors(error.response?.data)
+        }
+    }
+
     return (
         <main className="relative mx-auto max-w-7xl bg-white rounded-xl overflow-hidden">
+            {showSuccessMessage ? (
+                <Success
+                    message={"Expense successfully deleted!"}
+                    onDismiss={handleDismissMessage}
+                />
+            ) : null}
             <div className="h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
-                <img src="https://tailwindui.com/img/ecommerce-images/confirmation-page-06-hero.jpg" alt="TODO"
+                <img src="https://images.pexels.com/photos/210679/pexels-photo-210679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Glass of Euro coins and notes tipped over onto the floor, contents spilling out."
                     className="h-full w-full object-cover object-center" />
             </div>
 
@@ -87,6 +119,7 @@ function ExpensesList() {
                             <input
                                 type="text"
                                 name="item_name"
+                                required
                                 onChange={handleExpenseChange}
                                 value={item_name}
                                 className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -95,6 +128,7 @@ function ExpensesList() {
                             <input
                                 type="number"
                                 name="unit_price"
+                                required
                                 onChange={handleExpenseChange}
                                 value={unit_price}
                                 className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -103,6 +137,7 @@ function ExpensesList() {
                             <input
                                 type="number"
                                 name="quantity"
+                                required
                                 onChange={handleExpenseChange}
                                 value={quantity}
                                 className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -126,22 +161,29 @@ function ExpensesList() {
                         <ul role="list" className="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
 
                             {/* Expense item... */}
-                            {expenses.map((expense) => (<li key={expense.id} className="flex space-x-6 py-6">
-                                <img src="https://tailwindui.com/img/ecommerce-images/confirmation-page-06-product-01.jpg" alt="Model wearing men&#039;s charcoal basic tee in large." className="h-24 w-24 flex-none rounded-md bg-gray-100 object-cover object-center" />
+                            {expenses.map((expense) => (<li
+                                key={expense.id}
+                                className="flex space-x-6 py-6 group">
                                 <div className="flex-auto space-y-1">
                                     <h3 className="text-gray-900">
                                         <a href="#">{expense.item_name}</a>
                                     </h3>
                                     {expense.product_link !== "" ? <a href={expense.product_link} target="_blank">Click here to buy</a> : null}
                                 </div>
-                                <p className="flex-none font-medium text-gray-900">({expense.quantity}) x €{expense.unit_price}</p>
+                                <p className="flex-none font-medium text-gray-900">{expense.quantity} x €{expense.unit_price}</p>
+                                <a
+                                    className="hidden group-hover:inline-flex py-1 px-4 text-xs justify-center cursor-pointer hover:bg-error-100 border-2 hover:border-error-100 rounded-lg text-error-400 hover:text-error-500"
+                                    onClick={() => handleDeleteExpense(expense.id)}
+                                >
+                                    remove
+                                </a>
                             </li>))}
                         </ul>
 
                         <dl className="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-500">
                             <div className="flex items-center justify-between pt-6 text-gray-900">
-                                <dt className="text-base">Total</dt>
-                                <dd className="text-base">€{expenses.reduce((acc, expense) => (acc + (expense.unit_price * expense.quantity)),0)}</dd>
+                                <dt className="text-base">Total cost of item/s in this cosplay task</dt>
+                                <dd className="text-base">€{expenses.reduce((acc, expense) => (acc + (expense.unit_price * expense.quantity)), 0)}</dd>
                             </div>
                         </dl>
 
