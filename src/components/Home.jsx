@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Success from "./alerts/Success"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useCurrentUser } from "../contexts/CurrentUserContext"
 
 const features = [
     {
@@ -43,6 +44,7 @@ export default function Home() {
     const navigate = useNavigate()
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const location = useLocation()
+    const currentUser = useCurrentUser()
 
     useEffect(() => {
         // checks if there's a success message in the locations state
@@ -55,14 +57,26 @@ export default function Home() {
         setShowSuccessMessage(false)
     }
 
+    const loggedInHomepage =
+        <>
+            <div className="mx-auto max-w-3xl text-center">
+                <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Welcome to CosCalendar planning and expenses tracker!</h1>
+                <p className="mt-4 text-sm text-gray-500">
+                    Your Calendar is your all-in-one tracking app: Create a CosPlan to stay on track, and add expenses (with shopping links if you want!) to keep you aware of the costs incurred in your cosplay plan.
+                    <br /> Simply click on "CosCalendar" to get started!
+                </p>
+            </div>
+        </>
+
     return (
         <div>
             {/* login success message and welcome */}
             {location.state?.showSuccess ? (
                 <Success message={location.state.message || "Success!"} onDismiss={handleDismissMessage} />
             ) : null}
+
             <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
-                <div className="mx-auto max-w-3xl text-center">
+                {currentUser ? loggedInHomepage : <div className="mx-auto max-w-3xl text-center">
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Welcome to CosCalendar planning and expenses tracker!</h1>
                     <p className="mt-4 text-gray-500">
                         Here is the home for staying on top of your cosplays - both keeping track of time with our cosplay calendar, and with expenses
@@ -73,7 +87,8 @@ export default function Home() {
                             Log in
                         </a> to access all the features!
                     </p>
-                </div>
+                </div>}
+
 
                 <div className="mt-16 space-y-16">
                     {features.map((feature, featureIdx) => (

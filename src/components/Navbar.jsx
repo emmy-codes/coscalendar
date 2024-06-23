@@ -27,21 +27,24 @@ export default function Navbar() {
   }
 
 
-  const loggedInLinks = <><div className="hidden lg:flex lg:gap-x-12">
-    {navigation.map((item) => (
-      <a key={item.name} href={item.href} className="links">
-        {item.name}
-      </a>
-    ))}
-  </div>
-    <div className="flex flex-1 items-center justify-end gap-x-6">
-      <a href="/user-profile" className="links">
-        Profile
-      </a>
-      <a href="/" className="links" onClick={handleLogout}>
-        Log out
-      </a>
-    </div></>
+  const loggedInLinks =
+    <>
+      <div className="hidden lg:flex lg:gap-x-12">
+        {navigation.map((item) => (
+          <a key={item.name} href={item.href} className="links">
+            {item.name}
+          </a>
+        ))}
+      </div>
+      <div className="flex flex-1 items-center justify-end gap-x-6">
+        <a href="/user-profile" className="links">
+          Profile
+        </a>
+        <a href="/" className="links" onClick={handleLogout}>
+          Log out
+        </a>
+      </div>
+    </>
 
   const mobileLoggedInLinks = <>
     <div className="space-y-2 py-6">
