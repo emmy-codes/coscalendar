@@ -1,5 +1,8 @@
 # CosCalendar - Cosplay Planning App
 
+![am-i-responsive-_1](https://github.com/emmy-codes/coscalendar/assets/70635859/ffc2e943-c4ad-4eaa-aadb-9489556fe87f)
+
+
 This is my 5th and final project at Code Institute, implementing all skills learned so far and focusing on an output using React on the frontend and Django REST API on the backend. This project is designed with cosplayers in mind, to help them stay accountable for their cosplay plans by tracking their project plans in a calendar, as well as the costs accrued whilst crafting the cosplay. This gives the cosplayer a detailed overview of time management and expenses for their projects.
 
 The full plan for the website is listed below under "Features".
@@ -443,6 +446,7 @@ Calendar/CosPlanForm - I decided to remove the date picker from the CosPlanForm.
 ### Code Used
 
 Tailwind UI Components (Bootstrap replacement)
+Calendar - I had several mob sessions with an experienced developer who had fairly recently made a calendar for their own app and helped me to fulfil much of the base functionality (first commit of Calendar) from there on the changes were my own
 
 ### Content
 
@@ -451,6 +455,11 @@ Currently no large detail of content needed.
 ### Acknowledgments
 
 I would like to acknowledge the following people:
+
+* Community Sweden - ❤️ you guys keep me going!
+* Specifically Jonathan for his indepth knowledge trying to help me update my Pip and Python versions(sorry I made you into an Ubuntu fan!)
+* My hubby and adorable toddler for smiling when I couldn't
+* My friends and family for their support
 
 As always, my partner for helping me
   
