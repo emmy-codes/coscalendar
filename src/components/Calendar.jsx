@@ -22,7 +22,7 @@ import { Link } from "react-router-dom"
 import { axiosReq } from "../api/axiosDefaults"
 import { useCurrentUser } from "../contexts/CurrentUserContext"
 import ErrorAlert from "./alerts/ErrorAlert"
-
+import Success from "./alerts/Success"
 
 // for saving cosplan data
 
@@ -49,8 +49,10 @@ export default function Calendar() {
         startOfMonth(todaysDate)
     )
     const [errors, setErrors] = useState(null)
+
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const handleDismissMessage = () => {
-        setErrors(null)
+        setShowSuccessMessage(false)
     }
 
     // Create a map to store the number of plans for each day
@@ -101,7 +103,7 @@ export default function Calendar() {
             // Add 1 to the event count for the current day
             eventDayMap[formattedEventDate] = eventCount + 1
             // object literal: forcing React to acknowledge there was a change by re-rendering the object
-            setEventDayMap({...eventDayMap})
+            setEventDayMap({ ...eventDayMap })
         }
     }, [cosplanRender])
 
@@ -115,10 +117,13 @@ export default function Calendar() {
             const response = await axiosReq.delete(`/cosplans/${cosplanId}/`)
             if (response.status === 204) {
                 setCosplanRender((prevCosplays) => prevCosplays.filter(p => p.id !== cosplanId))
+                setShowSuccessMessage(true)
+                setTimeout(() => {
+                    setShowSuccessMessage(false)
+                }, 5000)
             } else {
                 setErrors(response.status)
             }
-            console.log("Cosplan successfully deleted!")
         }
 
         catch (error) {
@@ -163,6 +168,12 @@ export default function Calendar() {
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {showSuccessMessage ? (
+                <Success
+                    message={"Cosplan successfully deleted!"}
+                    onDismiss={handleDismissMessage}
+                />
+            ) : null}
             {errors && <ErrorAlert errors={errors} onDismiss={handleDismissMessage} />}
             <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, "do MMMM")}</h2>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
