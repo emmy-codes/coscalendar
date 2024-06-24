@@ -76,7 +76,7 @@ export default function UserProfile() {
                 />
             ) : null}
             <div className="px-4 sm:px-0">
-                <h3 className="text-3xl text-center font-bold text-orchid-900 mb-8">{currentUser.username}'s Profile</h3>
+                <h1 className="text-3xl text-center font-bold text-orchid-900 mb-8">{currentUser.username}'s Profile</h1>
             </div>
             <form className="mt-6" onSubmit={handleProfileSubmit}>
                 <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
