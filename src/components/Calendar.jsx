@@ -175,7 +175,7 @@ export default function Calendar() {
                 />
             ) : null}
             {errors && <ErrorAlert errors={errors} onDismiss={handleDismissMessage} />}
-            <h2 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, "do MMMM")}</h2>
+            <h1 className="text-xl font-bold shadow leading-6 w-fit text-chetwode-blue-900 p-2 ">Cosplay plans for {format(selectedDate, "do MMMM")}</h1>
             <div className="lg:grid lg:grid-cols-12 lg:gap-x-16">
                 <div className="mt-10 text-center lg:col-start-8 lg:col-end-13 lg:row-start-1 lg:mt-9 xl:col-start-9">
                     <div className="flex items-center text-chetwode-blue-900">
