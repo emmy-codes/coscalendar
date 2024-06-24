@@ -53,6 +53,8 @@ Due to the way Lighthouse clears data before running, the reports were generated
 
 ## Manual testing of site
 
+Site was tested using desktop PC and Galaxy Note 3.
+
 | Feature                          | Test Scenario                                                        | User Action                                                                                                                                               | Expected Outcome                                                                                                                                                                        | Final Outcome                                                                                                 |
 |:---------------------------------|:---------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
 | Authentication | Signup  | Fill out the signup form with valid data and submit it   | User is redirected to the login page upon successful registration  | ✅ |
