@@ -129,6 +129,8 @@ Add cosplan popup: When the user edits one of their plans the same window will p
 ![add_plan_popup_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/a0cd2ffc-bcb8-498a-9019-9d5a16f5aa16)
 ![cosplanform_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/437af48f-e61a-46b7-b753-1ed06ca51281)
 ![cosplanform_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/7363743c-e6bf-4031-a1a3-84c42eff7756)
+![cosplanform_mobile](https://github.com/emmy-codes/coscalendar/assets/70635859/f6d4a5b3-4aeb-49f1-a771-078d3dfb52b4)
+
 
 ## Features
 
