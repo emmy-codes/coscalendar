@@ -12,6 +12,23 @@
 
 * Unresolved issue/s:
   - Issues with <noscript> tag being used as I wasn't certain of a good solution for this
+
+ESLint: 
+
+The ESlint plugin was used to ensure the JSX code was compliant and working.
+
+HTML validator:
+
+The HTML checker doesn't approve of self closing tags but it is an Info rather than a warning. Otherwise the results were good:
+
+![html_checker](https://github.com/emmy-codes/coscalendar/assets/70635859/d2de0c57-8d24-4832-b9f2-bbc85b3c05a8)
+
+CSS validator:
+
+Each page on the website was run through the CSS validator Jigsaw and came back clean!
+
+![w3c-css-validator-results-for-https-coscalendar-495a347f9b5a-herokuapp-com-home-css-level-3-svg-](https://github.com/emmy-codes/coscalendar/assets/70635859/1c8711a3-d03a-4ce3-9169-8a921ab0b637)
+
  
 # Lighthouse reports
 
