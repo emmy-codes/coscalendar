@@ -95,22 +95,42 @@ I wanted some calming blue tones but came across a colour palette that has a mix
 Any imagery will be addressed using alt tags, and the above colour palette has very minimal variation in Coolor's colour blindness comparison! Semantic HTML will be used wherever React components aren't being rendered, and those components will have clear names to specify their use (although I know they'll be converted into JS and HTML in the browser).
 
 ### Wireframes
+Below I have added the comparison of wireframe vs live site to effectively prove that I followed the plans through to completion. I think they came out looking very similar to the original sketches! I didn't have the Expenses in mind originally so I did wing that design based off the Tailwind components so there was no wireframe planned for that and I didn't have time to fix one retroactively.
 
-Homepage/login: The homepage is going to go straight to offering to login/sign up
+Homepage/login: The homepage is going to go straight to offering to login/sign up - After coding: I wanted more than just an introduction to the page beside the login info, so I added a simple homepage to help users understand the uses of the site.
 
 ![login_wireframes](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/85ef6063-e9f2-46df-9d29-47b9162fd551)
+
+![homepage_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/77ae2495-3d1a-4b65-b742-8f1540faa2d3)
+![homepage_mobile](https://github.com/emmy-codes/coscalendar-api/assets/70635859/94d9b7da-d1d2-4417-baab-f21c7b9c63a5)
+![homepage_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/577cc4f0-06c3-4824-b413-257d678d5e58)
+![login_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/6566a4e5-d746-4731-89cf-3b4392f880b0)
+![login_mobile](https://github.com/emmy-codes/coscalendar-api/assets/70635859/e9776673-43d2-4cfd-b71d-6bc333ad03ec)
+![login_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/72c6dfad-e617-4934-967f-04d2b6d41749)
 
 Register: 
 
 ![register_wireframes](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/030b2f00-27b4-4347-815d-6243e86a6f33)
+![register_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/a651756a-b1e1-4e0f-b3c8-c9f9216c6799)
+![register_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/bd5d70ed-f97b-4732-823e-c7b55d8348bb)
+![register_mobile](https://github.com/emmy-codes/coscalendar-api/assets/70635859/b587a358-c1c2-4ee1-bb06-97fa50eeeee1)
+
 
 CosCalendar:
 
 ![calendar_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/ef2f850f-3cc3-4d85-8406-9bdc3e74433e)
+![coscalendar_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/08f2b19b-36df-4379-a8ad-353155529573)
+![coscalendar_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/ff5c3cad-b6ab-4708-967b-3f371e1319ae)
+![coscalendar_mobile](https://github.com/emmy-codes/coscalendar-api/assets/70635859/270c2ce4-7dfb-410f-b176-742cd4dea2c7)
 
-Add cosplan popup: When the user edits one of their plans the same window will popup, so this serves both as add new and edit existing plans
+
+Add cosplan popup: When the user edits one of their plans the same window will popup, so this serves both as add new and edit existing plans - After coding: The popup was a good idea but I went with a separate page to help me to execute the plan effectively with the knowledge I had of data rendering and redirection/navigation.
 
 ![add_plan_popup_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/a0cd2ffc-bcb8-498a-9019-9d5a16f5aa16)
+![cosplanform_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/437af48f-e61a-46b7-b753-1ed06ca51281)
+![cosplanform_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/7363743c-e6bf-4031-a1a3-84c42eff7756)
+![cosplanform_mobile](https://github.com/emmy-codes/coscalendar-api/assets/70635859/3721ed04-d569-40f6-ae60-34f112f1e610)
+
 
 ## Features
 
