@@ -111,7 +111,7 @@ Homepage/login: The homepage is going to go straight to offering to login/sign u
 Register: 
 
 ![register_wireframes](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/030b2f00-27b4-4347-815d-6243e86a6f33)
-![register_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/a651756a-b1e1-4e0f-b3c8-c9f9216c6799)
+![desktop_register](https://github.com/emmy-codes/coscalendar/assets/70635859/552ae0c7-d9b1-4237-98f5-cf30613907a0)
 ![register_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/bd5d70ed-f97b-4732-823e-c7b55d8348bb)
 ![register_mobile](https://github.com/emmy-codes/coscalendar-api/assets/70635859/b587a358-c1c2-4ee1-bb06-97fa50eeeee1)
 
@@ -129,8 +129,6 @@ Add cosplan popup: When the user edits one of their plans the same window will p
 ![add_plan_popup_wireframe](https://github.com/emmy-codes/CosCalendar-cosplay-planning-page/assets/70635859/a0cd2ffc-bcb8-498a-9019-9d5a16f5aa16)
 ![cosplanform_desktop](https://github.com/emmy-codes/coscalendar-api/assets/70635859/437af48f-e61a-46b7-b753-1ed06ca51281)
 ![cosplanform_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/7363743c-e6bf-4031-a1a3-84c42eff7756)
-![cosplanform_mobile](https://github.com/emmy-codes/coscalendar-api/assets/70635859/3721ed04-d569-40f6-ae60-34f112f1e610)
-
 
 ## Features
 
