@@ -11,7 +11,7 @@
 
 
 * Unresolved issue/s:
-  - Issues with <noscript> tag being used as I wasn't certain of a good solution for this
+  - Issues with the "noscript" tag being used as I wasn't certain of a good solution for this
 
 ESLint: 
 
