@@ -416,10 +416,6 @@ A miracle happened… I double checked my backend to ensure these were being cre
 
 Biggest learning from this very extensive issue? Date formatting does not perpetuate between components, even when being passed as state.
 
-# Unresolved Bugs
-
-I was unable to resolve the issue with persistent login - I spent an entire week just trying to mimic the walkthrough section on cookie and authentication but as someone running the project locally with all updated versions, I had to jump through a dozen different hoops just to get the user to stay logged in past refresh - and sadly ran out of time to work on further bug fixing for this issue. My settings on the front and backend are set, in my eyes, to refresh authentication after 7 days, but the logout issue persists after 5minutes.
-
 # Plans vs execution
 ## Plans vs execution - and the things I've learned along the way - (Retro)
 
