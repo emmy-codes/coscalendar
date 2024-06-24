@@ -14,7 +14,7 @@ export default function Footer() {
               clipRule="evenodd" />
           </svg>
         </a>
-        <a href="https://www.instagram.com/" target="_blank" className="text-chetwode-blue-400 hover:text-chetwode-blue-500">
+        <a href="https://www.instagram.com/" target="_blank" className="text-chetwode-blue-100 hover:text-chetwode-blue-500">
           <span className="sr-only">Instagram</span>
           <svg fill="currentColor" viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
             <path fillRule="evenodd"
@@ -22,7 +22,7 @@ export default function Footer() {
               clipRule="evenodd" />
           </svg>
         </a>
-        <a href="https://github.com/emmy-codes" target="blank" className="text-chetwode-blue-400 hover:text-chetwode-blue-500">
+        <a href="https://github.com/emmy-codes" target="blank" className="text-chetwode-blue-100 hover:text-chetwode-blue-500">
           <span className="sr-only">GitHub</span>
           <svg fill="currentColor" viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
             <path fillRule="evenodd"
