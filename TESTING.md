@@ -12,16 +12,37 @@
 
 * Unresolved issue/s:
   - Issues with <noscript> tag being used as I wasn't certain of a good solution for this
+ 
+# Lighthouse reports
+
+Due to the way Lighthouse clears data before running, the reports were generated but Lighthouse threw errors because it couldn't render the page after wiping the id from the expense.
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+| ---- | ---- | ---- | ---- | ---- |
+| Homepage Desktop | 91 | 98 | 78  | 92 | 
+| Homepage Mobile | 86 | 98| 78  | 92 | 
+| Login Desktop | 94 | 95 | 78 | 92 | 
+| Login Mobile | 98 | 95 | 78  | 92 | 
+| Signup Desktop | 96 | 95 | 78  | 92 | 
+| Signup Mobile | 98 | 95 | 78  | 92 | 
+| Profile Desktop | 99 | 95 | 78  | 92 | 
+| Profile Mobile | 99 | 95 | 78  | 92 | 
+| CosCalendar Desktop | 99 | 95 | 78  | 92 | 
+| CosCalendar Mobile | 87 | 95 | 79  | 92 | 
+| CosPlan Desktop | 99 | 100 | 78  | 92 | 
+| CosPlan Mobile | 91 | 100 | 79  | 92 |
+| Expenses Desktop | 100 | 100 | 74  | 91 |
+| Expenses Mobile | 96 | 100 | 75  | 91 |
 
 ## Manual testing of site
 
 | Feature                          | Test Scenario                                                        | User Action                                                                                                                                               | Expected Outcome                                                                                                                                                                        | Final Outcome                                                                                                 |
 |:---------------------------------|:---------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
-| Authentication                   | Signup                                                               | Fill out the signup form with valid data and submit it                                                                                                    | User is redirected to the login page upon successful registration                                                                                                                       | ✅                                                                                                            |
+| Authentication | Signup  | Fill out the signup form with valid data and submit it   | User is redirected to the login page upon successful registration  | ✅ |
 |                    | Login                                                               | Fill out the login form with valid data and submit it                                                                                                    | User is redirected to the homepage upon successful authentication                                                                                                                       | ✅                                                                                                            |
 | Signup Page                      | Form Field Validation (invalid input)                                               | Submit the signup form with various invalid inputs                                                                                                        | Relevant error messages are displayed for each invalid input                                                                                                                             | ✅                                                                                                            |
 |     Login Page                 | Form Field Validation (invalid input)                                               | Submit the login form with various invalid inputs                                                                                                        | Relevant error messages are displayed for each invalid input                                                                                                                             | ✅                                                                                                            |
-|                    | Maintaining logged in status(cookies)                                                               | Stay on the website for over 5 minutes                                                                                                    | User is able to maintain logged in status past 5 minutes                                                                                                                      | ❌ (see "Unresolved Bugs" in ReadMe for more info)                                                                                                           |
+|                    | Maintaining logged in status(cookies)                                                               | Stay on the website for over 5 minutes                                                                                                    | User is able to maintain logged in status past 5 minutes                                                                                                                      | ✅                                                                                                           |
 | Calendar Page           |                                                         | Click "CosCalendar" in the navbar                                                                                                                       |          Calendar displays with current month and the ability to navigate between months                                                                                              | ✅                                                                                                            |
 |                     | Add Cosplan button below calendar                                    | The "Add Cosplan" button is visible and clickable below the calendar                                                                                      | User can see and click on the "Add Cosplan" button                                                                                                                                      | ✅                                                                                                            |
 |                     |   Day Selection                                           | Click on a day in the calendar grid                                                                                                      | The date in the header ("Cosplay plans for") updates to reflect the selected date                                                                                                          | ✅                                                                                                            |
