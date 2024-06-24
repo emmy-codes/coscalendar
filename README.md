@@ -41,8 +41,6 @@ Link to live site on Heroku: https://coscalendar-495a347f9b5a.herokuapp.com/
   
 * [Plans vs Execution](#plans-vs-execution)
 
-* [Credits](#credits)
-
 * [Code Used](#code-used)
 
 * [Content](#content)
@@ -439,9 +437,11 @@ Biggest learning from this very extensive issue? Date formatting does not perpet
 # Plans vs execution
 ## Plans vs execution - and the things I've learned along the way - (Retro)
 
-Let's face it, projects rarely go 100% to plan. It's easy to over-stretch, underestimate, and otherwise be unable to complete the idea you had in your mind when choosing a project plan.
+I believed that I had a solid plan for this project - follow the CI guide as far as possible, whilst adding my own functionality. I thought the Calendar app option was nice because it'd be different from the sea of blog pages and, as someone who prefers React over Django, I thought it was a great option for me to work on. I VASTLY underestimated the amount of coding logic involved in a Calendar, eventually having to resort to outside help to complete the setup! But once the main logic was in place I was able to stay on top of the future changes.
 
-That was definitely the case for me in this project, where I lost a lot of time simply by running locally on VSCode, and having the latest versions of everything (except for Django 5). It left me unable to follow along with the walkthrough as a guide to start my project off the ground, and led to me losing so much time that I was forced to submit my project late. But I took this option in order to give myself up to 10 valuable days to really ensure a completed pass project, to allow myself some breathing room, and most importantly, to grasp the process I'm following to create this project. Struggling to put things together in a hurry just leads to more errors and issues and more stress, and ultimately makes things take longer!
+Overall I'm *extremely* happy with the result, it does everything I hoped it would do! But I definitely needed more time for implementation of code. Nearly every corner had a new error behind it, which took a lot of time to fix rather than working on the projects' completion. But hey, since that's dev life in the real world, it's all good learnings!
+
+I'm not happy however with the strucutre I used in React. I know enough about it to know that there are ways to extensively improve the use of DRY method throughout the codebase, as much of my code was repetitive in each component. But lack of knowledge and time caused me to work reactively (no pun intended) rather than proactively in this matter. It's something I can definitely work on next time I work with React.
 
 Wireframing - I had a solid foundation on the wireframing, having learned from 4 previous projects and with the added knowledge of Tailwind CSS Components I had a good idea on what things would look like, and I could then tailor them using the components.
 
@@ -463,14 +463,10 @@ Features -
 
 - - -
 
-## Credits
-
-
-
 ### Code Used
 
-Tailwind UI Components (Bootstrap replacement)
-Calendar - I had several mob sessions with an experienced developer who had fairly recently made a calendar for their own app and helped me to fulfil much of the base functionality (first commit of Calendar) from there on the changes were my own
+* Tailwind UI Components (Bootstrap replacement)
+* Calendar - I had several mob sessions with an experienced developer who had fairly recently made a calendar for their own app and helped me to fulfil much of the base functionality (first commit of Calendar) from there on the changes were my own
 
 ### Content
 
