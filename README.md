@@ -129,6 +129,12 @@ Add cosplan popup: When the user edits one of their plans the same window will p
 ![cosplanform_tablet](https://github.com/emmy-codes/coscalendar-api/assets/70635859/7363743c-e6bf-4031-a1a3-84c42eff7756)
 ![cosplanform_mobile](https://github.com/emmy-codes/coscalendar/assets/70635859/f6d4a5b3-4aeb-49f1-a771-078d3dfb52b4)
 
+Expenses (no wireframe):
+![expenses_desktop](https://github.com/emmy-codes/coscalendar/assets/70635859/6dcf0339-c8b5-43f7-9406-569623465f85)
+![expenses_tablet](https://github.com/emmy-codes/coscalendar/assets/70635859/81790048-68ea-4184-92fd-0b83eca3015c)
+
+
+
 
 ## Features
 
