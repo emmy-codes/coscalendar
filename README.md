@@ -132,7 +132,7 @@ Add cosplan popup: When the user edits one of their plans the same window will p
 Expenses (no wireframe):
 ![expenses_desktop](https://github.com/emmy-codes/coscalendar/assets/70635859/6dcf0339-c8b5-43f7-9406-569623465f85)
 ![expenses_tablet](https://github.com/emmy-codes/coscalendar/assets/70635859/81790048-68ea-4184-92fd-0b83eca3015c)
-
+![expenses_mobile](https://github.com/emmy-codes/coscalendar/assets/70635859/f4750194-8121-4cda-97a9-2913044a4d80)
 
 
 
@@ -448,6 +448,8 @@ I believed that I had a solid plan for this project - follow the CI guide as far
 Overall I'm *extremely* happy with the result, it does everything I hoped it would do! But I definitely needed more time for implementation of code. Nearly every corner had a new error behind it, which took a lot of time to fix rather than working on the projects' completion. But hey, since that's dev life in the real world, it's all good learnings!
 
 I'm not happy however with the strucutre I used in React. I know enough about it to know that there are ways to extensively improve the use of DRY method throughout the codebase, as much of my code was repetitive in each component. But lack of knowledge and time caused me to work reactively (no pun intended) rather than proactively in this matter. It's something I can definitely work on next time I work with React.
+
+The only tickets left in my Project/Issues were either one documented bug, or features I had in mind with my original plan for this project that was quickly scrapped but I wanted to keep a record of my journey, and who knows, it may be implemented one day in the future!
 
 Wireframing - I had a solid foundation on the wireframing, having learned from 4 previous projects and with the added knowledge of Tailwind CSS Components I had a good idea on what things would look like, and I could then tailor them using the components.
 
