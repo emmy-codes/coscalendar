@@ -447,6 +447,8 @@ Wireframing - I had a solid foundation on the wireframing, having learned from 4
 
 Design - I never really had a specific colour theme in mind with this project, and I just hoped that it would become clear as the project developed. The initial blue colour theme was designed with [colour psychology](https://londonimageinstitute.com/how-to-empower-yourself-with-color-psychology/) in mind. I felt the palette to be lacking though so it needed sprucing up from my original plan.
 
+I added a few more colour themes to the Tailwind config, as well as a nice gradient background which allowed me to utilise a broader colour theme and spice the site up a bit. The blue colour was a bit Facebook-y, but I still like the colours!
+
 Accessibility - The accessibility standard was planned here, with the use of alt text, being mindful of colour palettes so that text remains easy to read, and so forth. I received the added bonus of learning about a clever class via the Tailwind CSS components titled "sr-only" which allows for elements to be hidden on a page, but keep them accessible for screen readers. This helped to improve the accessibility of my page in ways I hadn't previously considered when we hide things that may be meaningful for visually impaired users.
 
 Features -
